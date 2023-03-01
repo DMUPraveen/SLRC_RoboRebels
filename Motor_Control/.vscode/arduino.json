@@ -1,0 +1,7 @@
+{
+    "sketch": "Motor_Control.ino",
+    "output": "build",
+    "board": "arduino:avr:uno",
+    "port": "COM4",
+    "programmer": "arduino:avrisp"
+}
