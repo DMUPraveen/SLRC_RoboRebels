@@ -22,9 +22,9 @@ void setup()
 {
     Serial.begin(9600);
     attachInterrupt(
-        ((encoderA) == 2 ? 0 : ((encoderA) == 3 ? 1 : -1)),
+        (((encoderA)<40)?(encoderA):-1),
         ISRA,
-        3);
+        0x01);
 }
 
 void loop()
