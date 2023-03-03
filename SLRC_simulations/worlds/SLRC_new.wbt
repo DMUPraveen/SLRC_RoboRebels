@@ -9,8 +9,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.39170933296730837 0.445692949855996 0.8049357694344108 1.658573238517443
-  position -0.18735721547696046 -2.991091895573835 3.114442573319414
+  orientation -0.2577667504917934 0.5061695344294205 0.823011971210872 1.108215214778832
+  position -1.5313480372492627 -2.2775603898923498 1.3162183827337568
 }
 TexturedBackground {
 }
@@ -312,11 +312,12 @@ Solid {
   boundingObject USE wall_2
 }
 Robot {
-  translation -0.7199294571919925 -0.23010327420281657 0.014879441775854655
-  rotation -0.49401872875485714 -0.004331464689406664 0.8694404718283358 0.001148545912718611
+  translation -0.7201262486274294 -1.035064117759945 0.01932977733517899
+  rotation -0.988213425144042 -0.11481930462639554 -0.10124600560117067 0.0004747763689688965
+  scale 1.3 1.3 1.3
   children [
     DEF d4 DistanceSensor {
-      translation 0 0.07 0.005
+      translation -0.05 0.07 0.005
       rotation 0 0 1 3.141592653589793
       name "distance sensor(4)"
     }
@@ -326,7 +327,7 @@ Robot {
       name "distance sensor(3)"
     }
     DEF d2 DistanceSensor {
-      translation 0 0.07 0.005
+      translation 0.05 0.07 0.005
       name "distance sensor(2)"
     }
     DEF d1 DistanceSensor {
@@ -340,7 +341,7 @@ Robot {
     }
     DEF right2 HingeJoint {
       jointParameters HingeJointParameters {
-        position -1.506940222581305e-07
+        position -23.35615988989852
         anchor 0.055 -0.04 0
       }
       device [
@@ -349,8 +350,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.055048342441120605 -0.040023518599145526 -1.2541791334960659e-05
-        rotation -6.763416192372756e-08 0.9999999999999948 -7.561477512512336e-08 1.570800311854295
+        translation 0.055048342441120605 -0.03998291713758483 -2.0459639472921117e-05
+        rotation 0.6130610070506911 0.4983065448217745 0.613063446163427 2.2170119882298103
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -371,6 +372,7 @@ Robot {
     }
     DEF left2 HingeJoint {
       jointParameters HingeJointParameters {
+        position -23.35615992335335
         anchor 0.055 -0.04 0
       }
       device [
@@ -379,8 +381,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.05499999999999986 -0.04 0
-        rotation 1.6763259002921578e-07 0.9999999999999688 1.8493665049696337e-07 1.5708000580488213
+        translation -0.055 -0.04 0
+        rotation 0.6130611487042349 0.49830637220256513 0.6130634448177144 2.2170120373292734
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -401,7 +403,7 @@ Robot {
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 85.24799454799299
+        position 61.89183527100329
         anchor 0.055 0.03 0
       }
       device [
@@ -410,8 +412,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.05500000000000108 0.03 0
-        rotation -0.6994987752291932 0.09896097666169008 -0.7077486761209963 2.9538111260731004
+        translation -0.05500000000000136 0.03 0
+        rotation -0.45793984194990006 0.7608469720875463 -0.4597858047179289 1.8557144053209
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -435,11 +437,12 @@ Robot {
         metalness 0
       }
       geometry Box {
-        size 0.1 0.15 0.01
+        size 0.1 0.14 0.015
       }
     }
     DEF right1 HingeJoint {
       jointParameters HingeJointParameters {
+        position -23.35615953820245
         anchor -0.055 0.03 0
       }
       device [
@@ -448,8 +451,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.05506087867990909 0.030015695285869858 4.9450665115697055e-06
-        rotation 9.263322982710945e-09 1 9.26335642562015e-09 1.5707999248106108
+        translation 0.05506087867990909 0.02999195215820956 1.4353672835078684e-05
+        rotation 0.6130612103258816 0.4983063316798434 0.6130634161337171 2.217012012876077
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
