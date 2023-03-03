@@ -9,8 +9,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.38134307318099847 0.3696097775880715 0.8473287867458343 1.7664614133931216
-  position -0.0829139501281153 -3.6148753391279933 3.758387782901894
+  orientation -0.39170933296730837 0.445692949855996 0.8049357694344108 1.658573238517443
+  position -0.18735721547696046 -2.991091895573835 3.114442573319414
 }
 TexturedBackground {
 }
@@ -40,6 +40,7 @@ Solid {
       }
     }
   ]
+  boundingObject USE wall_13
 }
 Solid {
   translation -6.74634e-14 -0.9 0.075
@@ -55,6 +56,7 @@ Solid {
     }
   ]
   name "solid(3)"
+  boundingObject USE wall_8
 }
 Solid {
   translation -5.28942e-06 0.54 0.075
@@ -70,6 +72,7 @@ Solid {
     }
   ]
   name "solid(7)"
+  boundingObject USE wall_14
 }
 Solid {
   translation -0.180002 0.9 0.075
@@ -85,6 +88,7 @@ Solid {
     }
   ]
   name "solid(8)"
+  boundingObject USE wall_5
 }
 Solid {
   translation -0.360001 -0.54 0.075
@@ -100,6 +104,7 @@ Solid {
     }
   ]
   name "solid(4)"
+  boundingObject USE wall_12
 }
 Solid {
   translation -0.720001 0.18 0.075
@@ -115,6 +120,7 @@ Solid {
     }
   ]
   name "solid(14)"
+  boundingObject USE wall_3
 }
 DEF wall Solid {
   translation -1.08 -0.91 0.075
@@ -130,6 +136,7 @@ DEF wall Solid {
     }
   ]
   name "wall"
+  boundingObject USE wall_1
 }
 Solid {
   translation -0.180001 -0.72 0.075
@@ -145,6 +152,7 @@ Solid {
     }
   ]
   name "solid(6)"
+  boundingObject USE wall_11
 }
 Solid {
   translation 0.539996 1.08 0.075
@@ -160,6 +168,7 @@ Solid {
     }
   ]
   name "solid(12)"
+  boundingObject USE wall_7
 }
 Solid {
   translation 0.9 -1.07999 0.075
@@ -175,6 +184,7 @@ Solid {
     }
   ]
   name "solid(11)"
+  boundingObject USE wall_10
 }
 Solid {
   translation 0.9 -0.35999 0.075
@@ -190,6 +200,7 @@ Solid {
     }
   ]
   name "solid(17)"
+  boundingObject USE wall_9
 }
 Solid {
   translation 0.179991 1.08 0.075
@@ -205,6 +216,7 @@ Solid {
     }
   ]
   name "solid(9)"
+  boundingObject USE wall_6
 }
 Solid {
   translation 0.359999 -0.54 0.075
@@ -220,6 +232,7 @@ Solid {
     }
   ]
   name "solid(5)"
+  boundingObject USE wall_16
 }
 Solid {
   translation 1.08 0.9 0.075
@@ -235,6 +248,7 @@ Solid {
     }
   ]
   name "solid(13)"
+  boundingObject USE wall_8
 }
 Solid {
   translation 1.08 -0.18 0.075
@@ -250,6 +264,7 @@ Solid {
     }
   ]
   name "solid(10)"
+  boundingObject USE wall_8
 }
 Solid {
   translation 0.54 0 0.075
@@ -264,6 +279,7 @@ Solid {
     }
   ]
   name "solid(1)"
+  boundingObject USE wall_15
 }
 Solid {
   translation -0.9 0.9 0.075
@@ -278,6 +294,7 @@ Solid {
     }
   ]
   name "solid(2)"
+  boundingObject USE wall_4
 }
 Solid {
   translation -0.9 -0.54 0.075
@@ -292,6 +309,7 @@ Solid {
     }
   ]
   name "solid(15)"
+  boundingObject USE wall_2
 }
 Robot {
   translation -0.7199294571919925 -0.23010327420281657 0.014879441775854655
@@ -331,8 +349,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.055048342441120605 -0.040023518599145526 -1.2541791334960666e-05
-        rotation -6.763416192372761e-08 0.9999999999999948 -7.561477512512336e-08 1.570800311854295
+        translation 0.055048342441120605 -0.040023518599145526 -1.2541791334960659e-05
+        rotation -6.763416192372756e-08 0.9999999999999948 -7.561477512512336e-08 1.570800311854295
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -392,7 +410,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.05500000000000097 0.03 0
+        translation -0.05500000000000108 0.03 0
         rotation -0.6994987752291932 0.09896097666169008 -0.7077486761209963 2.9538111260731004
         children [
           DEF wheel Shape {
