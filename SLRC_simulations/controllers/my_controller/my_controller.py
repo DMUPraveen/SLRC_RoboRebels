@@ -9,7 +9,7 @@ from controller import Robot
 
 # get the time step of the current world.
 def run_robot(robot):
-    max_velocity=-6.28
+    max_velocity=6.28
    
     timestep = int(robot.getBasicTimeStep())
     

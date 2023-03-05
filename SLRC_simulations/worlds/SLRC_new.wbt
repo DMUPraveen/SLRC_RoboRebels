@@ -5,12 +5,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/BrushedAluminium.proto"
+EXTERNPROTO "../protos/robotArm.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2577667504917934 0.5061695344294205 0.823011971210872 1.108215214778832
-  position -1.5313480372492627 -2.2775603898923498 1.3162183827337568
+  orientation -0.28897562572137603 0.6410248736592086 0.7110416296456451 1.1301041698170453
+  position -2.9811297335021587 -2.928655162057331 3.7964434211113387
 }
 TexturedBackground {
 }
@@ -316,6 +317,8 @@ Robot {
   rotation -0.988213425144042 -0.11481930462639554 -0.10124600560117067 0.0004747763689688965
   scale 1.3 1.3 1.3
   children [
+    robotArm {
+    }
     DEF d4 DistanceSensor {
       translation -0.05 0.07 0.005
       rotation 0 0 1 3.141592653589793
