@@ -5,13 +5,12 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/BrushedAluminium.proto"
-EXTERNPROTO "../protos/robotArm.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.08389591790685856 0.1693040144939897 -0.9819865710053192 5.3485330790788606
-  position -1.0438235221942074 -1.2587549340723698 0.008307139063869685
+  orientation -0.4151244975657605 -0.2218752223730093 0.8822941897222845 4.022886292023202
+  position -0.6426715061331811 -0.36800622825218055 0.8339457124406255
 }
 TexturedBackground {
 }
@@ -346,14 +345,7 @@ Robot {
         boundingObject USE Claster
         physics Physics {
         }
-        linearVelocity -1.663794160786589e-06 2.403859323705736e-06 -1.1952755861773644e-06
-        angularVelocity -0.00017170423564531542 -0.00011884243810496403 0.7425149252802302
       }
-    }
-    DEF waist robotArm {
-      translation 0 0.04 0.012
-      rotation 0 0 1 1.5999692659236002
-      scale 0.2 0.2 0.2
     }
     DEF d4 DistanceSensor {
       translation -0.05 0.07 0.005
@@ -407,8 +399,6 @@ Robot {
         boundingObject USE wheel
         physics Physics {
         }
-        linearVelocity 7.171676980365828e-07 -6.676594852301202e-08 -7.36633125244663e-07
-        angularVelocity -2.4986589714279996e-05 -3.1733679672198374e-05 -3.824832228431634e-05
       }
     }
     DEF Body Shape {
@@ -448,8 +438,6 @@ Robot {
         boundingObject USE Wheel
         physics Physics {
         }
-        linearVelocity -4.648123382369378e-06 -4.38376069211886e-07 3.0900939764239692e-06
-        angularVelocity -2.4958430482919186e-05 -3.205519514372778e-05 -3.8248328980797455e-05
       }
     }
   ]
