@@ -10,8 +10,8 @@ EXTERNPROTO "../protos/robotArm.proto"
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.6815396975788678 -0.2620728723764494 0.683243331609217 3.6554392796543747
-  position -0.6499399370880068 -0.7579739945490871 1.6805910898645386
+  orientation -0.08389591790685856 0.1693040144939897 -0.9819865710053192 5.3485330790788606
+  position -1.0438235221942074 -1.2587549340723698 0.008307139063869685
 }
 TexturedBackground {
 }
@@ -313,24 +313,24 @@ Solid {
   boundingObject USE wall_2
 }
 Robot {
-  translation -0.71039 -0.810649 0.0276741
-  rotation 0.020361036267001444 -9.557472818531279e-05 0.9997926880446791 -2.2770556164766447
+  translation -0.9269030843142055 -1.09454398183154 0.030145131628058014
+  rotation -0.005839393172616949 0.005477518568413535 -0.9999679486252089 1.501773734099077
   children [
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
-        position 13.323597644122186
-        anchor 0 -0.06 -0.019
+        position 2.5452117072627387
+        anchor 0 -0.05 -0.017
       }
       jointParameters2 JointParameters {
-        position -16.823905046152746
+        position 0.5239476696495642
       }
       jointParameters3 JointParameters {
-        position -19.111954826155063
+        position -0.968970873665036
         axis 0 1 0
       }
       endPoint Solid {
-        translation 1.7076184216646695e-18 -0.06 -0.02
-        rotation 0.9508812563614727 0.29043790850983564 0.10710115592681495 2.0273091359463837
+        translation -8.037859267062686e-11 -0.05000003132157138 -0.016997133248554112
+        rotation 0.24123508329435045 -0.3202616925661899 0.9160993848172844 1.8773510962422164
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -338,7 +338,7 @@ Robot {
               metalness 0
             }
             geometry Sphere {
-              radius 0.01
+              radius 0.014
             }
           }
         ]
@@ -346,11 +346,13 @@ Robot {
         boundingObject USE Claster
         physics Physics {
         }
+        linearVelocity -1.663794160786589e-06 2.403859323705736e-06 -1.1952755861773644e-06
+        angularVelocity -0.00017170423564531542 -0.00011884243810496403 0.7425149252802302
       }
     }
     DEF waist robotArm {
-      translation 0 0.03 0.012
-      rotation 0 0 1 2.076773136935329
+      translation 0 0.04 0.012
+      rotation 0 0 1 1.5999692659236002
       scale 0.2 0.2 0.2
     }
     DEF d4 DistanceSensor {
@@ -378,7 +380,7 @@ Robot {
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 269.54281952003026
+        position 270.1828187972517
         anchor 0.055 0.03 0
       }
       device [
@@ -387,8 +389,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342854 0.02999891487841478 -4.3350338161887976e-06
-        rotation -0.4472972674938941 0.7735459781295353 -0.44894517951762924 1.8396790885434322
+        translation -0.07200259129342837 0.03000171848803132 -4.125143140353599e-06
+        rotation -0.20253771300653664 0.9585969862422912 -0.2001756548066682 1.6265620384920991
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -405,6 +407,8 @@ Robot {
         boundingObject USE wheel
         physics Physics {
         }
+        linearVelocity 7.171676980365828e-07 -6.676594852301202e-08 -7.36633125244663e-07
+        angularVelocity -2.4986589714279996e-05 -3.1733679672198374e-05 -3.824832228431634e-05
       }
     }
     DEF Body Shape {
@@ -412,12 +416,12 @@ Robot {
         metalness 0
       }
       geometry Box {
-        size 0.13 0.182 0.0195
+        size 0.13 0.2 0.0195
       }
     }
     DEF right1 HingeJoint {
       jointParameters HingeJointParameters {
-        position -23.356160005921243
+        position -22.716158522022646
         anchor -0.055 0.03 0
       }
       device [
@@ -426,8 +430,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0719999999999997 0.029995000006716913 1.4361002338594421e-05
-        rotation 0.6130611375909739 0.4983065106504784 0.6130633433985477 2.217011726135845
+        translation 0.07199999999999929 0.029987413188806197 8.53290718170826e-06
+        rotation 0.6829717692960027 0.2590285082482078 0.6829742266435799 2.634678668020583
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -444,6 +448,8 @@ Robot {
         boundingObject USE Wheel
         physics Physics {
         }
+        linearVelocity -4.648123382369378e-06 -4.38376069211886e-07 3.0900939764239692e-06
+        angularVelocity -2.4958430482919186e-05 -3.205519514372778e-05 -3.8248328980797455e-05
       }
     }
   ]
@@ -451,4 +457,6 @@ Robot {
   physics Physics {
   }
   controller "my_controller"
+  linearVelocity -2.0550502246349222e-06 8.996332181616306e-07 2.99841590301294e-07
+  angularVelocity -2.4981817504927536e-05 -3.183100016956327e-05 -3.82565520608897e-05
 }

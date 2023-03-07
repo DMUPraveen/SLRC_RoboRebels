@@ -68,7 +68,7 @@ def armInit(robot):
 
 # get the time step of the current world.
 def run_robot(robot):
-    max_velocity=-6.28
+    max_velocity=-3.0
    
     timestep = int(robot.getBasicTimeStep())
     
