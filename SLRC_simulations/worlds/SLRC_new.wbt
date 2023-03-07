@@ -10,8 +10,8 @@ EXTERNPROTO "../protos/robotArm.proto"
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.31606711059499965 0.12341959659108141 0.9406748560355076 2.437559242811137
-  position -0.1364079454341971 -1.3744585656504202 0.6331449985655423
+  orientation 0.0008506951371150352 -9.096174366273501e-05 0.9999996340218055 2.9257950336167413
+  position -0.006845463162802989 -1.0696717407888459 0.06396266185211792
 }
 TexturedBackground {
 }
@@ -313,12 +313,46 @@ Solid {
   boundingObject USE wall_2
 }
 Robot {
-  translation -0.7201262486274294 -1.035064117759945 0.01932977733517899
-  rotation -0.988213425144042 -0.11481930462639554 -0.10124600560117067 0.0004747763689688965
+  translation -0.6781561926752532 -1.0739904598485812 0.021592333423814166
+  rotation -0.12014352995455611 -0.07249492339619137 0.9901060641627435 0.8282120735733204
   children [
+    DEF ClasterWheel BallJoint {
+      jointParameters BallJointParameters {
+        position -0.1556584420455847
+        anchor 0 -0.06 -0.019
+      }
+      jointParameters2 JointParameters {
+        position 0.0453376897616631
+      }
+      jointParameters3 JointParameters {
+        position 0.09741058260918906
+        axis 0 1 0
+      }
+      endPoint Solid {
+        translation -2.7836820206683655e-05 -0.06017305111801896 -0.019014616571372947
+        rotation -0.7747225598436 -0.6320255356878668 0.018672908392768306 -1.0056021105993755
+        children [
+          DEF Claster Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 1
+              metalness 0
+            }
+            geometry Sphere {
+              radius 0.01
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE Claster
+        physics Physics {
+        }
+        linearVelocity 0.14900647361592018 0.020996182218604102 0.0027761831852881396
+        angularVelocity -2.099617842129417 14.900646882851994 -2.703448929174507e-15
+      }
+    }
     DEF waist robotArm {
       translation 0 0.03 0.012
-      rotation 0 0 1 0
+      rotation 0 0 1 0.09278536397599607
       scale 0.2 0.2 0.2
     }
     DEF d4 DistanceSensor {
@@ -344,71 +378,9 @@ Robot {
       translation 0 0.07 0.005
       rotation 0 0 1 1.5707996938995747
     }
-    DEF right2 HingeJoint {
-      jointParameters HingeJointParameters {
-        position -23.35615988989852
-        anchor 0.055 -0.04 0
-      }
-      device [
-        RotationalMotor {
-          name "Right_motor2"
-        }
-      ]
-      endPoint Solid {
-        translation 0.072 -0.0399829 -2.0459600000001982e-05
-        rotation 0.6130610070506911 0.4983065448217745 0.613063446163427 2.2170119882298103
-        children [
-          DEF Wheel Shape {
-            appearance PBRAppearance {
-              baseColor 0 0 1
-              metalness 0
-            }
-            geometry Cylinder {
-              height 0.01
-              radius 0.0195
-            }
-          }
-        ]
-        name "solid(3)"
-        boundingObject USE Wheel
-        physics Physics {
-        }
-      }
-    }
-    DEF left2 HingeJoint {
-      jointParameters HingeJointParameters {
-        position -23.35615992335335
-        anchor 0.055 -0.04 0
-      }
-      device [
-        RotationalMotor {
-          name "Left_motor2"
-        }
-      ]
-      endPoint Solid {
-        translation -0.07200000000000012 -0.04 0
-        rotation 0.6130611487042349 0.49830637220256513 0.6130634448177144 2.2170120373292734
-        children [
-          DEF wheel Shape {
-            appearance PBRAppearance {
-              baseColor 0 0 1
-              metalness 0
-            }
-            geometry Cylinder {
-              height 0.01
-              radius 0.0195
-            }
-          }
-        ]
-        name "solid(2)"
-        boundingObject USE wheel
-        physics Physics {
-        }
-      }
-    }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 61.89183527100329
+        position 71.16746530970676
         anchor 0.055 0.03 0
       }
       device [
@@ -417,8 +389,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200000000000012 0.03 0
-        rotation -0.45793984194990006 0.7608469720875463 -0.4597858047179289 1.8557144053209
+        translation -0.07199999999999993 0.03 0
+        rotation -0.6256229374642337 -0.4521081778141151 -0.6357626409850017 3.9868450395166066
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -435,6 +407,8 @@ Robot {
         boundingObject USE wheel
         physics Physics {
         }
+        linearVelocity 0.1346321486699147 -0.13384859269641886 0.00021694597298245133
+        angularVelocity 7.078951572378303 7.1214642788434155 1.509112438595803
       }
     }
     DEF Body Shape {
@@ -447,7 +421,7 @@ Robot {
     }
     DEF right1 HingeJoint {
       jointParameters HingeJointParameters {
-        position -23.35615953820245
+        position -23.356159689108967
         anchor -0.055 0.03 0
       }
       device [
@@ -456,8 +430,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07200000000000001 0.029995 1.4361000000001691e-05
-        rotation 0.6130612103258816 0.4983063316798434 0.6130634161337171 2.217012012876077
+        translation 0.07199999999999976 0.02999500000216717 1.4361000754534448e-05
+        rotation 0.6130611868584269 0.4983063894235885 0.6130633926661778 2.2170119203611476
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -474,6 +448,8 @@ Robot {
         boundingObject USE Wheel
         physics Physics {
         }
+        linearVelocity -0.002421325990952629 0.0020329841017143143 -0.00011446733318330526
+        angularVelocity -0.03467244619138317 0.09581798572618101 1.3173314437996213
       }
     }
   ]
@@ -481,4 +457,6 @@ Robot {
   physics Physics {
   }
   controller "my_controller"
+  linearVelocity 0.09303611877668325 -0.036779190313463064 0.0054217621034783215
+  angularVelocity -0.03467529586276859 0.09581583503883884 1.3173310231344089
 }
