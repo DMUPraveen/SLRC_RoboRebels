@@ -1,0 +1,112 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "../protos/armrobot.proto"
+
+WorldInfo {
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.14325643713812897 0.9103682760609783 0.38821024607839943 0.7702393542124343
+  position -1.6574952525611837 -1.1634594660074407 0.6199548881772129
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation -0.62 0 0
+  floorSize 2.7 2.7
+  floorTileSize 5 5
+  floorAppearance Parquetry {
+    type "dark strip"
+    colorOverride 0 0 0
+    textureTransform TextureTransform {
+    }
+  }
+}
+armrobot {
+  hidden linearVelocity_0 -2.0550502246349222e-06 8.996332181616306e-07 2.99841590301294e-07
+  hidden angularVelocity_0 -2.4981817504927536e-05 -3.183100016956327e-05 -3.82565520608897e-05
+}
+DEF box_3 Solid {
+  translation -1.73 -1.09 0.04
+  children [
+    DEF box_3_shape Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.05 0.05 0.05
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE box_3_shape
+  physics Physics {
+    density 100
+  }
+}
+DEF box_2 Solid {
+  translation 0.5 -1.1 0.03
+  children [
+    DEF box_2_shape Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.04 0.04 0.04
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE box_2_shape
+  physics Physics {
+    density 100
+  }
+}
+DEF box_1 Solid {
+  translation 0.47 1.12 0.02
+  children [
+    DEF box_1_shape Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.03 0.03 0.03
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE box_1_shape
+  physics Physics {
+    density 100
+  }
+}
+DEF maze Solid {
+  translation -1.93 1.32 -0.00589861
+  rotation 1 0 0 1.5708
+  scale 0.001 0.001 0.001
+  children [
+    DEF maze_shape Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "../solid bodies/arena/webotsArena.STL"
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
