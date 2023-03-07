@@ -9,40 +9,40 @@ def armInit(robot):
     timestep = int(robot.getBasicTimeStep())
     
     waist_motor = robot.getDevice('waist_motor')
-    waist_motor.setPosition(float('inf'))
-    waist_s = 1
-    waist_d = 0.1
-    waist_motor.setVelocity(waist_s * waist_d)
+    # waist_motor.setPosition(float('inf'))
+    waist_s = 0
+    waist_d = 0
+    # waist_motor.setVelocity(waist_s * waist_d)
     
     shoulder_motor = robot.getDevice('shoulder_motor')
-    shoulder_motor.setPosition(float('inf'))
-    shoulder_s = 1
-    shoulder_d = 0.1
-    shoulder_motor.setVelocity(shoulder_s * shoulder_d)
+    # shoulder_motor.setPosition(float('inf'))
+    # shoulder_s = 0
+    # shoulder_d = 0
+    # shoulder_motor.setVelocity(shoulder_s * shoulder_d)
     
     elbow_motor = robot.getDevice('elbow_motor')
-    elbow_motor.setPosition(float('inf'))
-    elbow_s = 1
-    elbow_d = 0
-    elbow_motor.setVelocity(elbow_s * elbow_d)
+    # elbow_motor.setPosition(float('inf'))
+    # elbow_s = 0
+    # elbow_d = 0
+    # elbow_motor.setVelocity(elbow_s * elbow_d)
     
     wrist_motor = robot.getDevice('wrist_motor')
-    wrist_motor.setPosition(float('inf'))
-    wrist_s = 1
-    wrist_d = 0
-    wrist_motor.setVelocity(wrist_s * wrist_d)
+    # wrist_motor.setPosition(float('inf'))
+    # wrist_s = 0
+    # wrist_d = 0
+    # wrist_motor.setVelocity(wrist_s * wrist_d)
     
     pitch_motor = robot.getDevice('pitch_motor')
-    pitch_motor.setPosition(float('inf'))
-    pitch_s = 1
-    pitch_d = 0
-    pitch_motor.setVelocity(pitch_s * pitch_d)
+    # pitch_motor.setPosition(float('inf'))
+    # pitch_s = 0
+    # pitch_d = 0
+    # pitch_motor.setVelocity(pitch_s * pitch_d)
     
     claw_motor = robot.getDevice('phalanx_motor::right')
-    claw_motor.setPosition(float('inf'))
-    claw_s = 1
-    claw_d = 0
-    claw_motor.setVelocity(claw_s * claw_d)
+    # claw_motor.setPosition(float('inf'))
+    # claw_s = 0
+    # claw_d = 0
+    # claw_motor.setVelocity(claw_s * claw_d)
     
     # Initialize the position sensors at the joints
     waist_p = robot.getDevice('waist_sensor')
@@ -64,11 +64,30 @@ def armInit(robot):
     fingers_p.enable(timestep)
     
     finger_s = robot.getDevice('finger_sensor')
-    finger_s.enable(timestep)    
+    finger_s.enable(timestep) 
+
+    while robot.step(timestep) != -1:
+        waist_val=waist_p.getValue()
+        print(f"{waist_val=}")
+
+        shoulder_val=shoulder_p.getValue()
+        print(f"{shoulder_val=}")
+
+        elbow_val=elbow_p.getValue()
+        print(f"{elbow_val=}")
+
+        wrist_val=wrist_p.getValue()
+        print(f"{wrist_val=}")
+
+        pitch_val=pitch_p.getValue()
+        print(f"{pitch_val}")
+    
+        pass
+   
 
 # get the time step of the current world.
 def run_robot(robot):
-    max_velocity=-3.0
+    max_velocity=0
    
     timestep = int(robot.getBasicTimeStep())
     
@@ -83,7 +102,7 @@ def run_robot(robot):
     while robot.step(timestep) != -1:
         left_motor1.setVelocity(max_velocity)
         right_motor1.setVelocity(max_velocity)
-        
+
         pass
 
 if __name__ =="__main__":
