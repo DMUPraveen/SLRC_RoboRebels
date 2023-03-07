@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.15072935158209014 0.8724308764048793 0.46491400115188714 0.7116195791783647
-  position -2.4670962603293214 -1.4677701631484155 1.1684321458911044
+  orientation 0.0039178799184916855 0.9999600774042595 -0.008030804107423802 0.9070805909682027
+  position -0.43612678067658367 -0.9955667115862579 0.7937517668787334
 }
 TexturedBackground {
 }
@@ -47,8 +47,8 @@ Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation -8.037859267062686e-11 -0.05000003132157138 -0.016997133248554112
-        rotation 0.24123508329435045 -0.3202616925661899 0.9160993848172844 1.8773510962422164
+        translation -8.037859064537108e-11 -0.05000003132157138 -0.016997133248554112
+        rotation 0.24123508329435087 -0.32026169256618964 0.9160993848172844 1.8773510962422169
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -1245,7 +1245,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342837 0.03000171848803132 -4.125143140353599e-06
+        translation -0.07200259129342837 0.03000171848803132 -4.1251431403535786e-06
         rotation -0.20253771300653664 0.9585969862422912 -0.2001756548066682 1.6265620384920991
         children [
           DEF wheel Shape {
@@ -1267,6 +1267,7 @@ Robot {
     }
     DEF Body Shape {
       appearance PBRAppearance {
+        baseColor 0 1 1
         metalness 0
       }
       geometry Box {
@@ -1284,7 +1285,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999929 0.029987413188806197 8.53290718170826e-06
+        translation 0.07199999999999929 0.029987413188806197 8.532907181707083e-06
         rotation 0.6829717692960027 0.2590285082482078 0.6829742266435799 2.634678668020583
         children [
           DEF Wheel Shape {
@@ -1308,8 +1309,7 @@ Robot {
   boundingObject USE Body
   physics Physics {
   }
-  linearVelocity -2.0550502246349222e-06 8.996332181616306e-07 2.99841590301294e-07
-  angularVelocity -2.4981817504927536e-05 -3.183100016956327e-05 -3.82565520608897e-05
+  controller "my_controller"
 }
 DEF box_3 Solid {
   translation -1.73 -1.09 0.04
@@ -1385,4 +1385,5 @@ DEF maze Solid {
       castShadows FALSE
     }
   ]
+  boundingObject USE maze_shape
 }
