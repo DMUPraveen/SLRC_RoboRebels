@@ -4,6 +4,7 @@ class armcontroll:
     def __init__(self,robot:Robot):
         self.robot=robot
         self.TIME_STEP=32
+        self.velocity=0.2
 
         #arm components
         self.waist_motor = robot.getMotor('waist_motor')
@@ -21,8 +22,8 @@ class armcontroll:
 
     def shouldercontrol(self,shoulder_val):
         self.shoulder_motor.setPosition(shoulder_val)
-        self.shoulder_motor.setVelocity(0.1)
-        self.robot.step(500*self.TIME_STEP)
+        self.shoulder_motor.setVelocity(0.15)
+        self.robot.step(50*self.TIME_STEP)
 
     def elbowcontrol(self,elbow_val):
         self.elbow_motor.setPosition(elbow_val)
@@ -39,6 +40,13 @@ class armcontroll:
         self.pitch_motor.setVelocity(0.5)
         self.robot.step(30*self.TIME_STEP)
 
+    def stoparm(self):
+        self.shoulder_motor.setVelocity(0)
+        self.elbow_motor.setVelocity(0)
+        self.wrist_motor.setVelocity(0)
+        self.pitch_motor.setVelocity(0)
+        self.waist_motor.setVelocity(0)
+
 
     def collectbox(self,waist_val,shoulder_val,elbow_val,wrist_val,pitch_val):
         self.pitchcontrol(pitch_val)
@@ -46,11 +54,11 @@ class armcontroll:
         self.elbowcontrol(elbow_val)
         self.shouldercontrol(shoulder_val)
         self.wristcontrol(wrist_val)
+        self.stoparm()
 
 
 
     def putinback(self,waist_val,shoulder_val,elbow_val,wrist_val,pitch_val):
-        self.pitchcontrol(pitch_val)
         self.waistcontrol(waist_val)
         self.elbowcontrol(elbow_val)
         self.shouldercontrol(shoulder_val)
