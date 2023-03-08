@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.49033513982845117 -0.0388648048739534 0.8706669728383654 3.27940105539445
-  position 1.1240766428790363 -0.3801235968166521 1.544090658644413
+  orientation -0.3780751128720327 -0.029966521129234647 0.9252898014342377 3.288016349111631
+  position 1.8724560801672663 -0.31080012052610295 1.2762682694975505
 }
 TexturedBackground {
 }
@@ -31,24 +31,24 @@ RectangleArena {
   }
 }
 Robot {
-  translation 0.49723 -0.9173 0.0301448
-  rotation -3.1101123410156124e-05 -0.005123560621341798 0.999986873993494 3.141588408890975
+  translation 0.497229 -0.647283 0.0327456
+  rotation -4.195536608351106e-05 -0.0046601233103993585 0.9999891406862772 3.1415886669845214
   children [
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
-        position 2.545215648541634
+        position 2.5452153921541942
         anchor 0 -0.05 -0.017
       }
       jointParameters2 JointParameters {
-        position 0.5227731067774695
+        position 0.522804043724989
       }
       jointParameters3 JointParameters {
-        position -0.9689386638521292
+        position -0.9689391641355442
         axis 0 1 0
       }
       endPoint Solid {
-        translation -2.0370615321404187e-09 -0.050000034062577824 -0.01699713328053501
-        rotation 0.241234301399169 -0.32089222784076854 0.9158789166368245 1.877818987320436
+        translation -1.986239395542253e-09 -0.050000033989896775 -0.016997133279636666
+        rotation 0.24123414546910463 -0.32087562891249505 0.9158847732273976 1.87780671704093
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -68,7 +68,7 @@ Robot {
     }
     DEF waist HingeJoint {
       jointParameters HingeJointParameters {
-        position -11.000000000021211
+        position -11.000000001132154
         axis 0 0 1
         anchor 0 0.04 0.012
       }
@@ -84,7 +84,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 0.04 0.012
-        rotation 0 0 1 3.1663398802615617
+        rotation 0 0 0.9999999999999999 3.166339879150619
         scale 0.2 0.2 0.2
         children [
           DEF waist Group {
@@ -176,7 +176,7 @@ Robot {
           }
           DEF shourlder HingeJoint {
             jointParameters HingeJointParameters {
-              position 1.000000063097091
+              position 1.0397795622845045e-09
               anchor 0 0 0.21
             }
             device [
@@ -191,7 +191,7 @@ Robot {
             ]
             endPoint Solid {
               translation 0 0 0.21
-              rotation 1 0 0 1.0000000630970909
+              rotation 1 0 0 0
               children [
                 DEF amr Group {
                   children [
@@ -297,7 +297,7 @@ Robot {
                 }
                 DEF elbow HingeJoint {
                   jointParameters HingeJointParameters {
-                    position 1.8
+                    position -1.0335758915402948e-09
                     anchor 0 0 0.33
                   }
                   device [
@@ -312,7 +312,7 @@ Robot {
                   ]
                   endPoint Solid {
                     translation 0 0 0.33
-                    rotation 0.9999999999999999 0 0 1.8000000000000003
+                    rotation 1 0 0 0
                     children [
                       DEF forearm Group {
                         children [
@@ -369,7 +369,7 @@ Robot {
                       }
                       DEF wrist HingeJoint {
                         jointParameters HingeJointParameters {
-                          position 3.1
+                          position 1.7202394651861643e-09
                           axis 0 0 1
                           anchor 0 0 0.34
                         }
@@ -385,7 +385,6 @@ Robot {
                         ]
                         endPoint Solid {
                           translation 0 0 0.34
-                          rotation 0 0 1 3.1
                           children [
                             DEF wrist Group {
                               children [
@@ -475,7 +474,7 @@ Robot {
                             }
                             DEF pitch HingeJoint {
                               jointParameters HingeJointParameters {
-                                position 1.2
+                                position 9.999999998988343
                                 anchor 0 0 0.035
                               }
                               device [
@@ -490,7 +489,7 @@ Robot {
                               ]
                               endPoint Solid {
                                 translation 0 0 0.035
-                                rotation 1 0 0 1.2
+                                rotation -1 0 0 2.5663706153708294
                                 children [
                                   DEF pitch Group {
                                     children [
@@ -592,6 +591,7 @@ Robot {
                                   }
                                   DEF right_a HingeJoint {
                                     jointParameters HingeJointParameters {
+                                      position 9.599999994235603
                                       axis 0 1 0
                                       anchor 0.16 0 0.065
                                     }
@@ -607,7 +607,7 @@ Robot {
                                     ]
                                     endPoint Solid {
                                       translation 0.16 0 0.065
-                                      rotation 0 1 0 0
+                                      rotation 0 -1 0 2.9663706201235702
                                       children [
                                         DEF phalanx Group {
                                           children [
@@ -665,12 +665,13 @@ Robot {
                                         }
                                         DEF r_finger HingeJoint {
                                           jointParameters HingeJointParameters {
+                                            position -9.600007168967068
                                             axis 0 1 0
                                             anchor 0 0 0.05
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.05
-                                            rotation 0 1 0 0
+                                            rotation 0 0.9999999999999999 0 2.9663634453921053
                                             children [
                                               DEF rg_finger Group {
                                                 children [
@@ -786,8 +787,8 @@ Robot {
                                                 ]
                                               }
                                               TouchSensor {
-                                                translation 0.001999987496167227 1.4992812028772479e-07 0.06899999162464227
-                                                rotation 6.938893903913333e-18 -3.1767123653853225e-16 -1 -3.14159
+                                                translation 0.00199998791471194 1.9150234106812825e-07 0.06900005347893201
+                                                rotation -4.597017211342584e-16 2.220446049252267e-16 -1 -3.1415899999999994
                                                 name "finger_sensor"
                                                 boundingObject Shape {
                                                   geometry Box {
@@ -816,6 +817,7 @@ Robot {
                                   }
                                   DEF left_a HingeJoint {
                                     jointParameters HingeJointParameters {
+                                      position 9.599999994632912
                                       axis 0 1 0
                                       anchor -0.16 0 0.065
                                     }
@@ -829,7 +831,7 @@ Robot {
                                     ]
                                     endPoint Solid {
                                       translation -0.16 0 0.065
-                                      rotation 0 1 0 0
+                                      rotation 0 -1 0 2.9663706197262614
                                       children [
                                         Group {
                                           children [
@@ -887,13 +889,13 @@ Robot {
                                         }
                                         DEF l_finger HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position -6.868037735095046e-06
+                                            position -9.600001068908533
                                             axis 0 1 0
                                             anchor 0 0 0.05
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.05
-                                            rotation 0 -1 0 6.868061421674991e-06
+                                            rotation 0 1 0 2.96636954545064
                                             children [
                                               DEF lf_finger Group {
                                                 children [
@@ -1024,12 +1026,13 @@ Robot {
                                   }
                                   DEF right_p HingeJoint {
                                     jointParameters HingeJointParameters {
+                                      position 9.60000086067932
                                       axis 0 1 0
                                       anchor 0.06 0 0.065
                                     }
                                     endPoint Solid {
                                       translation 0.06 0 0.065
-                                      rotation 0 1 0 0
+                                      rotation 0 -1 0 2.9663697536798534
                                       children [
                                         DEF phalanx Group {
                                           children [
@@ -1087,7 +1090,7 @@ Robot {
                                         }
                                         HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position -7.611410503250074e-06
+                                            position -9.600015646821303
                                             axis 0 1 0
                                             anchor 0 0 0.05
                                           }
@@ -1104,13 +1107,13 @@ Robot {
                                   }
                                   DEF left_p HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position -1.9455319883610574e-06
+                                      position 9.600002846056235
                                       axis 0 1 0
                                       anchor -0.06 0 0.065
                                     }
                                     endPoint Solid {
                                       translation -0.06 0 0.065
-                                      rotation 0 -1 0 1.9456146650254857e-06
+                                      rotation 0 -1 0 2.966367768302938
                                       children [
                                         Group {
                                           children [
@@ -1168,7 +1171,7 @@ Robot {
                                         }
                                         HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position -4.9236250947967534e-06
+                                            position -9.600003921451213
                                             axis 0 1 0
                                             anchor 0 0 0.05
                                           }
@@ -1246,7 +1249,7 @@ Robot {
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 270.18281879717557
+        position 270.18281837538825
         anchor 0.055 0.03 0
       }
       device [
@@ -1255,8 +1258,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342826 0.030001718488031008 -4.125143140483586e-06
-        rotation -0.20253771304105145 0.9585969862276852 -0.20017565484169 1.6265620385075128
+        translation -0.07200259129342823 0.030001718486291074 -4.125143865319726e-06
+        rotation -0.2025379043084907 0.9585969052884111 -0.20017584891740955 1.6265621239353927
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1286,7 +1289,7 @@ Robot {
     }
     DEF right1 HingeJoint {
       jointParameters HingeJointParameters {
-        position -22.716158522000445
+        position -22.716158933568167
         anchor -0.055 0.03 0
       }
       device [
@@ -1295,8 +1298,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999859 0.029987413188806007 8.532907181425958e-06
-        rotation 0.6829717692975369 0.2590285082401178 0.682974226645114 2.6346786680357455
+        translation 0.07199999999999818 0.029987413192317878 8.532912361750449e-06
+        rotation 0.6829717408573647 0.25902865821510523 0.6829741982048393 2.634678386946616
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -1322,8 +1325,8 @@ Robot {
   controller "my_controller"
 }
 DEF box_3 Solid {
-  translation -1.7299995205010013 -1.0900006147443009 0.025089989702771587
-  rotation 0.7668202355732746 0.6418610392610695 -0.0010642340191083135 2.9397795345941528e-05
+  translation -1.7299995204998737 -1.0900006147460317 0.025089990767549756
+  rotation 0.7668202328395923 0.6418610424517751 -0.0010642793589892014 2.939780761990085e-05
   children [
     DEF box_3_shape Shape {
       appearance PBRAppearance {
@@ -1340,10 +1343,12 @@ DEF box_3 Solid {
   physics Physics {
     density 100
   }
+  linearVelocity 9.300617866258973e-13 -1.500090102726477e-12 8.24606161131618e-12
+  angularVelocity 7.993605777301127e-14 7.194245199569722e-14 -1.3567303561130358e-12
 }
 DEF box_2 Solid {
-  translation 0.498977 -1.09291 0.03
-  rotation 0.751451771585943 0.6597852346932969 0.001918087865240363 4.0074886247349565e-05
+  translation 0.4989770143812749 -1.0929100768468876 0.020089877969959515
+  rotation 0.7514293017311128 0.6598031195091977 0.0037212881940947256 4.009264349422869e-05
   children [
     DEF box_2_shape Shape {
       appearance PBRAppearance {
@@ -1360,10 +1365,12 @@ DEF box_2 Solid {
   physics Physics {
     density 100
   }
+  linearVelocity -1.9896438466523733e-09 1.9577053399339477e-09 8.62460111461516e-06
+  angularVelocity -1.0379217194979754e-07 -1.037890507180015e-07 -3.2748113537680406e-12
 }
 DEF box_1 Solid {
-  translation 0.4700000000016949 1.1199999274105847 0.015099951231283352
-  rotation 0.9999999995268007 3.076179120647077e-05 -3.3273698728131846e-07 3.6734424536250506e-06
+  translation 0.4700000000016864 1.1199999274103885 0.015099949093128002
+  rotation 0.999999999531545 3.060717320113477e-05 -3.328133701927438e-07 3.6734453144193488e-06
   children [
     DEF box_1_shape Shape {
       appearance PBRAppearance {
@@ -1380,6 +1387,8 @@ DEF box_1 Solid {
   physics Physics {
     density 100
   }
+  linearVelocity -1.1873597138992992e-16 -1.6243941362663237e-13 -1.6559223128511416e-11
+  angularVelocity 2.3557973130549293e-14 -7.495718723356889e-15 -2.5384331666228005e-16
 }
 DEF maze Solid {
   translation -1.93 1.32 -0.00589861
