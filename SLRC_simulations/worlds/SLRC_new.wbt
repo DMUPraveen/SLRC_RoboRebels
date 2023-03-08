@@ -9,12 +9,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.4151244975657605 -0.2218752223730093 0.8822941897222845 4.022886292023202
-  position -0.6426715061331811 -0.36800622825218055 0.8339457124406255
+  orientation -0.10730106507091242 -0.9560773835287187 0.2727682498743706 5.502531111157264
+  position -5.158246963192242 0.26187903339788626 4.6706117447509925
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
+  texture "empty_office"
 }
 RectangleArena {
   floorSize 2.52 2.52
@@ -28,293 +29,50 @@ RectangleArena {
     IBLStrength 8
   }
 }
-Solid {
-  translation -0.54 0 0.075
-  children [
-    DEF wall_13 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 1.08 0.15
-      }
-    }
-  ]
-  boundingObject USE wall_13
-}
-Solid {
-  translation -6.74634e-14 -0.9 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_8 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 1.08 0.15
-      }
-    }
-  ]
-  name "solid(3)"
-  boundingObject USE wall_8
-}
-Solid {
-  translation -5.28942e-06 0.54 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_14 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 1.08 0.15
-      }
-    }
-  ]
-  name "solid(7)"
-  boundingObject USE wall_14
-}
-Solid {
-  translation -0.180002 0.9 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_5 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.72 0.15
-      }
-    }
-  ]
-  name "solid(8)"
-  boundingObject USE wall_5
-}
-Solid {
-  translation -0.360001 -0.54 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_12 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(4)"
-  boundingObject USE wall_12
-}
-Solid {
-  translation -0.720001 0.18 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_3 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(14)"
-  boundingObject USE wall_3
-}
-DEF wall Solid {
-  translation -1.08 -0.91 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_1 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "wall"
-  boundingObject USE wall_1
-}
-Solid {
-  translation -0.180001 -0.72 0.075
-  rotation 0 0 1 -3.1415853071795863
-  children [
-    DEF wall_11 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(6)"
-  boundingObject USE wall_11
-}
-Solid {
-  translation 0.539996 1.08 0.075
-  rotation 0 0 1 -3.1415853071795863
-  children [
-    DEF wall_7 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(12)"
-  boundingObject USE wall_7
-}
-Solid {
-  translation 0.9 -1.07999 0.075
-  rotation 0 0 1 -3.1415853071795863
-  children [
-    DEF wall_10 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(11)"
-  boundingObject USE wall_10
-}
-Solid {
-  translation 0.9 -0.35999 0.075
-  rotation 0 0 1 -3.1415853071795863
-  children [
-    DEF wall_9 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(17)"
-  boundingObject USE wall_9
-}
-Solid {
-  translation 0.179991 1.08 0.075
-  rotation 0 0 1 -3.1415853071795863
-  children [
-    DEF wall_6 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(9)"
-  boundingObject USE wall_6
-}
-Solid {
-  translation 0.359999 -0.54 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_16 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(5)"
-  boundingObject USE wall_16
-}
-Solid {
-  translation 1.08 0.9 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_8 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(13)"
-  boundingObject USE wall_8
-}
-Solid {
-  translation 1.08 -0.18 0.075
-  rotation 0 0 1 1.5708
-  children [
-    DEF wall_8 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.36 0.15
-      }
-    }
-  ]
-  name "solid(10)"
-  boundingObject USE wall_8
-}
-Solid {
-  translation 0.54 0 0.075
-  children [
-    DEF wall_15 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 1.08 0.15
-      }
-    }
-  ]
-  name "solid(1)"
-  boundingObject USE wall_15
-}
-Solid {
-  translation -0.9 0.9 0.075
-  children [
-    DEF wall_4 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.72 0.15
-      }
-    }
-  ]
-  name "solid(2)"
-  boundingObject USE wall_4
-}
-Solid {
-  translation -0.9 -0.54 0.075
-  children [
-    DEF wall_2 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.01 0.72 0.15
-      }
-    }
-  ]
-  name "solid(15)"
-  boundingObject USE wall_2
-}
 Robot {
   translation -0.9269030843142055 -1.09454398183154 0.030145131628058014
   rotation -0.005839393172616949 0.005477518568413535 -0.9999679486252089 1.501773734099077
   children [
+    DEF LineSensor-3 DistanceSensor {
+      translation -0.035 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(1)"
+    }
+    DEF LineSensor-2 DistanceSensor {
+      translation -0.025 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(2)"
+    }
+    DEF LineSensor-1 DistanceSensor {
+      translation -0.015 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(3)"
+    }
+    DEF LineSensor5 DistanceSensor {
+      translation 0.035 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(8)"
+    }
+    DEF LineSensor4 DistanceSensor {
+      translation 0.025 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(7)"
+    }
+    DEF LineSensor3 DistanceSensor {
+      translation 0.015 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(6)"
+    }
+    DEF LineSensor2 DistanceSensor {
+      translation 0.005 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(5)"
+    }
+    DEF LineSensor1 DistanceSensor {
+      translation -0.005 0.101 0
+      rotation 0 1 0 1.5707996938995747
+      name "linesensor(4)"
+    }
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
         position 2.5452117072627387
@@ -328,8 +86,8 @@ Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation -8.037859267062686e-11 -0.05000003132157138 -0.016997133248554112
-        rotation 0.24123508329435045 -0.3202616925661899 0.9160993848172844 1.8773510962422164
+        translation -8.037859065193559e-11 -0.05000003132157138 -0.016997133248554112
+        rotation 0.2412350832943507 -0.3202616925661898 0.9160993848172844 1.8773510962422166
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -381,7 +139,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342837 0.03000171848803132 -4.125143140353599e-06
+        translation -0.07200259129342837 0.03000171848803132 -4.125143140353589e-06
         rotation -0.20253771300653664 0.9585969862422912 -0.2001756548066682 1.6265620384920991
         children [
           DEF wheel Shape {
@@ -420,7 +178,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999929 0.029987413188806197 8.53290718170826e-06
+        translation 0.07199999999999929 0.029987413188806197 8.532907181707365e-06
         rotation 0.6829717692960027 0.2590285082482078 0.6829742266435799 2.634678668020583
         children [
           DEF Wheel Shape {
@@ -445,6 +203,4 @@ Robot {
   physics Physics {
   }
   controller "my_controller"
-  linearVelocity -2.0550502246349222e-06 8.996332181616306e-07 2.99841590301294e-07
-  angularVelocity -2.4981817504927536e-05 -3.183100016956327e-05 -3.82565520608897e-05
 }
