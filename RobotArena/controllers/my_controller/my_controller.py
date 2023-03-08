@@ -2,7 +2,7 @@
 from ArmController import armcontroll
 from controller import Robot
 from ArmPositionValues import shoulder_val,WAIST_VAL,wrist_val,pitch_val,elbow_val
-from Robotclass import run_robot2
+# from Robotclass import run_robot2
 
 def run_robot(robot):
     max_velocity=0
