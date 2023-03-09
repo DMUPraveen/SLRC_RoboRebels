@@ -10,7 +10,7 @@ const uint8_t encoderB = 3;
 const uint8_t dirpinA = 4;
 const uint8_t dirpinB = 5;
 
-void ISRA()
+void IRAM_ATTR ISRA()
 {
     if (digitalRead(dirpinA) == HIGH)
     {
@@ -20,7 +20,7 @@ void ISRA()
     countA--;
 }
 
-void ISRB()
+void IRAM_ATTR ISRB()
 {
     if (digitalRead(dirpinB) == HIGH)
     {
@@ -28,5 +28,13 @@ void ISRB()
         return;
     }
     countB--;
+}
+
+void setup_encoders_with_interrupts()
+{
+    attachInterrupt(encoderA, ISRA, RISING);
+    attachInterrupt(encoderB, ISRB, RISING);
+    pinMode(dirpinA, INPUT);
+    pinMode(dirpinB, INPUT);
 }
 #endif
