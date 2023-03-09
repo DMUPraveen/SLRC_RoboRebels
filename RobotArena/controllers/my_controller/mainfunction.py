@@ -14,7 +14,7 @@ def main():
     arm=armcontroll(robot)
     while robot.step(timestep) != -1:
         arm.collectbox(WAIST_VAL,shoulder_val,elbow_val,wrist_val,pitch_val)
-        arm.hangbox()
+        #arm.hangbox()
         arm.putinback(-11,0,0,0,0)
         pass
 
