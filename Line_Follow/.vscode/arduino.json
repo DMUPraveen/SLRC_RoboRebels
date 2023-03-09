@@ -2,5 +2,6 @@
     "sketch": "Line_Follow.ino",
     "output": "build",
     "configuration": "FlashFreq=80,UploadSpeed=921600,DebugLevel=none",
-    "board": "esp32:esp32:esp32doit-devkit-v1"
+    "board": "esp32:esp32:esp32doit-devkit-v1",
+    "programmer": "esp32:esptool"
 }

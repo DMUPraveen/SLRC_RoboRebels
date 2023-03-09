@@ -2,10 +2,18 @@
 
 #include "Encoder_helper.h"
 #include "SpeedCal.h"
-const uint8_t motor_in1 = 6;
-const uint8_t motor_in2 = 9;
-const uint8_t motor_in3 = 10;
-const uint8_t motor_in4 = 11;
+
+#include "BluetoothSerial.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+const uint8_t motor_in1 = 32;
+const uint8_t motor_in2 = 33;
+const uint8_t motor_in3 = 25;
+const uint8_t motor_in4 = 26;
 
 long speed = 0;
 float fspeed = 0.0f;
@@ -19,25 +27,25 @@ Motor_Controller controller(
     motor_in4);
 void setup()
 {
-    Serial.begin(9600);
+    SerialBT.begin("Watson");
     setup_encoders_with_interrupts();
 }
 
 void loop()
 {
     bool speed_recieved = false;
-    if (Serial.available())
+    if (SerialBT.available())
     {
         speed_recieved = true;
         // speed = Serial.parseInt();
-        fspeed = Serial.parseFloat();
+        fspeed = SerialBT.parseFloat();
     }
     if (speed_recieved)
     {
-        Serial.println(fspeed);
+        SerialBT.println(fspeed);
     }
     controller.set_motor_speed(fspeed, 0.0f);
     sc.update(countA, countB);
-    Serial.println(sc.speed_A);
+    SerialBT.println(sc.speed_A);
     delay(5);
 }
