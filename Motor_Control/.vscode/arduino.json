@@ -1,0 +1,8 @@
+{
+    "sketch": "Motor_Control.ino",
+    "output": "build",
+    "board": "esp32:esp32:esp32doit-devkit-v1",
+    "port": "COM4",
+    "programmer": "arduino:avrisp",
+    "configuration": "FlashFreq=80,UploadSpeed=921600,DebugLevel=none"
+}
