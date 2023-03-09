@@ -20,11 +20,6 @@ struct SpeedCal
             return;
         }
         int64_t dt = millis() - pre_time;
-        // Serial.print((long)dt);
-        // Serial.print(",");
-        // Serial.print((long)countA);
-        // Serial.print(",");
-        // Serial.println((long)pre_countA);
         speed_A = float(countA - pre_countA) / float(dt);
         speed_B = float(countB - pre_countB) / float(dt);
         pre_countA = countA;

@@ -1,58 +1,52 @@
 #ifndef MOTOR_CONTROLLER
 #define MOTOR_CONTROLLER
 
+#include "Analogue_Pin_helper.h"
+
 const long MAX_OUTPUT = 255;
 const long MIN_VALUE_FOR_OUTPUT = 90;
 
 const float zero_threshold = 0.01f;
 
+const uint8_t bitdepth = 8;
+const uint32_t frequency = 5000;
 struct Motor_Controller
 {
 
-    uint8_t m_motor_in1 = 6;
-    uint8_t m_motor_in2 = 9;
-    uint8_t m_motor_in3 = 10;
-    uint8_t m_motor_in4 = 11;
-    Motor_Controller(
-        uint8_t m_motor_in1,
-        uint8_t m_motor_in2,
-        uint8_t m_motor_in3,
-        uint8_t m_motor_in4)
-        : m_motor_in1(m_motor_in1), m_motor_in2(m_motor_in2), m_motor_in3(m_motor_in3), m_motor_in4(m_motor_in4)
+    AnaloguePin m_motor_in1;
+    AnaloguePin m_motor_in2;
+    AnaloguePin m_motor_in3;
+    AnaloguePin m_motor_in4;
+    Motor_Controller(uint8_t motor_in1, uint8_t motor_in2, uint8_t motor_in3, uint8_t motor_in4)
     {
-        pinMode(m_motor_in1, OUTPUT);
-        pinMode(m_motor_in2, OUTPUT);
-        pinMode(m_motor_in3, OUTPUT);
-        pinMode(m_motor_in4, OUTPUT);
-
-        analogWrite(m_motor_in1, 0);
-        analogWrite(m_motor_in2, 0);
-        analogWrite(m_motor_in3, 0);
-        analogWrite(m_motor_in4, 0);
+        m_motor_in1 = AnaloguePin(motor_in1, 0, 5000);
+        m_motor_in2 = AnaloguePin(motor_in2, 1, 5000);
+        m_motor_in3 = AnaloguePin(motor_in3, 2, 5000);
+        m_motor_in4 = AnaloguePin(motor_in4, 3, 5000);
     }
 
     void set_motor_speed_raw(long motor1_speed, long motor2_speed)
     {
         if (motor1_speed >= 0)
         {
-            analogWrite(m_motor_in1, motor1_speed);
-            analogWrite(m_motor_in2, 0);
+            m_motor_in1.write(motor1_speed);
+            m_motor_in2.write(0);
         }
         else
         {
-            analogWrite(m_motor_in1, 0);
-            analogWrite(m_motor_in2, -motor1_speed);
+            m_motor_in1.write(0);
+            m_motor_in2.write(-motor1_speed);
         }
         if (motor2_speed >= 0)
         {
-            analogWrite(m_motor_in3, motor2_speed);
-            analogWrite(m_motor_in4, 0);
+            m_motor_in3.write(motor2_speed);
+            m_motor_in4.write(0);
         }
 
         else
         {
-            analogWrite(m_motor_in3, 0);
-            analogWrite(m_motor_in4, -motor2_speed);
+            m_motor_in3.write(0);
+            m_motor_in4.write(-motor2_speed);
         }
     }
     long convert_to_raw(float value)
@@ -75,29 +69,28 @@ struct Motor_Controller
 
         long m1s = convert_to_raw(motor1_speed);
         long m2s = convert_to_raw(motor2_speed);
-        // Serial.print(m1s);
-        // Serial.print(",");
-        // Serial.println(m2s);
 
         set_motor_speed_raw(m1s, m2s);
     }
 
     void stop()
     {
-        analogWrite(m_motor_in1, 0);
-        analogWrite(m_motor_in2, 0);
-        analogWrite(m_motor_in3, 0);
-        analogWrite(m_motor_in4, 0);
+        m_motor_in1.write(0);
+        m_motor_in2.write(0);
+        m_motor_in3.write(0);
+        m_motor_in4.write(0);
     }
 
     void brake()
     {
 
-        analogWrite(m_motor_in1, 1);
-        analogWrite(m_motor_in2, 1);
-        analogWrite(m_motor_in3, 1);
-        analogWrite(m_motor_in4, 1);
+        m_motor_in1.write(1);
+
+        m_motor_in2.write(1);
+
+        m_motor_in3.write(1);
+
+        m_motor_in4.write(1);
     }
 };
-
 #endif
