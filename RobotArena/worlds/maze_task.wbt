@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.13552171039401678 -0.13874591870572997 0.9810114352312022 4.716751154694266
-  position 0.5060908952071916 -0.8656338954250294 0.31404640524286487
+  orientation 0.2619398284353286 -0.36336161663539696 -0.8940670343074849 4.926053640408865
+  position 0.4712744906257817 -1.6317118439364495 0.4825975647308036
 }
 TexturedBackground {
 }
@@ -592,16 +592,11 @@ Robot {
                                   DEF right_a HingeJoint {
                                     jointParameters HingeJointParameters {
                                       axis 0 1 0
-                                      anchor 0.16 0 0.065
+                                      anchor 0.14 0 0.09
                                     }
-                                    device [
-                                      PositionSensor {
-                                        name "phalanx_sensor"
-                                      }
-                                    ]
                                     endPoint Solid {
-                                      translation 0.16 0 0.065
-                                      rotation 0 1 0 0.4
+                                      translation 0.14 0 0.09
+                                      rotation 0 1 0 0
                                       children [
                                         DEF phalanx Group {
                                           children [
@@ -662,13 +657,8 @@ Robot {
                                             axis 0 1 0
                                             anchor 0 0 0.055
                                           }
-                                          device [
-                                            RotationalMotor {
-                                              name "right_finger_motor"
-                                            }
-                                          ]
                                           endPoint Solid {
-                                            translation -0.04 0 0.05
+                                            translation 0 0 0.05
                                             rotation 0 1 0 0
                                             children [
                                               DEF rg_finger Group {
@@ -816,10 +806,15 @@ Robot {
                                   DEF left_a HingeJoint {
                                     jointParameters HingeJointParameters {
                                       axis 0 1 0
-                                      anchor -0.16 0 0.065
+                                      anchor -0.14 0 0.09
                                     }
+                                    device [
+                                      RotationalMotor {
+                                        name "left_finger_motor"
+                                      }
+                                    ]
                                     endPoint Solid {
-                                      translation -0.15999999594615708 2.899945214518418e-08 0.06500064095957808
+                                      translation -0.14 0 0.09
                                       rotation 0 1 0 0
                                       children [
                                         Group {
@@ -1014,13 +1009,12 @@ Robot {
                                   }
                                   DEF right_p HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position -4.452414943693745e-06
                                       axis 0 1 0
-                                      anchor 0.06 0 0.065
+                                      anchor 0.15 0 0.09
                                     }
                                     endPoint Solid {
-                                      translation 0.14 0 0.065
-                                      rotation 0 -1 0 4.452431058165301e-06
+                                      translation 0.18 0 0.0899996
+                                      rotation 0 1 0 0
                                       children [
                                         DEF phalanx Group {
                                           children [
@@ -1077,6 +1071,11 @@ Robot {
                                           ]
                                         }
                                         HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                          }
+                                          endPoint SolidReference {
+                                            solidName "right_finger"
+                                          }
                                         }
                                       ]
                                       name "solid_3"
@@ -1089,10 +1088,10 @@ Robot {
                                     jointParameters HingeJointParameters {
                                       position 0.0032231754504269882
                                       axis 0 1 0
-                                      anchor -0.06 0 0.065
+                                      anchor -0.1800812025777988 0 0.08961334947628816
                                     }
                                     endPoint Solid {
-                                      translation -0.19 0 0.065
+                                      translation -0.18007995675928148 0 0.08961308573815872
                                       rotation 0 1 0 0.0032231754504468127
                                       children [
                                         Group {
@@ -1239,7 +1238,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.07200259129342254 0.03000171847795167 -4.125147339406889e-06
-        rotation -0.2025388210417398 0.9585965173502042 -0.20017677911056897 1.6265625333873572
+        rotation -0.20253882104173995 0.9585965173502042 -0.2001767791105688 1.6265625333873572
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
