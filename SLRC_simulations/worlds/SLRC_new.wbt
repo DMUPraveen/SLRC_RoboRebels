@@ -8,8 +8,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.6040330435880484 -0.5845822863696243 0.5416711481301374 4.107280604914538
-  position -1.0155684952329451 -0.3138021702834506 1.452498512936399
+  orientation -0.7275706899092351 0.0007018480296313285 0.686032359728273 3.1402723173415032
+  position -0.2659217731846723 -0.1399212719747279 6.478528667656377
 }
 TexturedBackground {
 }
@@ -18,14 +18,19 @@ TexturedBackgroundLight {
 }
 RectangleArena {
   floorSize 2.52 2.52
-  floorTileSize 0.72 0.72
-  floorAppearance PBRAppearance {
-    baseColorMap ImageTexture {
-      url [
-        "../../../SLRC_simulations/WhatsApp Image 2023-03-13 at 22.56.15.jpg"
-      ]
+  floorTileSize 2.52 2.52
+  floorAppearance Appearance {
+    material Material {
+      ambientIntensity 0.8
+      diffuseColor 1 1 1
+      shininess 0
     }
-    metalness 0
+    texture ImageTexture {
+      url [
+        "../../../SLRC_simulations/corrected.jpg.png"
+      ]
+      filtering 0
+    }
   }
   wallHeight 0.15
   wallAppearance BrushedAluminium {
@@ -33,43 +38,50 @@ RectangleArena {
   }
 }
 Robot {
-  translation -0.9269030843142055 -1.09454398183154 0.030145131628058014
-  rotation -0.005839393172616949 0.005477518568413535 -0.9999679486252089 1.501773734099077
+  translation -0.9318267578481413 -1.0246861811912624 0.030158894733159188
+  rotation -0.005546738726679452 0.00521877943489768 -0.9999709985948132 1.5016893376063885
   children [
     DEF LineSensor-3 DistanceSensor {
       translation -0.035 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(1)"
+      type "infra-red"
     }
     DEF LineSensor-2 DistanceSensor {
       translation -0.025 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(2)"
+      type "infra-red"
     }
     DEF LineSensor-1 DistanceSensor {
       translation -0.015 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(3)"
+      type "infra-red"
     }
     DEF LineSensor5 DistanceSensor {
       translation 0.035 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(8)"
+      type "infra-red"
     }
     DEF LineSensor4 DistanceSensor {
       translation 0.025 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(7)"
+      type "infra-red"
     }
     DEF LineSensor3 DistanceSensor {
       translation 0.015 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(6)"
+      type "infra-red"
     }
     DEF LineSensor2 DistanceSensor {
       translation 0.005 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(5)"
+      type "infra-red"
     }
     DEF LineSensor1 DistanceSensor {
       translation -0.005 0.101 0
@@ -78,19 +90,19 @@ Robot {
     }
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
-        position 2.5452117072627387
+        position 0.3058693305752484
         anchor 0 -0.05 -0.017
       }
       jointParameters2 JointParameters {
-        position 0.5239476696495642
+        position 1.403873712261021
       }
       jointParameters3 JointParameters {
-        position -0.968970873665036
+        position -0.8033847985655889
         axis 0 1 0
       }
       endPoint Solid {
-        translation -8.03785906457946e-11 -0.05000003132157138 -0.016997133248554112
-        rotation 0.24123508329435084 -0.32026169256618964 0.9160993848172845 1.8773510962422169
+        translation 1.0227660036095238e-06 -0.050001944667162 -0.01699815840714849
+        rotation 0.6997279541655961 -0.0939371519753937 -0.7082066094283371 0.6113228998406652
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -126,6 +138,7 @@ Robot {
       translation 0 0.07 0.005
       rotation 0 0 1 0.7854003061004253
       name "distance sensor(1)"
+      type "infra-red"
     }
     DEF d0 DistanceSensor {
       translation 0 0.07 0.005
@@ -133,7 +146,7 @@ Robot {
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 270.1828187972517
+        position 270.18281873082236
         anchor 0.055 0.03 0
       }
       device [
@@ -142,8 +155,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342837 0.03000171848803132 -4.125143140353584e-06
-        rotation -0.20253771300653664 0.9585969862422912 -0.2001756548066682 1.6265620384920991
+        translation -0.0720025912934279 0.03000171848775729 -4.125143254511605e-06
+        rotation -0.202537743130172 0.9585969734947785 -0.2001756853725932 1.6265620519465431
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -172,7 +185,7 @@ Robot {
     }
     DEF right1 HingeJoint {
       jointParameters HingeJointParameters {
-        position -22.716158522022646
+        position -22.716158744095356
         anchor -0.055 0.03 0
       }
       device [
@@ -181,8 +194,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999929 0.029987413188806197 8.532907181707185e-06
-        rotation 0.6829717692960027 0.2590285082482078 0.6829742266435799 2.634678668020583
+        translation 0.07199999999999918 0.029987413190701123 8.532909976891633e-06
+        rotation 0.6829717539503262 0.25902858917134636 0.6829742112978476 2.634678516351194
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
