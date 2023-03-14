@@ -58,7 +58,7 @@ void loop()
     //     ls.m_line_detection_threshold);
     float measurement = ls.calculate_line_position();
     float control_signal = pid.control(measurement, 1.0f);
-    mt.set_motor_speed(control_signal, control_signal);
+    mt.set_motor_speed(0.5 + 0.5 * control_signal, 0.5 - 0.5 * control_signal);
     Serial.printf(
         "measurement : %f,control_signal: %f\n",
         measurement, control_signal);

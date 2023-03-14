@@ -68,7 +68,7 @@ struct Motor_Controller
         motor2_speed = constrain(motor2_speed, -1, 1);
 
         long m1s = convert_to_raw(motor1_speed);
-        long m2s = convert_to_raw(motor2_speed);
+        long m2s = convert_to_raw(-motor2_speed);
 
         set_motor_speed_raw(m1s, m2s);
     }
