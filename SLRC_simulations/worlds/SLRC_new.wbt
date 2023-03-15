@@ -8,8 +8,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2533401538512947 0.6943955995983588 0.6735232124470827 0.9928786527835799
-  position -4.366842030010916 -4.1966807990652 5.29085638797287
+  orientation 0.30960033024194483 0.0032897867280714745 -0.9508610901795082 3.1213782360877906
+  position -0.660027035729452 -0.9854605138130665 0.11508735403152207
 }
 TexturedBackground {
 }
@@ -38,7 +38,7 @@ RectangleArena {
   }
 }
 Robot {
-  translation -0.9318267578481413 -1.0246861811912624 0.030158894733159188
+  translation -0.9339 -0.994754 0.0301601
   rotation -0.005546738726679452 0.00521877943489768 -0.9999709985948132 1.5016893376063885
   children [
     DEF LineSensor-3 DistanceSensor {
@@ -87,6 +87,7 @@ Robot {
       translation -0.005 0.101 0
       rotation 0 1 0 1.5707996938995747
       name "linesensor(4)"
+      type "infra-red"
     }
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
@@ -101,8 +102,8 @@ Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation 1.022766003609946e-06 -0.050001944667162 -0.01699815840714849
-        rotation 0.6997279541655967 -0.09393715197539405 -0.7082066094283364 0.6113228998406667
+        translation 1.0227660036189081e-06 -0.050001944667162 -0.01699815840714849
+        rotation 0.6997279541656038 -0.09393715197539992 -0.7082066094283287 0.6113228998406675
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -155,8 +156,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342779 0.03000171848775729 -4.125143254511589e-06
-        rotation -0.202537743130172 0.9585969734947785 -0.2001756853725932 1.6265620519465431
+        translation -0.07200259129342629 0.03000171848775729 -4.125143254511527e-06
+        rotation -0.2025377431301722 0.9585969734947785 -0.20017568537259336 1.6265620519465431
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -194,8 +195,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999918 0.029987413190701123 8.53290997689254e-06
-        rotation 0.6829717539503262 0.25902858917134636 0.6829742112978476 2.634678516351194
+        translation 0.0719999999999984 0.029987413190701126 8.532909976895389e-06
+        rotation 0.6829717539503285 0.2590285891713465 0.6829742112978452 2.6346785163511934
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -218,5 +219,5 @@ Robot {
   boundingObject USE Body
   physics Physics {
   }
-  controller "my_controller"
+  controller "Line_Maze"
 }
