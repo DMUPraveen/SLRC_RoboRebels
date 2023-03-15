@@ -92,11 +92,11 @@ struct LineSensor
         // calculating whether lines are detected using the line_detection_threshold
         for (int i = 0; i < NUM_SENSORS; i++)
         {
-            m_linedetected[i] = (m_readings[i] < m_line_detection_threshold);
+            m_linedetected[i] = (m_readings[i] > m_line_detection_threshold);
         }
     }
 
-    float calculate_line_position()
+    float calculate_line_position(bool &has_line)
     {
         float weighted_sum = 0.0f;
         float num_weights = 0.0f;
@@ -107,8 +107,10 @@ struct LineSensor
         }
         if (num_weights == 0)
         {
+            has_line = false;
             return 0;
         }
+        has_line = true;
         return weighted_sum / num_weights / 4;
     }
 };
