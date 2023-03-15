@@ -12,6 +12,11 @@ using namespace std;
 const uint8_t NUM_SENSORS = 8;
 struct LineSensor
 {
+    /*
+
+    Provides an interface and ultility functions for Lines Sensor
+
+    */
     float m_readings[NUM_SENSORS] = {0.0f};
 
     vector<DistanceSensor *> m_distanceSensors;
@@ -35,6 +40,7 @@ struct LineSensor
     void update_readings()
     {
 
+        // updates stored raw readings
         for (uint8_t i = 0; i < NUM_SENSORS; i++)
         {
             m_readings[i] = m_distanceSensors[i]->getValue();
@@ -43,14 +49,19 @@ struct LineSensor
 
     void update()
     {
+        // updates both raw readings and whether a line was detected or not as well
         update_readings();
         caluclate_line_detected();
     }
 
     void calibrate(int32_t iterations) // this function is a blocking function
     {
-
-        // dark values
+        /*
+         used to calibrate the threshold value
+          this function will call webots step so can be called outside of the while Loop
+         Caution Calls Robot.step
+        */
+        //  dark values
         float dark_sum = 0.0f;   // sum(x)
         float dark_2_sum = 0.0f; // sum(x^2)
 
@@ -98,6 +109,21 @@ struct LineSensor
 
     float calculate_line_position(bool &has_line)
     {
+        /*
+        calucalte the position of the line and whether a line was detected at all
+
+        the returned value will be in the range [-1,1], has_line will indicate whether a
+        line was detected or not
+
+        If no line is detected,
+            has_line will be set to false
+            return value will be 0
+
+        If a line is detected
+            has_line will be set to true
+            return value will be in the range [-1,1]
+
+        */
         float weighted_sum = 0.0f;
         float num_weights = 0.0f;
         for (int i = 0; i < NUM_SENSORS; i++)

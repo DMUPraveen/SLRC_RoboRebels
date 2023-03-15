@@ -66,6 +66,7 @@
 ###-----------------------------------------------------------------------------
 
 ### Do not modify: this includes Webots global Makefile.include
+CXX_SOURCES = Line_Maze.cpp ResourceManager.cpp 
 null :=
 space := $(null) $(null)
 WEBOTS_HOME_PATH?=$(subst $(space),\ ,$(strip $(subst \,/,$(WEBOTS_HOME))))
