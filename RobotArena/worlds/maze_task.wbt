@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.47210206010837197 -0.09578698875476102 -0.8763244248717059 3.493512001803727
-  position 0.6508395628033837 -0.9351195760149938 0.55600214675498
+  orientation 0.20125180681219582 -0.1206859628765291 -0.9720764417572271 4.197127499485308
+  position 1.0966802679137313 -2.2646967935835116 0.7889032144200551
 }
 TexturedBackground {
 }
@@ -33,6 +33,7 @@ RectangleArena {
 Robot {
   translation 0.330004 -0.767967 0.0382356
   rotation 8.878408195893015e-06 0.005329738916988384 0.9999857968012598 -3.1397753071795864
+  scale 1.1 1.1 1.1
   children [
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
@@ -566,7 +567,7 @@ Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.05
-                                            rotation 1.0842025162516069e-19 -3.7355541246706863e-17 0.9999999999999999 3.14
+                                            rotation 1.0842025162516042e-19 -3.735554124670693e-17 0.9999999999999999 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1444,7 +1445,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.07200259129342254 0.03000171847795167 -4.125147339406889e-06
-        rotation -0.20253882104175616 0.9585965173502017 -0.20017677911056558 1.6265625333873572
+        rotation -0.202538821041757 0.9585965173502015 -0.20017677911056558 1.6265625333873572
         children [
           DEF wheel Shape {
             appearance PBRAppearance {

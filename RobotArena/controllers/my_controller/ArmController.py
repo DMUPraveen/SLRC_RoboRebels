@@ -14,6 +14,21 @@ class armcontroll:
         self.pitch_motor = robot.getMotor('pitch_motor')
        
 
+        self.finger_motor_right = robot.getMotor('right_finger_motor')
+        self.finger_motor_left = robot.getMotor('left_finger_motor')
+    
+    def releasefingers(self):
+        self.finger_motor_right.setPosition(0)
+        self.finger_motor_left.setPosition(0)
+
+    def catchbox(self):
+        self.finger_motor_right.setPosition(-1)
+        self.finger_motor_right.setVelocity(1)
+        self.finger_motor_left.setPosition(1)
+        self.finger_motor_left.setVelocity(1)
+        self.robot.step(50*self.TIME_STEP)
+
+
     def waistcontrol(self,waist_val):
         self.waist_motor.setPosition(waist_val)
         self.waist_motor.setVelocity(0.5)
@@ -53,9 +68,11 @@ class armcontroll:
         self.elbowcontrol(elbow_val)
         self.shouldercontrol(shoulder_val)
         self.pitchcontrol(pitch_val)
+        self.catchbox()
         self.wristcontrol(wrist_val)
         self.robot.step(20*self.TIME_STEP)
-        self.stoparm()
+        # self.stoparm()
+        self.catchbox()
 
 
     def putinback(self,waist_val,shoulder_val,elbow_val,wrist_val,pitch_val):
@@ -65,6 +82,8 @@ class armcontroll:
         self.elbowcontrol(elbow_val)
         self.wristcontrol(wrist_val)
         self.robot.step(80*self.TIME_STEP)
+        self.releasefingers()
+        self.stoparm()
         
 
     def bringup(self):
