@@ -8,8 +8,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2533401538512947 0.6943955995983588 0.6735232124470827 0.9928786527835799
-  position -4.366842030010916 -4.1966807990652 5.29085638797287
+  orientation 0.5090457897676307 -0.6406518322969765 -0.5748370322920888 4.3941741346340395
+  position -0.0880257104261867 -0.6102168691866225 4.450030409553572
 }
 TexturedBackground {
 }
@@ -17,19 +17,10 @@ TexturedBackgroundLight {
   texture "empty_office"
 }
 RectangleArena {
-  floorSize 2.52 2.52
+  floorSize 4 3
   floorTileSize 2.52 2.52
   floorAppearance Appearance {
     material Material {
-      ambientIntensity 0.8
-      diffuseColor 1 1 1
-      shininess 0
-    }
-    texture ImageTexture {
-      url [
-        "../Assests/corrected.jpg.png"
-      ]
-      filtering 0
     }
   }
   wallHeight 0.15
@@ -37,9 +28,113 @@ RectangleArena {
     IBLStrength 8
   }
 }
+DEF obstacle Solid {
+  translation 0.4 0.05 0.05
+  children [
+    DEF obs Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 0.03 0.05 0.1
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE obs
+}
+DEF obstacle4 Solid {
+  translation -0.6 0.05 0.05
+  children [
+    DEF obs Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 0.03 0.05 0.1
+      }
+    }
+  ]
+  name "solid(6)"
+  boundingObject USE obs
+}
+DEF obstacle2 Solid {
+  translation 0 -0.3 0.05
+  children [
+    DEF obs Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 0.03 0.05 0.1
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE obs
+}
+DEF obstacle3 Solid {
+  translation -0.6 -0.3 0.05
+  children [
+    DEF obs Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 0.03 0.05 0.1
+      }
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE obs
+}
+DEF wall1 Solid {
+  translation -0.17 -0.43 0.075
+  children [
+    DEF wall1 Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 2.05 0.1 0.15
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE wall1
+}
+DEF wall1 Solid {
+  translation 0 0.21 0.075
+  children [
+    DEF wall1 Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 2.35 0.1 0.15
+      }
+    }
+  ]
+  boundingObject USE wall1
+}
+Solid {
+  translation 1.2 -0.11 0.075
+  children [
+    DEF wall2 Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.55 0.15
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE wall2
+}
 Robot {
-  translation -0.9318267578481413 -1.0246861811912624 0.030158894733159188
-  rotation -0.005546738726679452 0.00521877943489768 -0.9999709985948132 1.5016893376063885
+  translation 1.04401 -0.607198 0.0093879
+  rotation -0.0045270712191771475 0.14860504002054747 0.9888862663151249 0.0699123
   children [
     DEF LineSensor-3 DistanceSensor {
       translation -0.035 0.101 0
