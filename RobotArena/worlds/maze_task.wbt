@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.044099085789019464 -0.041196861806095844 0.9981773836397526 4.642608710569308
-  position 0.46815243988853494 -0.7940886458680184 0.2735029783206801
+  orientation 0.25596361462553807 -0.04794869018746634 -0.965496530857121 3.4994386612556614
+  position 0.6211988414512618 -0.9563876924950877 0.2436646135294577
 }
 TexturedBackground {
 }
@@ -31,7 +31,7 @@ RectangleArena {
   }
 }
 Robot {
-  translation 0.430346 -0.95777 0.0402582
+  translation 0.330004 -0.767967 0.0382356
   rotation 8.878408195893015e-06 0.005329738916988384 0.9999857968012598 -3.1397753071795864
   children [
     DEF ClasterWheel BallJoint {
@@ -186,7 +186,7 @@ Robot {
               RotationalMotor {
                 name "shoulder_motor"
                 maxVelocity 4
-                maxTorque 100
+                maxTorque 200
               }
             ]
             endPoint Solid {
@@ -307,7 +307,7 @@ Robot {
                     RotationalMotor {
                       name "elbow_motor"
                       maxVelocity 4
-                      maxTorque 100
+                      maxTorque 200
                     }
                   ]
                   endPoint Solid {
@@ -1444,7 +1444,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.07200259129342254 0.03000171847795167 -4.125147339406889e-06
-        rotation -0.20253882104175275 0.9585965173502025 -0.20017677911056536 1.626562533387357
+        rotation -0.2025388210417536 0.9585965173502021 -0.20017677911056544 1.626562533387357
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1530,7 +1530,7 @@ DEF box_3 Solid {
   }
 }
 DEF box_2 Solid {
-  translation 0.49897701413408013 -1.0929100766062243 0.020090981908437843
+  translation 0.328977 -0.91291 0.0201004
   rotation 0.7514490759312616 0.6597805920943682 0.003722442431812063 4.007413790858935e-05
   children [
     DEF box_2_shape Shape {
