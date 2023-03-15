@@ -8,8 +8,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.7275706899092351 0.0007018480296313285 0.686032359728273 3.1402723173415032
-  position -0.2659217731846723 -0.1399212719747279 6.478528667656377
+  orientation -0.2533401538512947 0.6943955995983588 0.6735232124470827 0.9928786527835799
+  position -4.366842030010916 -4.1966807990652 5.29085638797287
 }
 TexturedBackground {
 }
@@ -27,7 +27,7 @@ RectangleArena {
     }
     texture ImageTexture {
       url [
-        "../../../SLRC_simulations/corrected.jpg.png"
+        "../Assests/corrected.jpg.png"
       ]
       filtering 0
     }
@@ -101,8 +101,8 @@ Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation 1.0227660036095238e-06 -0.050001944667162 -0.01699815840714849
-        rotation 0.6997279541655961 -0.0939371519753937 -0.7082066094283371 0.6113228998406652
+        translation 1.022766003609946e-06 -0.050001944667162 -0.01699815840714849
+        rotation 0.6997279541655967 -0.09393715197539405 -0.7082066094283364 0.6113228998406667
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -155,7 +155,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.0720025912934279 0.03000171848775729 -4.125143254511605e-06
+        translation -0.07200259129342779 0.03000171848775729 -4.125143254511589e-06
         rotation -0.202537743130172 0.9585969734947785 -0.2001756853725932 1.6265620519465431
         children [
           DEF wheel Shape {
@@ -194,7 +194,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999918 0.029987413190701123 8.532909976891633e-06
+        translation 0.07199999999999918 0.029987413190701123 8.53290997689254e-06
         rotation 0.6829717539503262 0.25902858917134636 0.6829742112978476 2.634678516351194
         children [
           DEF Wheel Shape {
