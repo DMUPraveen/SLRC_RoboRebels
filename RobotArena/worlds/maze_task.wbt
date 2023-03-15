@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.3159612137983752 -0.41892408402749753 0.8512761732814912 4.8331549500577795
-  position 0.025051667755693507 -0.3783633850207948 0.8320669427560469
+  orientation -0.044099085789019464 -0.041196861806095844 0.9981773836397526 4.642608710569308
+  position 0.46815243988853494 -0.7940886458680184 0.2735029783206801
 }
 TexturedBackground {
 }
@@ -491,6 +491,263 @@ Robot {
                                 translation 0 0 0.035
                                 rotation 1 0 0 0
                                 children [
+                                  DEF left_a HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                      axis 0 1 0
+                                      anchor 0.14 0 0.09
+                                    }
+                                    device [
+                                      RotationalMotor {
+                                        name "right_finger_motor"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0.14 0 0.09
+                                      rotation 0 1 0 0
+                                      children [
+                                        Group {
+                                          children [
+                                            Transform {
+                                              rotation 1 0 0 -1.5707953071795862
+                                              children [
+                                                Shape {
+                                                  appearance Appearance {
+                                                    material Material {
+                                                      diffuseColor 0.333333 0.333333 1
+                                                    }
+                                                  }
+                                                  geometry Cylinder {
+                                                    height 0.065
+                                                    radius 0.003
+                                                    subdivision 20
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Transform {
+                                              translation 0 0 0.05
+                                              rotation 1 0 0 -1.5707953071795862
+                                              children [
+                                                Shape {
+                                                  appearance Appearance {
+                                                    material Material {
+                                                      diffuseColor 0.333333 0.333333 1
+                                                    }
+                                                  }
+                                                  geometry Cylinder {
+                                                    height 0.065
+                                                    radius 0.003
+                                                    subdivision 20
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Transform {
+                                              translation 0 0 0.025
+                                              children [
+                                                Shape {
+                                                  appearance Appearance {
+                                                    material Material {
+                                                      diffuseColor 0.333333 0.333333 1
+                                                    }
+                                                  }
+                                                  geometry Box {
+                                                    size 0.01 0.038 0.05
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                        DEF r__finger HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            axis 0 1 0
+                                            anchor 0 0 0.05
+                                          }
+                                          endPoint Solid {
+                                            translation 0 0 0.05
+                                            rotation 0 0 1 3.14
+                                            children [
+                                              DEF rf_finger Group {
+                                                children [
+                                                  Transform {
+                                                    translation -0.02 0.025 0
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Box {
+                                                          size 0.06 0.01 0.022
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                  Transform {
+                                                    translation -0.02 -0.025 0
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Box {
+                                                          size 0.06 0.01 0.022
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                  Transform {
+                                                    translation -0.01 0 0.056
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Box {
+                                                          size 0.04 0.06 0.09
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                  Transform {
+                                                    translation -0.04 0 0.026
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Box {
+                                                          size 0.02 0.06 0.03
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                  Transform {
+                                                    translation 0 0 0.111
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Box {
+                                                          size 0.02 0.06 0.2
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                  Transform {
+                                                    translation -0.0306 0 0.0678
+                                                    rotation 0 1 0 0.32
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Box {
+                                                          size 0.02 0.056 0.0635
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                  Transform {
+                                                    translation -0.01 0 0.101
+                                                    rotation 1 0 0 -1.5707953071795862
+                                                    children [
+                                                      Shape {
+                                                        appearance Appearance {
+                                                          material Material {
+                                                            diffuseColor 0.231373 0.231373 0.231373
+                                                          }
+                                                        }
+                                                        geometry Cylinder {
+                                                          height 0.058
+                                                          radius 0.02
+                                                          subdivision 20
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                            name "right_finger"
+                                            boundingObject USE rf_finger
+                                            physics Physics {
+                                            }
+                                          }
+                                        }
+                                      ]
+                                      name "solid_1(1)"
+                                      boundingObject DEF phalanx_1 Group {
+                                        children [
+                                          Transform {
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.05
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.025
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Box {
+                                                  size 0.01 0.038 0.05
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                      physics Physics {
+                                      }
+                                    }
+                                  }
                                   DEF pitch Group {
                                     children [
                                       Transform {
@@ -588,220 +845,6 @@ Robot {
                                         ]
                                       }
                                     ]
-                                  }
-                                  DEF right_a HingeJoint {
-                                    jointParameters HingeJointParameters {
-                                      axis 0 1 0
-                                      anchor 0.14 0 0.09
-                                    }
-                                    endPoint Solid {
-                                      translation 0.14 0 0.09
-                                      rotation 0 1 0 0
-                                      children [
-                                        DEF phalanx Group {
-                                          children [
-                                            Transform {
-                                              rotation 1 0 0 -1.5707953071795862
-                                              children [
-                                                Shape {
-                                                  appearance Appearance {
-                                                    material Material {
-                                                      diffuseColor 0.333333 0.333333 1
-                                                    }
-                                                  }
-                                                  geometry Cylinder {
-                                                    height 0.065
-                                                    radius 0.003
-                                                    subdivision 20
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                            Transform {
-                                              translation 0 0 0.05
-                                              rotation 1 0 0 -1.5707953071795862
-                                              children [
-                                                Shape {
-                                                  appearance Appearance {
-                                                    material Material {
-                                                      diffuseColor 0.333333 0.333333 1
-                                                    }
-                                                  }
-                                                  geometry Cylinder {
-                                                    height 0.065
-                                                    radius 0.003
-                                                    subdivision 20
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                            Transform {
-                                              translation 0 0 0.025
-                                              children [
-                                                Shape {
-                                                  appearance Appearance {
-                                                    material Material {
-                                                      diffuseColor 0.333333 0.333333 1
-                                                    }
-                                                  }
-                                                  geometry Box {
-                                                    size 0.01 0.038 0.05
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                        DEF r_finger HingeJoint {
-                                          jointParameters HingeJointParameters {
-                                            axis 0 1 0
-                                            anchor 0 0 0.055
-                                          }
-                                          endPoint Solid {
-                                            translation 0 0 0.05
-                                            rotation 0 1 0 0
-                                            children [
-                                              DEF rg_finger Group {
-                                                children [
-                                                  Transform {
-                                                    translation 0.02 0.025 0
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Box {
-                                                          size 0.06 0.01 0.022
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                  Transform {
-                                                    translation 0.02 -0.025 0
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Box {
-                                                          size 0.06 0.01 0.022
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                  Transform {
-                                                    translation 0.01 0 0.056
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Box {
-                                                          size 0.04 0.06 0.09
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                  Transform {
-                                                    translation 0.0306 0 0.0678
-                                                    rotation 0 1 0 -0.32
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Box {
-                                                          size 0.02 0.056 0.0635
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                  Transform {
-                                                    translation 0.04 0 0.026
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Box {
-                                                          size 0.02 0.06 0.03
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                  Transform {
-                                                    translation 0 0 0.111
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Box {
-                                                          size 0.02 0.06 0.2
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                  Transform {
-                                                    translation 0.01 0 0.101
-                                                    rotation 1 0 0 -1.5707953071795862
-                                                    children [
-                                                      Shape {
-                                                        appearance Appearance {
-                                                          material Material {
-                                                            diffuseColor 0.231373 0.231373 0.231373
-                                                          }
-                                                        }
-                                                        geometry Cylinder {
-                                                          height 0.056
-                                                          radius 0.02
-                                                          subdivision 20
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                ]
-                                              }
-                                              TouchSensor {
-                                                translation 0.0019996594079179936 7.448946410647944e-07 0.06899223079883006
-                                                rotation -2.6604661128241078e-15 -1.434456781603295e-13 -1 -3.141590000000001
-                                                name "finger_sensor"
-                                                boundingObject Shape {
-                                                  geometry Box {
-                                                    size 0.02 0.06 0.1
-                                                  }
-                                                }
-                                                physics Physics {
-                                                }
-                                                lookupTable [
-                                                  0 0 0
-                                                  0.01 1 0
-                                                ]
-                                              }
-                                            ]
-                                            name "right_finger"
-                                            boundingObject USE rg_finger
-                                            physics Physics {
-                                            }
-                                          }
-                                        }
-                                      ]
-                                      boundingObject USE phalanx
-                                      physics Physics {
-                                      }
-                                    }
                                   }
                                   DEF left_a HingeJoint {
                                     jointParameters HingeJointParameters {
@@ -1002,84 +1045,60 @@ Robot {
                                         }
                                       ]
                                       name "solid_1"
-                                      boundingObject USE phalanx
-                                      physics Physics {
+                                      boundingObject DEF phalanx Group {
+                                        children [
+                                          Transform {
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.05
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.025
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Box {
+                                                  size 0.01 0.038 0.05
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
                                       }
-                                    }
-                                  }
-                                  DEF right_p HingeJoint {
-                                    jointParameters HingeJointParameters {
-                                      axis 0 1 0
-                                      anchor 0.15 0 0.09
-                                    }
-                                    endPoint Solid {
-                                      translation 0.18 0 0.0899996
-                                      rotation 0 1 0 0
-                                      children [
-                                        DEF phalanx Group {
-                                          children [
-                                            Transform {
-                                              rotation 1 0 0 -1.5707953071795862
-                                              children [
-                                                Shape {
-                                                  appearance Appearance {
-                                                    material Material {
-                                                      diffuseColor 0.333333 0.333333 1
-                                                    }
-                                                  }
-                                                  geometry Cylinder {
-                                                    height 0.065
-                                                    radius 0.003
-                                                    subdivision 20
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                            Transform {
-                                              translation 0 0 0.05
-                                              rotation 1 0 0 -1.5707953071795862
-                                              children [
-                                                Shape {
-                                                  appearance Appearance {
-                                                    material Material {
-                                                      diffuseColor 0.333333 0.333333 1
-                                                    }
-                                                  }
-                                                  geometry Cylinder {
-                                                    height 0.065
-                                                    radius 0.003
-                                                    subdivision 20
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                            Transform {
-                                              translation 0 0 0.025
-                                              children [
-                                                Shape {
-                                                  appearance Appearance {
-                                                    material Material {
-                                                      diffuseColor 0.333333 0.333333 1
-                                                    }
-                                                  }
-                                                  geometry Box {
-                                                    size 0.01 0.038 0.05
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                        HingeJoint {
-                                          jointParameters HingeJointParameters {
-                                          }
-                                          endPoint SolidReference {
-                                            solidName "right_finger"
-                                          }
-                                        }
-                                      ]
-                                      name "solid_3"
-                                      boundingObject USE phalanx
                                       physics Physics {
                                       }
                                     }
@@ -1160,7 +1179,194 @@ Robot {
                                         }
                                       ]
                                       name "solid_2"
-                                      boundingObject USE phalanx
+                                      boundingObject DEF phalanx Group {
+                                        children [
+                                          Transform {
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.05
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.025
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Box {
+                                                  size 0.01 0.038 0.05
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                      physics Physics {
+                                      }
+                                    }
+                                  }
+                                  DEF right_p HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                      position 0.0032231754504269882
+                                      axis 0 1 0
+                                      anchor 0.18 0 0.0896131
+                                    }
+                                    endPoint Solid {
+                                      translation 0.18000187121908345 0 0.09077370288145385
+                                      rotation 0 1 0 0.0032231754504468127
+                                      children [
+                                        Group {
+                                          children [
+                                            Transform {
+                                              rotation 1 0 0 -1.5707953071795862
+                                              children [
+                                                Shape {
+                                                  appearance Appearance {
+                                                    material Material {
+                                                      diffuseColor 0.333333 0.333333 1
+                                                    }
+                                                  }
+                                                  geometry Cylinder {
+                                                    height 0.065
+                                                    radius 0.003
+                                                    subdivision 20
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Transform {
+                                              translation 0 0 0.05
+                                              rotation 1 0 0 -1.5707953071795862
+                                              children [
+                                                Shape {
+                                                  appearance Appearance {
+                                                    material Material {
+                                                      diffuseColor 0.333333 0.333333 1
+                                                    }
+                                                  }
+                                                  geometry Cylinder {
+                                                    height 0.065
+                                                    radius 0.003
+                                                    subdivision 20
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                            Transform {
+                                              translation 0 0 0.025
+                                              children [
+                                                Shape {
+                                                  appearance Appearance {
+                                                    material Material {
+                                                      diffuseColor 0.333333 0.333333 1
+                                                    }
+                                                  }
+                                                  geometry Box {
+                                                    size 0.01 0.038 0.05
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                        HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            position -9.603299307106559
+                                            axis 0 1 0
+                                            anchor 0 0 0.05
+                                          }
+                                          endPoint SolidReference {
+                                            solidName "right_finger"
+                                          }
+                                        }
+                                      ]
+                                      name "solid_2(1)"
+                                      boundingObject DEF phalanx Group {
+                                        children [
+                                          Transform {
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.05
+                                            rotation 1 0 0 -1.5707953071795862
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Cylinder {
+                                                  height 0.065
+                                                  radius 0.003
+                                                  subdivision 20
+                                                }
+                                              }
+                                            ]
+                                          }
+                                          Transform {
+                                            translation 0 0 0.025
+                                            children [
+                                              Shape {
+                                                appearance Appearance {
+                                                  material Material {
+                                                    diffuseColor 0.333333 0.333333 1
+                                                  }
+                                                }
+                                                geometry Box {
+                                                  size 0.01 0.038 0.05
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
                                       physics Physics {
                                       }
                                     }
@@ -1238,7 +1444,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.07200259129342254 0.03000171847795167 -4.125147339406889e-06
-        rotation -0.20253882104173995 0.9585965173502042 -0.2001767791105688 1.6265625333873572
+        rotation -0.20253882104175275 0.9585965173502025 -0.20017677911056536 1.626562533387357
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1362,23 +1568,4 @@ DEF box_1 Solid {
   physics Physics {
     density 100
   }
-}
-DEF maze Solid {
-  translation -1.93 1.32 -0.00589861
-  rotation 1 0 0 1.5708
-  scale 0.001 0.001 0.001
-  children [
-    DEF maze_shape Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Mesh {
-        url [
-          "../solid bodies/arena/webotsArena.STL"
-        ]
-      }
-      castShadows FALSE
-    }
-  ]
-  boundingObject USE maze_shape
 }

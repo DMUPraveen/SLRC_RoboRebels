@@ -7,14 +7,15 @@ class armcontroll:
         self.velocity=0.2
 
         #arm components
-        self.waist_motor = robot.getMotor('waist_motor')
-        self.shoulder_motor = robot.getMotor('shoulder_motor')
-        self.elbow_motor = robot.getMotor('elbow_motor')
-        self.wrist_motor = robot.getMotor('wrist_motor')
-        self.pitch_motor = robot.getMotor('pitch_motor')
+        self.waist_motor = robot.getDevice('waist_motor')
+        self.shoulder_motor = robot.getDevice('shoulder_motor')
+        self.elbow_motor = robot.getDevice('elbow_motor')
+        self.wrist_motor = robot.getDevice('wrist_motor')
+        self.pitch_motor = robot.getDevice('pitch_motor')
 
-        self.finger_motor_right = robot.getMotor('right_finger_motor')
-        self.finger_motor_left = robot.getMotor('left_finger_motor')
+        self.finger_motor_right = robot.getDevice('right_finger_motor')
+        #self.finger_motor_left = robot.getDevice('left_finger_motor')
+
        
 
     def waistcontrol(self,waist_val):
@@ -44,10 +45,10 @@ class armcontroll:
         self.robot.step(30*self.TIME_STEP)
 
     def initialfingers(self):
-        self.finger_motor_right.setPosition(1)
-        self.finger_motor_right.setVelocity(-1)
-        self.finger_motor_left.setPosition(-1)
-        self.finger_motor_left.setVelocity(1)
+        self.finger_motor_right.setPosition(float('inf'))
+        self.finger_motor_right.setVelocity(1)
+        #self.finger_motor_left.setPosition(-1)
+        # self.finger_motor_left.setVelocity(1)
 
     def stoparm(self):
         # self.shoulder_motor.setVelocity(0)
