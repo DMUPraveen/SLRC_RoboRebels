@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.13864578426874605 -0.028131568163655845 -0.9899424030604799 3.5380202782035735
-  position 1.9372798240395348 -1.2906812947704291 0.6634084596296353
+  orientation 0.24144070425216446 -0.0489877974509374 -0.9691783024970817 3.5299144253000714
+  position 0.8682264910725392 -1.10882537502784 0.2896205360781393
 }
 TexturedBackground {
 }
@@ -35,6 +35,16 @@ Robot {
   rotation 8.878408195893015e-06 0.005329738916988384 0.9999857968012598 -3.1397753071795864
   scale 1.1 1.1 1.1
   children [
+    DEF BoxDSensor3 DistanceSensor {
+      translation -0.015 0.1 -0.01
+      rotation 0 0 1 1.5708003061004252
+      name "distance sensor(7)"
+    }
+    DEF BoxDSensor2 DistanceSensor {
+      translation 0.015 0.1 -0.01
+      rotation 0 0 1 1.5708003061004252
+      name "distance sensor(6)"
+    }
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
         position 3.1370716991102827
@@ -48,8 +58,8 @@ Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation -1.1595123141493006e-06 -0.04999744310572549 -0.017000580575371554
-        rotation 0.7258163817187183 0.6878876202553609 -0.0010963248441961616 3.927600452421005
+        translation -1.1595123141478048e-06 -0.049997443105725486 -0.017000580575371536
+        rotation 0.7258163817187179 0.6878876202553613 -0.001096324844200911 3.927600452421014
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -569,7 +579,7 @@ Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.05
-                                            rotation 1.0926728484098262e-19 -3.735611324228173e-17 1 3.14
+                                            rotation -1.66533506496247e-16 -2.594496621390097e-16 1 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1116,7 +1126,7 @@ Robot {
                                       anchor -0.1800812025777988 0 0.08961334947628816
                                     }
                                     endPoint Solid {
-                                      translation -0.18007995675928148 0 0.08961308573815872
+                                      translation -0.18007995675928146 0 0.08961308573815875
                                       rotation 0 1 0 0.0032231754504468127
                                       children [
                                         Group {
@@ -1250,7 +1260,7 @@ Robot {
                                       anchor 0.18 0 0.0896131
                                     }
                                     endPoint Solid {
-                                      translation 0.18000187121908345 0 0.09077370288145385
+                                      translation 0.18000187121908343 0 0.09077370288145375
                                       rotation 0 1 0 0.0032231754504468127
                                       children [
                                         Group {
@@ -1420,6 +1430,11 @@ Robot {
       rotation 0 0 1 3.141592653589793
       name "distance sensor(4)"
     }
+    DEF BoxDSensor1 DistanceSensor {
+      translation 0 0.1 -0.01
+      rotation 0 0 1 1.5708003061004252
+      name "distance sensor(5)"
+    }
     DEF d3 DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 2.3561996938995744
@@ -1449,8 +1464,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200259129342254 0.03000171847795167 -4.125147339406889e-06
-        rotation -0.2025388210417573 0.9585965173502012 -0.20017677911056553 1.6265625333873572
+        translation -0.07200259129342193 0.03000171847795167 -4.125147339397735e-06
+        rotation -0.2025388210417575 0.958596517350201 -0.20017677911056608 1.626562533387354
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1489,8 +1504,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199999999999274 0.029987413192251396 8.532912263687339e-06
-        rotation 0.6829717413957106 0.2590286553762275 0.6829741987431839 2.634678392267351
+        translation 0.07199999999999246 0.0299874131922514 8.532912263691193e-06
+        rotation 0.6829717413957131 0.2590286553762268 0.6829741987431815 2.634678392267351
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
