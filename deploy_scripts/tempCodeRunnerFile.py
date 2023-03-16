@@ -1,2 +1,2 @@
-
-    plot_lines_and_points(line
+    # for line in bestFitHead:
+    #     line.print_()

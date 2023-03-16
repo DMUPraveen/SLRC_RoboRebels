@@ -6,8 +6,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2794306601575499 -0.4156425978840083 0.8655401417543546 4.962422778739147
-  position -1.0950437734015948 2.0920079789929793 1.3531128643248382
+  orientation -0.37131394218999364 -0.19813291611645842 0.9071214383347549 4.04319602587922
+  position 0.9037783423005532 2.981329507675139 3.397009265809056
 }
 TexturedBackground {
 }
@@ -733,10 +733,14 @@ Solid {
   boundingObject USE floorBox
 }
 Robot {
-  translation -0.9 0.85 0
+  translation -0.44 0.85 0
   rotation 0 0 -0.9999999999999999 1.5707953071795862
   scale 2 2 2
   children [
+    Display {
+      width 480
+      height 320
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
@@ -754,7 +758,7 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation 0 0.026000000000000027 0.02
+        translation 0 0.025999999999999582 0.02
         rotation 0 1 0 0
         children [
           DEF EPUCK_WHEEL Transform {
@@ -906,7 +910,7 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
-        translation 0 -0.025999999999999978 0.02
+        translation 0 -0.02599999999999877 0.02
         rotation 0 1 0 0
         children [
           Transform {
@@ -1936,7 +1940,7 @@ Robot {
     }
     DEF EPUCK_CAMERA Camera {
       translation 0.03 0 0.18
-      rotation 0 1 0 0.523599
+      rotation 0 -1 0 -0.523595307179586
       scale 2 2 2
       children [
         Transform {

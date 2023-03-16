@@ -43,10 +43,10 @@ class blob():
             return 1
         return 0
     
-    def last2edge():
+    def last2edge(self):
        self.add_to_edge(self.last_element)
 
-    def add_to_edges(x,y):
+    def add_to_edges(self,x,y):
        self.edges.add((x,y))
             
     def in_neighbours(self, x,y):
@@ -58,8 +58,15 @@ class blob():
     def area(self):
       return len(self.elements)
 
-# get white pixel
 
+def drawLines(img, lines):
+    src = np.copy(img)
+    for i in lines:
+        cv2.line(src, (i.vertex1[0],img.shape[0]-i.vertex1[1]), (i.vertex2[0],img.shape[0]-i.vertex2[1]), (0,0,0), 3, cv2.LINE_AA)
+    return src
+
+    
+# get white pixel
 # create blobs
 # get area of the blobs
 # draw bounding boxes using extremities
@@ -80,6 +87,12 @@ def extract_blob(gray):
                 if not(added):
                     blobs.append(blob(x,y))
     return blobs
+
+def blur(img,kSize):
+    return cv2.GaussianBlur(img,(kSize,kSize),0)
+
+def canny(img):
+    return cv2.Canny(img, 50, 200, None, 3)
 
 def make_copy(src, yStart, yEnd, xStart, xEnd):
     import copy
