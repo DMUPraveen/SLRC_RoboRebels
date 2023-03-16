@@ -12,17 +12,39 @@ class Positions:
         self.elbow=armcontroller.elbow_motor.getPositionSensor()
         self.shoulder=armcontroller.shoulder_motor.getPositionSensor()
         self.waist=armcontroller.waist_motor.getPositionSensor()
+
+
+        ### Create an exception if motors are NONE
         if(self.pitch is  None):
             raise Exception("Pitch position sensor is not available")
+        if(self.wrist is  None):
+            raise Exception("Wrist position sensor is not available")
+        if(self.elbow is  None):
+            raise Exception("Elbow position sensor is not available")
+        if(self.shoulder is  None):
+            raise Exception("Shoulder position sensor is not available")
+        if(self.waist is  None):
+            raise Exception("PWaist position sensor is not available")
+        
+        ######### Enable-> Sensors
         self.pitch.enable(TIME_STEP)
         self.wrist.enable(TIME_STEP)
         self.elbow.enable(TIME_STEP)
         self.shoulder.enable(TIME_STEP)
         self.waist.enable(TIME_STEP)
 
+        ########### Calling Fingers
         self.right_finger=armcontroller.finger_motor_right.getPositionSensor()
         self.left_finger=armcontroller.finger_motor_left.getPositionSensor()
 
+
+        if(self.right_finger is  None):
+            raise Exception("Right_Finger position sensor is not available")
+        if(self.left_finger is  None):
+            raise Exception("Left position sensor is not available")
+        
+
+        ######### Enble -> Sensors
         self.right_finger.enable(TIME_STEP)
         self.left_finger.enable(TIME_STEP)
 
