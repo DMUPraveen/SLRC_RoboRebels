@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.43831960043119267 -0.1477774800755274 -0.8865876968807805 3.722497449250899
-  position 1.155409699280671 -1.2507036341406812 1.6137502530079462
+  orientation 0.13864578426874605 -0.028131568163655845 -0.9899424030604799 3.5380202782035735
+  position 1.9372798240395348 -1.2906812947704291 0.6634084596296353
 }
 TexturedBackground {
 }
@@ -498,6 +498,8 @@ Robot {
                                       anchor 0.14 0 0.09
                                     }
                                     device [
+                                      DEF right_finger_sensor PositionSensor {
+                                      }
                                       RotationalMotor {
                                         name "right_finger_motor"
                                       }
@@ -567,7 +569,7 @@ Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.05
-                                            rotation 1.084202516251604e-19 -3.735554124670694e-17 0.9999999999999999 3.14
+                                            rotation 1.0926728484098262e-19 -3.735611324228173e-17 1 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -853,6 +855,9 @@ Robot {
                                       anchor -0.14 0 0.09
                                     }
                                     device [
+                                      PositionSensor {
+                                        name "left_finger_sensor"
+                                      }
                                       RotationalMotor {
                                         name "left_finger_motor"
                                       }
@@ -1445,7 +1450,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.07200259129342254 0.03000171847795167 -4.125147339406889e-06
-        rotation -0.20253882104175708 0.9585965173502015 -0.20017677911056558 1.6265625333873572
+        rotation -0.2025388210417573 0.9585965173502012 -0.20017677911056553 1.6265625333873572
         children [
           DEF wheel Shape {
             appearance PBRAppearance {

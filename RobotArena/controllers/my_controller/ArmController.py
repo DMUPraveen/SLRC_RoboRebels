@@ -26,33 +26,33 @@ class armcontroll:
         self.finger_motor_right.setVelocity(1)
         self.finger_motor_left.setPosition(1)
         self.finger_motor_left.setVelocity(1)
-        self.robot.step(50*self.TIME_STEP)
+        # self.robot.step(50*self.TIME_STEP)
 
 
     def waistcontrol(self,waist_val):
         self.waist_motor.setPosition(waist_val)
         self.waist_motor.setVelocity(0.5)
-        self.robot.step(30*self.TIME_STEP)
+        # self.robot.step(30*self.TIME_STEP)
 
     def shouldercontrol(self,shoulder_val):
         self.shoulder_motor.setPosition(shoulder_val)
         self.shoulder_motor.setVelocity(0.15)
-        self.robot.step(80*self.TIME_STEP)
+        # self.robot.step(80*self.TIME_STEP)
 
     def elbowcontrol(self,elbow_val):
         self.elbow_motor.setPosition(elbow_val)
         self.elbow_motor.setVelocity(0.5)
-        self.robot.step(50*self.TIME_STEP)
+        # self.robot.step(50*self.TIME_STEP)
 
     def wristcontrol(self,wrist_val):
         self.wrist_motor.setPosition(wrist_val)
         self.wrist_motor.setVelocity(0.5)
-        self.robot.step(30*self.TIME_STEP)
+        # self.robot.step(30*self.TIME_STEP)
     
     def pitchcontrol(self,pitch_val):
         self.pitch_motor.setPosition(pitch_val)
         self.pitch_motor.setVelocity(0.5)
-        self.robot.step(30*self.TIME_STEP)
+        # self.robot.step(30*self.TIME_STEP)
 
 
     def stoparm(self):
@@ -68,22 +68,16 @@ class armcontroll:
         self.elbowcontrol(elbow_val)
         self.shouldercontrol(shoulder_val)
         self.pitchcontrol(pitch_val)
-        self.catchbox()
-        self.wristcontrol(wrist_val)
-        self.robot.step(20*self.TIME_STEP)
-        # self.stoparm()
-        self.catchbox()
+        # self.releasefingers()
+        # self.catchbox()
+        # self.wristcontrol(wrist_val)
 
 
     def putinback(self,waist_val,shoulder_val,elbow_val,wrist_val,pitch_val):
         self.shouldercontrol(shoulder_val)
-        self.robot.step(20*self.TIME_STEP)
         self.pitchcontrol(pitch_val)
         self.elbowcontrol(elbow_val)
         self.wristcontrol(wrist_val)
-        self.robot.step(80*self.TIME_STEP)
-        self.releasefingers()
-        self.stoparm()
         
 
     def bringup(self):
