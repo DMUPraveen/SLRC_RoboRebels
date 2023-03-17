@@ -4,6 +4,9 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 
 WorldInfo {
+  basicTimeStep 64
+  FPS 20
+  optimalThreadCount 4
 }
 Viewpoint {
   orientation -0.37131394218999364 -0.19813291611645842 0.9071214383347549 4.04319602587922
@@ -758,8 +761,7 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation 0 0.025999999999999582 0.02
-        rotation 0 1 0 0
+        translation -1.1102230246251565e-16 0.02599999999999958 0.020000000000000018
         children [
           DEF EPUCK_WHEEL Transform {
             rotation 1 0 0 -1.570796
@@ -910,8 +912,7 @@ Robot {
         }
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
-        translation 0 -0.02599999999999877 0.02
-        rotation 0 1 0 0
+        translation 0 -0.025999999999998774 0.020000000000000018
         children [
           Transform {
             rotation 1 0 0 3.14159

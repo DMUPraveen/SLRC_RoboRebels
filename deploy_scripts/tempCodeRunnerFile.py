@@ -1,2 +1,2 @@
-    # for line in bestFitHead:
-    #     line.print_()
+
+notArrow_areaThres = 1000

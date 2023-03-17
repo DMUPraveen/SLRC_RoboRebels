@@ -1,18 +1,32 @@
 import cv2
 import numpy as np
 
-neighbourRadius = 8
+neighbourRadius = 25
 class blob():
-    def __init__(self, x, y):
+    def __init__(self, x, y,imgShape=(320,480)):
         self.elements = set()
         self.neighbours = set()
         self.edges = set()
+        self.imgShape = imgShape
+        if y<=self.imgShape[0]-(neighbourRadius+1):
+            self.upperY = y+neighbourRadius
+        else:
+            self.upperY = self.imgShape[0]
 
-        self.upperY = y+10
-        self.lowerY = y-10
+        if y>=neighbourRadius:
+            self.lowerY = y-neighbourRadius
+        else:
+            self.lowerY = 0 
 
-        self.lowerX = x-10
-        self.upperX = x+10
+        if x<=self.imgShape[1]-(neighbourRadius+1):
+            self.upperX = x+neighbourRadius
+        else:
+            self.upperX = self.imgShape[1]
+
+        if x>=neighbourRadius:
+            self.lowerX = x-neighbourRadius
+        else:
+            self.lowerX = 0    
 
         #clip to image shape if exceeded
 
@@ -20,20 +34,33 @@ class blob():
         self.last_element = (x,y)
 
 
-
-
     def add_element(self, x,y, is_edge=False):
         if len(self.elements)==0 or self.in_neighbours(x,y):
             self.elements.add((x,y))
             
             if abs(self.upperY-y)<neighbourRadius:
-              self.upperY = y+10
+                if y<=self.imgShape[0]-(neighbourRadius+1):
+                    self.upperY = y+neighbourRadius
+                else:
+                    self.upperY = self.imgShape[0]
+
             if abs(y - self.lowerY)<neighbourRadius:
-              self.lowerY = y-10            
+                if y>=neighbourRadius:
+                    self.lowerY = y-neighbourRadius
+                else:
+                    self.lowerY = 0 
+
             if abs(self.upperX-x)<neighbourRadius:
-              self.upperX = x+10
+                if x<=self.imgShape[1]-(neighbourRadius+1):
+                    self.upperX = x+neighbourRadius
+                else:
+                    self.upperX = self.imgShape[1]
+
             if abs(x - self.lowerX)<neighbourRadius:
-              self.lowerX = x-10
+                if x>=neighbourRadius:
+                    self.lowerX = x-neighbourRadius
+                else:
+                    self.lowerX = 0
             
             if is_edge:
                self.add_to_edges(x,y)
@@ -147,11 +174,22 @@ def applyOtsu(img):
 
 if __name__== "__main__":
 
-    filename = 'testImg.jpg'
+    filename = 'samples/s8.jpg'
     src = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    blobs = extract_blob(src)
 
+    verbImage = np.copy(src)
+    verbImage = cv2.cvtColor(verbImage, cv2.COLOR_GRAY2BGR)
+    height, width = src.shape
+
+    # Apply Otsu Thresholding to the Entire Image
+    otsu_thresh = applyOtsu(src)
+    kSize = 25
+    src = otsu_thresh
+
+    blobs = extract_blob(src)
+    """
     largestBlob = getLblob(blobs)
+
     testy1 = largestBlob.lowerY
     testy2 = largestBlob.upperY
 
@@ -161,7 +199,9 @@ if __name__== "__main__":
     slice = make_copy(src,testy1, testy2, testx1, testx2)
 
     outline = simpleEdge(slice)
-
-    cv2.imshow("sliced portion ",outline)
+    """
+    for b in blobs:
+        cv2.rectangle(verbImage, (b.lowerX, b.lowerY), (b.upperX, b.upperY), (0,0,255), thickness=2)
+    cv2.imshow("sliced portion ",verbImage)
     cv2.waitKey()
     pass
