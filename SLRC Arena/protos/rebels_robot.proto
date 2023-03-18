@@ -1,38 +1,19 @@
 #VRML_SIM R2023a utf8
+# Describe the functionality of your PROTO here.
 
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/gctronic/e-puck/protos/E-puck.proto"
 
-WorldInfo {
-  contactProperties [
-    ContactProperties {
-    }
-  ]
-}
-Viewpoint {
-  orientation 0.4146622086473453 -0.35295135913104175 -0.8387374981525841 4.3815936761300875
-  position 0.39901002239656214 -1.171732702687468 0.3453582173959462
-}
-TexturedBackground {
-}
-TexturedBackgroundLight {
-}
-RectangleArena {
-  translation -0.62 0 0
-  floorSize 2.7 2.7
-  floorTileSize 5 5
-  floorAppearance Parquetry {
-    type "dark strip"
-    colorOverride 0 0 0
-    textureTransform TextureTransform {
-    }
-  }
-}
-Robot {
-  translation 0.330004 -0.767967 0.0382356
-  rotation 8.878408195893015e-06 0.005329738916988384 0.9999857968012598 -3.1397753071795864
+PROTO rebels_robot [
+  field SFVec3f translation 0 0 0 # Is `Transform.translation`.
+  field SFRotation rotation 0 0 0 1 # Is `Transform.rotation`.
+  field SFString controller "e_puck_test"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+      
   scale 1.1 1.1 1.1
   children [
     DEF BoxDSensor5 DistanceSensor {
@@ -1537,66 +1518,6 @@ Robot {
   ]
   boundingObject USE Body
   physics Physics {
-  }
-  controller "my_controller"
-}
-DEF box_3 Solid {
-  translation -1.7299995204922196 -1.090000614758106 0.025089990768604846
-  rotation 0.7668202324346809 0.641861042341572 -0.001064637502916408 2.939780769215368e-05
-  children [
-    DEF box_3_shape Shape {
-      appearance PBRAppearance {
-        baseColor 1 0 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.05 0.05 0.05
-      }
-    }
-  ]
-  name "solid(4)"
-  boundingObject USE box_3_shape
-  physics Physics {
-    density 100
-  }
-}
-DEF box_2 Solid {
-  translation 0.328977 -0.91291 0.0201004
-  rotation 0.7514490759312616 0.6597805920943682 0.003722442431812063 4.007413790858935e-05
-  children [
-    DEF box_2_shape Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.04 0.04 0.04
-      }
-    }
-  ]
-  name "solid(3)"
-  boundingObject USE box_2_shape
-  physics Physics {
-    density 100
-  }
-}
-DEF box_1 Solid {
-  translation 0.4700000000016863 1.1199999274091412 0.01509994909100842
-  rotation 0.9999999995315432 3.0607238466922065e-05 -3.3272870405426506e-07 3.673445318120104e-06
-  children [
-    DEF box_1_shape Shape {
-      appearance PBRAppearance {
-        baseColor 0 0 1
-        metalness 0
-      }
-      geometry Box {
-        size 0.03 0.03 0.03
-      }
-    }
-  ]
-  name "solid(2)"
-  boundingObject USE box_1_shape
-  physics Physics {
-    density 100
+  } 
   }
 }

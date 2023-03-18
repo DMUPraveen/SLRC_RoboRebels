@@ -1,6 +1,6 @@
 """my_controller controller."""
 from ArmController import armcontroll
-from controller import Robot
+from controller import Robot, Supervisor
 from PositionSensors import Positions
 from SuperArm import Armstatemachine
 from Motors import Motorcontrol

@@ -1,0 +1,133 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "../protos/rebels_robot.proto"
+
+WorldInfo {
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.11466980499019508 -0.9718718758500795 0.20570827099355643 5.2416883695677114
+  position -2.9490117319399265 1.324915229976777 3.9135363539076793
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation -0.62 0 0
+  floorSize 2.7 2.7
+  floorTileSize 5 5
+  floorAppearance Parquetry {
+    type "dark strip"
+    colorOverride 0 0 0
+    textureTransform TextureTransform {
+    }
+  }
+}
+DEF box_3 Solid {
+  translation -1.73 -1.09 0.04
+  children [
+    DEF box_3_shape Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.05 0.05 0.05
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE box_3_shape
+  physics Physics {
+    density 100
+  }
+}
+DEF box_2 Solid {
+  translation 0.5 -1.1 0.03
+  children [
+    DEF box_2_shape Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.04 0.04 0.04
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE box_2_shape
+  physics Physics {
+    density 100
+  }
+}
+DEF box_1 Solid {
+  translation 0.47 1.12 0.02
+  children [
+    DEF box_1_shape Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.03 0.03 0.03
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE box_1_shape
+  physics Physics {
+    density 100
+  }
+}
+DEF maze Solid {
+  translation -1.93 1.32 -0.00589861
+  rotation 1 0 0 1.5708
+  scale 0.001 0.001 0.001
+  children [
+    DEF maze_shape Shape {
+      appearance PBRAppearance {
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "../solid bodies/arena/webotsArena.STL"
+        ]
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF supervisor Robot {
+  translation -1.93 1.32 0.0015
+  rotation 1 0 0 1.5708
+  scale 0.001 0.001 0.001
+  children [
+    DEF wall_sensor TouchSensor {
+      translation -0.68 0 0
+      name "wall_sensor"
+      boundingObject Mesh {
+        url [
+          "E:/DEEE/4th SEM/SLRC 23/WebotsArena_V1/SLRC Arena/solid bodies/arena/onlywalls.STL"
+        ]
+      }
+      locked TRUE
+    }
+  ]
+  name "robot(1)"
+  controller "supervisor"
+  supervisor TRUE
+}
+DEF rebel rebels_robot {
+  translation -1.75536 1.11 0.034
+  rotation 0 0 1 3.141592653589793
+  controller "my_controller"
+}
