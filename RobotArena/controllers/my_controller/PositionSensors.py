@@ -55,14 +55,14 @@ class Positions:
         wrist_val=self.wrist.getValue()
         pitch_val=self.pitch.getValue()
         arr=[waist_val,shoulder_val,elbow_val,wrist_val,pitch_val]
-        print(arr)
+        # print(arr)
         return arr
 
     def isPositioned(self):
         arr=self.positionvalues()
         real_values=[-11,0.5,2.2,0,0.15]
 
-        print(arr,real_values)
+        # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
@@ -75,7 +75,7 @@ class Positions:
         left_val=self.left_finger.getValue()
         arr=[right_val,left_val]
         real_values=[-1,1]
-        print(arr,real_values)
+        # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
@@ -87,7 +87,7 @@ class Positions:
         arr=self.positionvalues()
         real_values=[-11,0,0,0,0]
 
-        print(arr,real_values)
+        # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
@@ -99,7 +99,7 @@ class Positions:
         arr=self.positionvalues()
         real_values=[-11,-0.8,-1,0,-1.3]
 
-        print(arr,real_values)
+        # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
