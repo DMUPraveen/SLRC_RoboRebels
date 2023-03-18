@@ -45,7 +45,7 @@ class BoxDetector:
         return error
     
     def setposition(self):
-        superalpha=100
+        superalpha=1000
         self.enablesensors()
         error=self.errorfunction()
         speed=superalpha*error
