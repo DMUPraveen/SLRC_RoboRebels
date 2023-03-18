@@ -39,8 +39,8 @@ class BoxDetector:
 
     def errorfunction(self):
         alpha=10
-        beta=1
-        gamma=1
+        beta=5
+        gamma=5
         delta=10
         error=alpha*self.frac(self.Left_corner_value)+beta*self.frac(self.Left_value)-gamma*self.frac(self.Right_value)-delta*self.frac(self.Right_corner_value)
         return error
@@ -49,7 +49,8 @@ class BoxDetector:
     def isPositioned(self):
         superalpha=1000
         error=self.errorfunction()
-        if error*superalpha<0.01:
+        print(error*superalpha)
+        if abs(error*superalpha)<0.001:
             self.car.simplestop()
             return True
         speed=superalpha*error
@@ -58,23 +59,38 @@ class BoxDetector:
 
 
     def isPrimaryReady(self):
-        if self.Middle_value<350:
+        if self.Middle_value<250:
             self.car.simplestop()
             return True
         print(self.Middle_value)
         self.car.simpleforward()
 
+    def supererrorfunction(self):
+        chrome=10
+        edge=50
+        supererror=(self.frac(self.Middle_value) -self.frac(self.Left_value))*(self.frac(self.Middle_value)-self.frac(self.Right_value))
+        return supererror
+
+    def isSuperReady(self):
+        supervariable=10000
+        supererror=self.supererrorfunction()
+        superspeed=supervariable*supererror
+        if abs(superspeed)<0.01:
+            return True
+        print(superspeed)
+        self.car.setspeed(superspeed,-superspeed)
 
     def setposition(self):
         self.enablesensors()
         
-        if self.state==0 and self.isPositioned():
+        if self.state==0 and self.isPositioned(): ########### for now Should Tune
             self.state=1
 
         if self.state==1 and self.isPrimaryReady():
             self.state=2
 
-        if self.state==2 and self.isPositioned():
+        if self.state==2 and self.isSuperReady():  ########### for now Should Tune
+            self.state=3
             return True
 
         print(self.state)

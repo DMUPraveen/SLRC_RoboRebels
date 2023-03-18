@@ -16,8 +16,8 @@ def main():
     superarm=Armstatemachine(robot,arm,pos,car)
     boxdetect=BoxDetector(robot,car)
     while robot.step(timestep) != -1:
-        if boxdetect.setposition():
-              superarm.pickupbox()
+        boxdetect.setposition()
+            #   superarm.pickupbox()
         pass
 
 # if __name__=="__main__":
