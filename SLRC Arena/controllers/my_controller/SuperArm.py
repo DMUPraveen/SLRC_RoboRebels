@@ -9,7 +9,7 @@ class Armstatemachine:
         self.state=0
         self.robot=robot
         self.TIME=0
-        self.TIME_THRESHOLD=100
+        self.TIME_THRESHOLD=200
         self.pos=positions
         self.arm=armcontroller
         self.car=motorcontroller

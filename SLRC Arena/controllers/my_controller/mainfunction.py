@@ -5,6 +5,7 @@ from PositionSensors import Positions
 from SuperArm import Armstatemachine
 from Motors import Motorcontrol
 from Boxdetector import BoxDetector
+from SuperStateMachineForCatchTheBox import SuperState
 
 
 def main():
@@ -15,9 +16,9 @@ def main():
     pos=Positions(robot,arm)
     superarm=Armstatemachine(robot,arm,pos,car)
     boxdetect=BoxDetector(robot,car)
+    superduper=SuperState(robot,superarm,boxdetect)
     while robot.step(timestep) != -1:
-        boxdetect.setposition()
-            #   superarm.pickupbox()
+        superduper.SuperStateMachine()
         pass
 
 # if __name__=="__main__":

@@ -76,6 +76,7 @@ class BoxDetector:
         supererror=self.supererrorfunction()
         superspeed=supervariable*supererror
         if abs(superspeed)<0.01:
+            self.car.simplestop()
             return True
         print(superspeed)
         self.car.setspeed(superspeed,-superspeed)
