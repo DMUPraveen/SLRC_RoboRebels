@@ -6,6 +6,7 @@ class BoxDetector:
         self.robot=Robot()
         self.TIME_STEP=10
         self.car=motorcontroller
+        self.state=0
 
         self.Left_corner_box_sensor=robot.getDevice("box_sensor_side1.2")
         self.Left_box_sensor=robot.getDevice("box_sensor_side1")
@@ -44,12 +45,38 @@ class BoxDetector:
         error=alpha*self.frac(self.Left_corner_value)+beta*self.frac(self.Left_value)-gamma*self.frac(self.Right_value)-delta*self.frac(self.Right_corner_value)
         return error
     
-    def setposition(self):
+
+    def isPositioned(self):
         superalpha=1000
-        self.enablesensors()
         error=self.errorfunction()
+        if error*superalpha<0.01:
+            self.car.simplestop()
+            return True
         speed=superalpha*error
         print(speed)
         self.car.setspeed(speed,-speed)
+
+
+    def isPrimaryReady(self):
+        if self.Middle_value<350:
+            self.car.simplestop()
+            return True
+        print(self.Middle_value)
+        self.car.simpleforward()
+
+
+    def setposition(self):
+        self.enablesensors()
+        
+        if self.state==0 and self.isPositioned():
+            self.state=1
+
+        if self.state==1 and self.isPrimaryReady():
+            self.state=2
+
+        if self.state==2 and self.isPositioned():
+            return True
+
+        print(self.state)
 
     

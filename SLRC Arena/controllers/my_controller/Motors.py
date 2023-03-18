@@ -25,4 +25,8 @@ class Motorcontrol:
         self.left_motor1.setVelocity(-self.maxvelocity)
         self.right_motor1.setVelocity(self.maxvelocity)
 
+    def simplestop(self):
+        self.left_motor1.setVelocity(0)
+        self.right_motor1.setVelocity(0)
+
         
