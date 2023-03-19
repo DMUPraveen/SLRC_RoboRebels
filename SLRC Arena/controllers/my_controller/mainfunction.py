@@ -22,7 +22,7 @@ def main():
     
     while robot.step(timestep) != -1:
         #superduper.SuperStateMachine()
-        cam.alignwithbox(verb=True,imageVerbose=False)
+        cam.alignwithbox()
         pass
 
 # if __name__=="__main__":

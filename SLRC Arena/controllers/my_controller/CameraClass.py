@@ -76,7 +76,7 @@ class Camera_:
         return True,(x,y)
 
 
-    def alignwithbox(self,verb=True, imageVerbose= True):
+    def ErrorCalibration(self,verb=True, imageVerbose= True):
 
         cameraData = self.cam.getImage()
 
@@ -102,26 +102,44 @@ class Camera_:
         greenDet = 0
         blueDet = 0
 
+        error_blue=0
+        error_red=0
+        error_green=0
+
+        Error=0
+
         if blue_center[0]:
-            error = (image.shape[1]/2)-blue_center[0]
+            error_blue = (image.shape[1]/2)-blue_center[0]
             blueDet = 1
 
         if red_center[0]:
-            error = (image.shape[1]/2)-red_center[0]
+            error_red = (image.shape[1]/2)-red_center[0]
             redDet = 1
         if green_center[0]:
-            error = (image.shape[1]/2)-green_center[0]
+            error_green = (image.shape[1]/2)-green_center[0]
             greenDet = 1
         
         if verb:
             print("Red %i \t Green %i \t Blue %i"%(redDet, greenDet, blueDet),end='\t')
             if redDet:
                 print('Red @', red_center,end='\t')
-            if blueDet:
-                print('Green @', green_center,end='\t')
+                Error=error_red
             if greenDet:
+                print('Green @', green_center,end='\t')
+                Error=error_green
+            if blueDet:
                 print('Blue @', blue_center,end='\t')
+                Error=error_blue
             print()
+        print(Error)
+        return Error
+    
+    def alignwithbox(self):
+        error=self.ErrorCalibration()
+        speed = 0.009*error
+        self.car.setspeed(+speed,-speed)
+        # leftMotor.setVelocity(+speed)
+        # rightMotor.setVelocity(-speed)
 
 
 
