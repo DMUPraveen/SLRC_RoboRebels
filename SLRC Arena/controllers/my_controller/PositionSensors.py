@@ -75,11 +75,11 @@ class Positions:
         left_val=self.left_finger.getValue()
         arr=[right_val,left_val]
         real_values=[-1,1]
-        # print(arr,real_values)
+        print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
-            if abs(arrv-realv)>0.2:
+            if abs(arrv-realv)>0.75:
                 return False
         return True
     

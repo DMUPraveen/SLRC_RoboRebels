@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.06834740403641988 -0.060349492818085416 0.9958346103033788 4.584158436580179
-  position -1.778704251433379 1.3808375533473232 0.30698693621890316
+  orientation 0 0 1 1.5707963267948966
+  position -1.7179540183842157 0.28797731885306377 0.2576558542943712
 }
 TexturedBackground {
 }
@@ -164,7 +164,7 @@ DEF rebel Robot {
       }
       endPoint Solid {
         translation -1.1366249860353575e-06 -0.04999714944143058 -0.016997078686795092
-        rotation 0.696845442850455 0.710930388760616 0.09478613355988828 4.118437697260621
+        rotation 0.6968454428504549 0.7109303887606159 0.0947861335598887 4.118437697260622
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -643,7 +643,7 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.05
+                                              translation 0 0 0.1
                                               rotation 1 0 0 -1.5707953071795862
                                               children [
                                                 Shape {
@@ -661,7 +661,8 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.025
+                                              translation 0 0 0.05
+                                              scale 1 1 2
                                               children [
                                                 Shape {
                                                   appearance Appearance {
@@ -684,7 +685,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation -3.330670129924938e-16 -3.326333319859931e-16 1 3.14
+                                            rotation -3.330670129924941e-16 -3.3263333198599326e-16 0.9999999999999999 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -828,7 +829,7 @@ DEF rebel Robot {
                                             ]
                                           }
                                           Transform {
-                                            translation 0 0 0.05
+                                            translation 0 0 0.1
                                             rotation 1 0 0 -1.5707953071795862
                                             children [
                                               Shape {
@@ -1001,7 +1002,7 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.05
+                                              translation 0 0 0.1
                                               rotation 1 0 0 -1.5707953071795862
                                               children [
                                                 Shape {
@@ -1019,7 +1020,8 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.025
+                                              translation 0 0 0.05
+                                              scale 1 1 2
                                               children [
                                                 Shape {
                                                   appearance Appearance {
@@ -1186,7 +1188,7 @@ DEF rebel Robot {
                                             ]
                                           }
                                           Transform {
-                                            translation 0 0 0.05
+                                            translation 0 0 0.1
                                             rotation 1 0 0 -1.5707953071795862
                                             children [
                                               Shape {
@@ -1254,7 +1256,7 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.05
+                                              translation 0 0 0.1
                                               rotation 1 0 0 -1.5707953071795862
                                               children [
                                                 Shape {
@@ -1272,7 +1274,8 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.025
+                                              translation 0 0 0.05
+                                              scale 1 1 2
                                               children [
                                                 Shape {
                                                   appearance Appearance {
@@ -1320,7 +1323,7 @@ DEF rebel Robot {
                                             ]
                                           }
                                           Transform {
-                                            translation 0 0 0.05
+                                            translation 0 0 0.1
                                             rotation 1 0 0 -1.5707953071795862
                                             children [
                                               Shape {
@@ -1360,13 +1363,12 @@ DEF rebel Robot {
                                   }
                                   DEF right_p HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position 0.0032231754504269882
                                       axis 0 1 0
                                       anchor 0.18000187121908343 0 0.09077370288145375
                                     }
                                     endPoint Solid {
-                                      translation 0.17999813040856527 0 0.09077371494137591
-                                      rotation 0 1 0 0.0032231754504468127
+                                      translation 0.17999813038912546 0 0.09077370288404552
+                                      rotation 0 1 0 0
                                       children [
                                         Group {
                                           children [
@@ -1388,7 +1390,7 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.05
+                                              translation 0 0 0.1
                                               rotation 1 0 0 -1.5707953071795862
                                               children [
                                                 Shape {
@@ -1406,7 +1408,8 @@ DEF rebel Robot {
                                               ]
                                             }
                                             Transform {
-                                              translation 0 0 0.025
+                                              translation 0 0 0.05
+                                              scale 1 1 2
                                               children [
                                                 Shape {
                                                   appearance Appearance {
@@ -1426,7 +1429,7 @@ DEF rebel Robot {
                                           jointParameters HingeJointParameters {
                                             position -9.603299307106559
                                             axis 0 1 0
-                                            anchor 0 0 0.05
+                                            anchor 0 0 0.1
                                           }
                                           endPoint SolidReference {
                                             solidName "right_finger"
@@ -1454,7 +1457,7 @@ DEF rebel Robot {
                                             ]
                                           }
                                           Transform {
-                                            translation 0 0 0.05
+                                            translation 0 0 0.1
                                             rotation 1 0 0 -1.5707953071795862
                                             children [
                                               Shape {
@@ -1569,7 +1572,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.0720026128402782 0.030001580189147403 7.365634853077627e-07
+        translation -0.0720026128402782 0.030001580189147403 7.365634853077056e-07
         rotation -0.20253883465707112 0.9585965403204673 -0.20017665533569706 1.6265631087018715
         children [
           DEF wheel Shape {
@@ -1609,8 +1612,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552789 0.029987375261829482 1.3414411411764791e-05
-        rotation 0.6829715481170102 0.2590285802302523 0.6829744205214089 2.634678231165516
+        translation 0.07199997845552789 0.029987375261829482 1.3414411411764701e-05
+        rotation 0.6829715481170104 0.25902858023025205 0.6829744205214089 2.634678231165516
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {

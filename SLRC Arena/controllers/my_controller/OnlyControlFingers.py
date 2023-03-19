@@ -1,4 +1,5 @@
-"""my_controller controller."""
+""" Only Controls Fingers"""
+
 from ArmController import armcontroll
 from controller import Robot, Supervisor
 from PositionSensors import Positions
@@ -17,13 +18,13 @@ def main():
     superarm=Armstatemachine(robot,arm,pos,car)
     boxdetect=BoxDetector(robot,car)
     superduper=SuperState(robot,superarm,boxdetect)
+
+    finger_motor_right = robot.getMotor('right_finger_motor')
+    finger_motor_left = robot.getMotor('left_finger_motor')
+
     while robot.step(timestep) != -1:
-        superduper.SuperStateMachine()
+        finger_motor_right.setPosition(-1)
+        finger_motor_right.setVelocity(2)
+        finger_motor_left.setPosition(1)
+        finger_motor_left.setVelocity(2)
         pass
-
-# if __name__=="__main__":
-#     main()
-
-
-    
-
