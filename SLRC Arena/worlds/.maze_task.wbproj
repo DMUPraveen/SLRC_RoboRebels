@@ -8,5 +8,5 @@ orthographicViewHeight: 1
 textFiles: 0 "controllers/supervisor/supervisor.c"
 globalOptionalRendering: DistanceSensorRays::CameraFrustums
 consoles: Console:robot;All:All
-renderingDevicePerspectives: Rebel_Robot:camera;1;0.815045;0;0.485968
+renderingDevicePerspectives: Rebel_Robot:camera;1;0.815045;0;0.485967
 renderingDevicePerspectives: Rebel_Robot:rebelEye;1;0.778125;0;0

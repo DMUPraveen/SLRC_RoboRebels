@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.3371730030016712 0.7886203161569448 0.5141909791034414 1.3873148101021255
-  position -0.1165993304079095 -1.5948661981215688 2.007885443712673
+  orientation -0.4284992507607796 0.4655069746783631 0.7743976037044848 1.7427806056415338
+  position 0.5619038850170153 -1.890526902175166 1.5440580229776528
 }
 TexturedBackground {
 }
@@ -69,7 +69,7 @@ DEF box_2 Solid {
   }
 }
 DEF box_1 Solid {
-  translation 0.59 -1.11 0.02
+  translation 0.35 -1.11 0.02
   children [
     DEF box_1_shape Shape {
       appearance PBRAppearance {
@@ -152,7 +152,7 @@ DEF rebel Robot {
       }
       endPoint Solid {
         translation -1.1366249860344343e-06 -0.04999714944143057 -0.01699707868679509
-        rotation 0.6968454428504547 0.7109303887606162 0.0947861335598866 4.118437697260625
+        rotation 0.6968454428504547 0.7109303887606162 0.09478613355988653 4.118437697260625
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -674,7 +674,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation -3.3306616595927873e-16 -3.3263699391572677e-16 0.9999999999999999 3.14
+                                            rotation -3.3306616595927893e-16 -3.3263699391572697e-16 1 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1566,7 +1566,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200261284027754 0.030001580189147403 7.365634853068134e-07
+        translation -0.07200261284027754 0.030001580189147403 7.365634853067563e-07
         rotation -0.2025388346570713 0.9585965403204671 -0.20017665533569678 1.6265631087018724
         children [
           DEF wheel Shape {
