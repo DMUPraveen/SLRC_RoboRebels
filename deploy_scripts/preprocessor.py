@@ -160,12 +160,18 @@ def simpleEdge(inImg):
 def getLblob(blobs):
     largestIndex = 0
     largestSize = 0
+    print("Length of List is %i"%(len(blobs)))
     for b in range(len(blobs)):
         x = blobs[b].area()
         if x>largestSize:
             largestSize = x
             largestIndex = b
-    return blobs[largestIndex]
+    print("Trying to access %i"%(largestIndex))
+    try:
+        return blobs[largestIndex]
+    except IndexError:
+        print("Index Error")
+        return 'f'
 
 def applyOtsu(img):
     _, threshImg = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
