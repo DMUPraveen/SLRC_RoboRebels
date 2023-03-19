@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0 0 1 1.5707963267948966
-  position -1.7179540183842157 0.28797731885306377 0.2576558542943712
+  orientation -0.49238174590088435 0.5638498460214871 0.6630486916095547 1.842753795472084
+  position 0.5518948406001961 -1.2060373318610598 0.9061685578764777
 }
 TexturedBackground {
 }
@@ -31,7 +31,7 @@ RectangleArena {
   }
 }
 DEF box_3 Solid {
-  translation -1.73 -1.09 0.04
+  translation -1.71 -1.12 0.04
   children [
     DEF box_3_shape Shape {
       appearance PBRAppearance {
@@ -105,29 +105,9 @@ DEF maze Solid {
     }
   ]
 }
-DEF supervisor Robot {
-  translation -1.93 1.32 0.0015
-  rotation 1 0 0 1.5708
-  scale 0.001 0.001 0.001
-  children [
-    DEF wall_sensor TouchSensor {
-      translation -0.68 0 0
-      name "wall_sensor"
-      boundingObject Mesh {
-        url [
-          "E:/DEEE/4th SEM/SLRC 23/WebotsArena_V1/SLRC Arena/solid bodies/arena/onlywalls.STL"
-        ]
-      }
-      locked TRUE
-    }
-  ]
-  name "robot(1)"
-  controller "supervisor"
-  supervisor TRUE
-}
 DEF rebel Robot {
-  translation -1.75536 1.11 0.034
-  rotation 0 0 1 3.141592653589793
+  translation 0.50464 -0.88 0.034
+  rotation 0 0 1 3.14159
   scale 1.1 1.1 1.1
   children [
     DEF BoxDSensor5 DistanceSensor {
@@ -607,7 +587,7 @@ DEF rebel Robot {
                                 translation 0 0 0.035
                                 rotation 1 0 0 0
                                 children [
-                                  DEF left_a HingeJoint {
+                                  DEF right_a HingeJoint {
                                     jointParameters HingeJointParameters {
                                       axis 0 1 0
                                       anchor 0.14 0 0.09
@@ -617,6 +597,7 @@ DEF rebel Robot {
                                       }
                                       RotationalMotor {
                                         name "right_finger_motor"
+                                        maxTorque 50
                                       }
                                     ]
                                     endPoint Solid {
@@ -685,7 +666,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation -3.330670129924941e-16 -3.3263333198599326e-16 0.9999999999999999 3.14
+                                            rotation -3.3306701299249578e-16 -3.326333319859941e-16 0.9999999999999999 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -759,7 +740,7 @@ DEF rebel Robot {
                                                           }
                                                         }
                                                         geometry Box {
-                                                          size 0.02 0.06 0.2
+                                                          size 0.02 0.06 0.15
                                                         }
                                                       }
                                                     ]
@@ -976,6 +957,7 @@ DEF rebel Robot {
                                       }
                                       RotationalMotor {
                                         name "left_finger_motor"
+                                        maxTorque 50
                                       }
                                     ]
                                     endPoint Solid {
@@ -1114,11 +1096,13 @@ DEF rebel Robot {
                                                       Shape {
                                                         appearance Appearance {
                                                           material Material {
+                                                            ambientIntensity 0.6
                                                             diffuseColor 0.231373 0.231373 0.231373
+                                                            shininess 0
                                                           }
                                                         }
                                                         geometry Box {
-                                                          size 0.02 0.06 0.2
+                                                          size 0.02 0.06 0.15
                                                         }
                                                       }
                                                     ]
@@ -1572,7 +1556,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.0720026128402782 0.030001580189147403 7.365634853077056e-07
+        translation -0.0720026128402782 0.030001580189147403 7.365634853074285e-07
         rotation -0.20253883465707112 0.9585965403204673 -0.20017665533569706 1.6265631087018715
         children [
           DEF wheel Shape {
@@ -1612,7 +1596,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552789 0.029987375261829482 1.3414411411764701e-05
+        translation 0.07199997845552789 0.029987375261829482 1.34144114117647e-05
         rotation 0.6829715481170104 0.25902858023025205 0.6829744205214089 2.634678231165516
         children [
           DEF Wheel Shape {

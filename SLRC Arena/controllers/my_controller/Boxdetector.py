@@ -50,7 +50,7 @@ class BoxDetector:
         superalpha=1000
         error=self.errorfunction()
         print(error*superalpha)
-        if abs(error*superalpha)<0.001:
+        if abs(error*superalpha)<0.015:
             self.car.simplestop()
             return True
         speed=superalpha*error

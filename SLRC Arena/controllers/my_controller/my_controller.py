@@ -1,4 +1,4 @@
-from OnlyControlFingers import main   ################ Controls --> Only Fingers
+from mainfunction import main   ################ Controls --> Mains
 
 
 if __name__=="__main__":

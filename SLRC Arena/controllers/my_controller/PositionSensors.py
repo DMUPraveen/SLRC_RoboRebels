@@ -79,7 +79,7 @@ class Positions:
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
-            if abs(arrv-realv)>0.75:
+            if abs(arrv-realv)>0.9:
                 return False
         return True
     
