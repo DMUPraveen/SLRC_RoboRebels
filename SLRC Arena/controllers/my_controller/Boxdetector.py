@@ -53,47 +53,64 @@ class BoxDetector:
         if abs(error*superalpha)<0.015:
             self.car.simplestop()
             return True
+
+
+    def gettingReadytocollect(self):
+        superalpha=10
+        error=self.errorfunction()
         speed=superalpha*error
         print(speed)
         self.car.setspeed(speed,-speed)
 
-
-    def isPrimaryReady(self):
-        if self.Middle_value<250:
-            self.car.simplestop()
-            return True
+    def movingtowardsBox(self):
         print(self.Middle_value)
         self.car.simpleforward()
 
-    def supererrorfunction(self):
-        chrome=10
-        edge=50
-        supererror=(self.frac(self.Middle_value) -self.frac(self.Left_value))*(self.frac(self.Middle_value)-self.frac(self.Right_value))
-        return supererror
 
-    def isSuperReady(self):
-        supervariable=10000
-        supererror=self.supererrorfunction()
-        superspeed=supervariable*supererror
-        if abs(superspeed)<0.01:
+    def isPrimaryPositioned(self):
+        if self.Middle_value<250:
             self.car.simplestop()
             return True
-        print(superspeed)
-        self.car.setspeed(superspeed,-superspeed)
+
+
+    # def supererrorfunction(self):
+    #     chrome=10
+    #     edge=50
+    #     supererror=(self.frac(self.Middle_value) -self.frac(self.Left_value))*(self.frac(self.Middle_value)-self.frac(self.Right_value))
+    #     return supererror
+
+    # def isSuperReady(self):
+    #     supervariable=10000
+    #     supererror=self.supererrorfunction()
+    #     superspeed=supervariable*supererror
+    #     if abs(superspeed)<0.01:
+    #         self.car.simplestop()
+    #         return True
+
+    # def gettingSuperReady(self):
+    #     supervariable=10000
+    #     supererror=self.supererrorfunction()
+    #     superspeed=supervariable*supererror
+    #     print(superspeed)
+    #     self.car.setspeed(superspeed,-superspeed)
 
     def setposition(self):
         self.enablesensors()
         
-        if self.state==0 and self.isPositioned(): ########### for now Should Tune
+        if self.state==0 and self.isPrimaryPositioned():
             self.state=1
 
-        if self.state==1 and self.isPrimaryReady():
-            self.state=2
 
-        if self.state==2 and self.isSuperReady():  ########### for now Should Tune
-            self.state=3
+        if self.state==1 and self.isPositioned():  ########### for now Should Tune
             return True
+        
+        if self.state==0:
+            self.movingtowardsBox()
 
-        print(self.state)
+        if self.state==1:
+            self.gettingReadytocollect()
+
+
+        print("set Position State",self.state)
 
     

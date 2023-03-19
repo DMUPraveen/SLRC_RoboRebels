@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from Motors import Motorcontrol
 
-class Camera_:
+class Camera:
     def __init__(self,robot:Robot,motorcontroller:Motorcontrol):
         self.robot=robot
         self.car=motorcontroller
@@ -106,7 +106,7 @@ class Camera_:
         error_red=0
         error_green=0
 
-        Error=0
+        Error=None
 
         if blue_center[0]:
             error_blue = (image.shape[1]/2)-blue_center[1][0]
@@ -130,12 +130,25 @@ class Camera_:
         if blueDet:
             print('Blue @', blue_center,'Error :',Error) if verb else 0
             Error=error_blue
+        print(Error)
         return Error
     
     def alignwithbox(self):
+        print("RUNNING CAMERA")
         error=self.ErrorCalibration()
-        speed = 0.009*error
-        self.car.setspeed(+speed,-speed)
+        if error:
+            speed = 0.009*error
+            self.car.setspeed(+speed,-speed)
+            return error
+        
+
+    def isAligned(self):
+        error=self.ErrorCalibration()
+        if error==0:
+            self.car.simplestop()
+            print("TEST PASSED")
+            return True
+        
         # leftMotor.setVelocity(+speed)
         # rightMotor.setVelocity(-speed)
 

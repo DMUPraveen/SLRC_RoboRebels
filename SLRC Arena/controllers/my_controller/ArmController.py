@@ -23,9 +23,9 @@ class armcontroll:
 
     def catchbox(self):
         self.finger_motor_right.setPosition(-1)
-        self.finger_motor_right.setVelocity(2)
+        self.finger_motor_right.setVelocity(0.7)
         self.finger_motor_left.setPosition(1)
-        self.finger_motor_left.setVelocity(2)
+        self.finger_motor_left.setVelocity(0.7)
         # self.robot.step(50*self.TIME_STEP)
 
 
@@ -85,8 +85,6 @@ class armcontroll:
         self.pitchcontrol(0)
         self.elbowcontrol(0)
         self.wristcontrol(0)
-        self.robot.step(50*self.TIME_STEP)
-        self.stoparm()
         
         
         
