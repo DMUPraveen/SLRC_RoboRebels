@@ -1,4 +1,4 @@
-from cameraBoxDetect import main   ################ Controls --> Mains
+from mainfunction import main   ################ Controls --> Mains
 
 
 if __name__=="__main__":
