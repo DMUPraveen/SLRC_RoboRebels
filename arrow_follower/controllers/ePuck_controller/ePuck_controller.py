@@ -44,6 +44,8 @@ print(width,height)
 max_velocity = 5
 
 # - perform simulation steps until Webots is stopping the controller
+image_time = robot.getTime()
+nextImageAt = image_time+1
 while robot.step(timestep) != -1:
     # get the largest blob
     # check if all arrow features are present
@@ -52,17 +54,28 @@ while robot.step(timestep) != -1:
     # to the midpoint of the bottom edge
 
     #process image from camera 
-    cameraData = cam.getImage()
 
-    image = np.frombuffer(cameraData, np.uint8).reshape((cam.getHeight(), cam.getWidth(), 4))
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    imageSize = image.shape[0]*image.shape[1]
+    # run every one second
+    image_time = robot.getTime()//1
+    if image_time==nextImageAt:
+        nextImageAt+=1
+        cameraData = cam.getImage()
 
-    dis = main.get_bearing(image)
+        image = np.frombuffer(cameraData, np.uint8).reshape((cam.getHeight(), cam.getWidth(), 4))
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        imageSize = image.shape[0]*image.shape[1]
 
-    cv2.imshow('tt', dis)
-    cv2.waitKey(timestep)
+        startTime = robot.getTime()
+        dis, head = main.get_bearing(image)
+        endTime = robot.getTime()
+        time = endTime-startTime
+        print('Image Processing done in %2.5f'%(time))
 
+
+        cv2.imshow('Output', dis)
+        cv2.imshow('Shortlines head', head)
+        cv2.waitKey(timestep)
+    
     # Get keyboard input
     key = keyboard.getKey()
     # Change motor velocities based on keyboard input
@@ -80,6 +93,6 @@ while robot.step(timestep) != -1:
         rightMotor.setVelocity(max_velocity)
     else:
         leftMotor.setVelocity(0)
-        rightMotor.setVelocity(0)        
+        rightMotor.setVelocity(0)       
 
     #get the largest blob

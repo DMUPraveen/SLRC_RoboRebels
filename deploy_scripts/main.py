@@ -17,7 +17,9 @@ def raiseFlag(code,v):
              'Area of the blob is too big.Reduced Confidence and moving on...',\
              'Increasing Stem Error Factor..Confidence Reduced..',\
              'Stem Lines not detected successfully.Moving to next blob..',\
-              'Detected More than %i Lines in Stem.Reduced confidence and moving on...'%(stemLongLineNum_thresh)]
+             'Detected More than %i Lines in Stem.Reduced confidence and moving on...'%(stemLongLineNum_thresh),
+             'Couldn\'t Find enough short lines. Reducing short lines error_factor. Reduced COnfidence and continuing',\
+             'Failed to extract head. Trying the next blob']
     if v==True:
         print(flags[code])
 
@@ -64,9 +66,10 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             blobs.pop(0)
             continue       
         
-        # Heuristic #2 : If blob area is too large reduce confidence\
+        # Heuristic #1 : If blob area is too large reduce confidence\
         #                Needs tuning. Not definitive
-        print('Area of the current blob',largestBlob.area(),end='\t')
+        if verbose:
+            print('Area of the current blob',largestBlob.area(),end='\t')
         if largestBlob.area()>notArrow_areaThres:
             raiseFlag(2, verbose)
             cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,0,255), thickness=2)
@@ -113,12 +116,12 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             else:
                 stemFound = True
 
-        if error_factor==8:
+        if not(stemFound):
             raiseFlag(4,verbose)
             blobs.pop(0)
             continue
 
-        # Heuristic #3 : If long lines to having more than 2 lines, its more likely that we are looking at something 
+        # Heuristic #2 : If long lines to having more than 2 lines, its more likely that we are looking at something 
         #                other than an arrow. Reduce confidence here
         if len(bestFitStem)>stemLongLineNum_thresh:
             raiseFlag(5, verbose)
@@ -129,67 +132,103 @@ def get_bearing(img,verbose=False, imgVerbose=False):
         #     line.print_()
 
         # Draw lines over the supposedly detected stem and leave onlt the arrow head and base of the stem
-        headImg = preprocessor.drawLines(c_outline,bestFitStem[:2])
-        c_headImg = np.copy(headImg)
-        error_factor = 4
-        minPoints_in_line_short = int(image_perimeter*float((5-error_factor)/29))
-        intersection_threshold_short = int(0.5*minPoints_in_line_short)
-        max_gap_lines_short = int(0.9*minPoints_in_line_short)
+        headFound = False
+        error_factor = 3
+        while not(headFound) and error_factor<5:
+            headImg = preprocessor.drawLines(outline,bestFitStem[:2])
+            c_headImg = np.copy(headImg)
+            minPoints_in_line_short = int(image_perimeter*float((5-error_factor)/29))
+            intersection_threshold_short = int(0.5*minPoints_in_line_short)
+            max_gap_lines_short = int(0.9*minPoints_in_line_short)
 
-        #print(image_perimeter, minPoints_in_line_short, intersection_threshold_short, max_gap_lines_short)
-        head_lines, height= feature_extractor.openCV_houghlines(c_headImg, r_res=1, theta_res=np.pi/180, int_thresh=intersection_threshold_short, \
-                                        l=None, minPoint_line=minPoints_in_line_short, maxLine_gap=max_gap_lines_short)
+
+            #print(image_perimeter, minPoints_in_line_short, intersection_threshold_short, max_gap_lines_short)
+            head_lines, height= feature_extractor.openCV_houghlines(c_headImg, r_res=1, theta_res=np.pi/180, int_thresh=intersection_threshold_short, \
+                                            l=None, minPoint_line=minPoints_in_line_short, maxLine_gap=max_gap_lines_short)
         
-        #TODO : what happens when no lines are detected?
+            if imgVerbose:
+                cv2.imshow('Short Lines Input', headImg)
+                cv2.imshow('Short Lines Output', c_headImg)
+                cv2.waitKey()
+
+            
+            # Reduce the error factor ratio till sufficient lines are found
+
+            #Filter most suitable lines by removing duplicates
+            bestFitHead = feature_extractor.removeDup_sortLen(head_lines,0.15,10)
+            if verbose and imgVerbose:
+                print('Got %i lines and cleaned to get %i'%(len(head_lines),len(bestFitHead)))
+
+            if len(bestFitHead)<=2:
+                raiseFlag(6,verbose)
+                confidence-=0.2*(error_factor/6)
+                error_factor+=1
+                continue
+           
+            #TODO : What if all three lines aren't found?\
+            #        Guessing that all three parts are found for now
+
+
+            
+            # print("Originally has %i lines"%(len(head_lines)))
+            # print("Now has ", len(bestFitHead))
+
+            # for line in bestFitHead:
+            #     line.print_()
+
+            # Run Heuristics for the arrow head's lines
+
+            # Heuristic #3 : Lines intersect inside image bounds
+            for i in range(len(bestFitHead)):
+                for j in range(i+1, len(bestFitHead)):
+                    x = feature_extractor.intersects(outline.shape, bestFitHead[i], bestFitHead[j])
+                    if x[0]==True:
+                        # TODO: Check if this vertex is close one vertex of each line that youve got, If so it checks out ...Else 
+                        isCloseInt = feature_extractor.intersection_in_head(bestFitHead[i], bestFitHead[j], x[1])
+                        if imgVerbose and verbose:
+                            print('Posible Intersection found at (%i,%i)'%(x[1][0],x[1][1]))
+                            bestFitHead[i].print_()
+                            bestFitHead[j].print_()
+                            print("Is close?\t",isCloseInt)
+                        if isCloseInt:
+                            vertex = x[1]
+                            headFound = True
+                            break
+
+            #TODO : Implement a function to calculate the distance between the given vertices and validate
+
+        if not(headFound):
+            raiseFlag(7,verbose)
+            blobs.pop(0)
+            continue
         
-        # Reduce the error factor ratio till sufficient lines are found
-
-        #Filter most suitable lines by removing duplicates
-        bestFitHead = feature_extractor.removeDup_sortLen(head_lines,0.1,10)
-
-        #TODO : What if all three lines aren't found?
-        
-        # print("Originally has %i lines"%(len(head_lines)))
-        # print("Now has ", len(bestFitHead))
-
-        # for line in bestFitHead:
-        #     line.print_()
-
-        # Run Heuristics for the arrow head's lines
-
-        # Heuristic #1 : Lines intersect inside image bounds
-        for i in range(len(bestFitHead)):
-            for j in range(i+1, len(bestFitHead)):
-                x = feature_extractor.intersects(outline.shape, bestFitHead[i], bestFitHead[j])
-                if x[0]==True:
-                    vertex = x[1]
-        midpoint = (bestFitStem[0].get_midpoint()+bestFitStem[1].get_midpoint())/2
-
-        # Heuristic #2 : Two very close vertices exist in the lines that intersect
-        #TODO : Implement a function to calculate the distance between the given vertices and validate
-
-        #TODO : Implement mechanism to see if arrow actually found # Send image to webots window overlay
+        #DONE : Implement mechanism to see if arrow actually found # Send image to webots window overlay
         if confidence>0.5:
             arrowFound = True
-        if arrowFound:
-            print('Found Arrow with confidence %2.3f'%(confidence),'\t',end='')
-            print(feature_extractor.bearing(midpoint[0],midpoint[1],vertex[0],vertex[1]))
-            print((midpoint[0]//1,midpoint[1]//1),(vertex[0]//1,vertex[1]//1))
-            cv2.circle(verbImage, (testx1+int(midpoint[0]),testy1+height-int(midpoint[1])), 3, (0, 0, 255), -1)
-            cv2.circle(verbImage, (testx1+int(vertex[0]),testy1+height-int(vertex[1])), 3, (255, 0, 0), -1)
+            
 
-            cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,255,0), thickness=2) #TODO: put me inside verbose later 
-            if imgVerbose:
-                
-                cv2.imshow("Verbose Image", verbImage)
-                cv2.waitKey()
-        else:
-            blobs.pop(0)
-            if imgVerbose:
-                cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,0,255), thickness=2)
-                cv2.imshow("Verbose Image", verbImage)
-                cv2.waitKey()
-    return verbImage
+    midpoint = (bestFitStem[0].get_midpoint()+bestFitStem[1].get_midpoint())/2
+
+
+    if arrowFound:
+        print('Found Arrow with confidence %2.3f'%(confidence),'\t',end='', flush=True)
+        print(feature_extractor.bearing(midpoint[0],midpoint[1],vertex[0],vertex[1]), flush=True)
+        print((midpoint[0]//1,midpoint[1]//1),(vertex[0]//1,vertex[1]//1), flush=True)
+        cv2.circle(verbImage, (testx1+int(midpoint[0]),testy1+height-int(midpoint[1])), 3, (0, 0, 255), -1)
+        cv2.circle(verbImage, (testx1+int(vertex[0]),testy1+height-int(vertex[1])), 3, (255, 0, 0), -1)
+
+        cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,255,0), thickness=2) #TODO: put me inside verbose later 
+        if imgVerbose:
+            
+            cv2.imshow("Verbose Image", verbImage)
+            cv2.waitKey()
+    else:
+        blobs.pop(0)
+        if imgVerbose:
+            cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,0,255), thickness=2)
+            cv2.imshow("Verbose Image", verbImage)
+            cv2.waitKey()
+    return verbImage, c_headImg
         
 
 if __name__ == '__main__':

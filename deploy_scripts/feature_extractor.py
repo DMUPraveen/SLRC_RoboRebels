@@ -14,6 +14,7 @@ minLineLength: The minimum number of points that can form a line. Lines with les
 maxLineGap: The maximum gap between two points to be considered in the same line.
 
 '''
+headIntersec_headLine_threshold = 1
 
 class line():
     def __init__(self, vertex):
@@ -22,7 +23,11 @@ class line():
 
     def get_gradient(self):
         delta_xy = self.vertex2-self.vertex1
-        return delta_xy[1]/delta_xy[0]
+        d2 = delta_xy[0]
+        if d2!=0:
+            return delta_xy[1]/delta_xy[0]
+        else:
+            return 10000
 
     def get_intercept(self):
         return self.vertex1[1] -self.get_gradient()*self.vertex1[0]
@@ -51,6 +56,33 @@ def intersects(imgShape,line1, line2):
     if ((x < imgShape[1] and x > 0) and  (y < imgShape[0] and y > 0)):
         return True,np.array((x,y))
     return False,0
+
+def intersection_in_head(line1, line2, v):
+    close2_l1 = False
+    close2_l2 = False
+
+    #line 1
+    tDis = getEuclid(line1.get_midpoint(), v)
+    cutoffDis = headIntersec_headLine_threshold * line1.get_length()
+    # print('Line 1', tDis,'\t', cutoffDis)
+    if tDis < cutoffDis:
+        close2_l1 = True
+    
+    else:
+        return False
+ 
+    #line 2
+    tDis = getEuclid(line2.get_midpoint(), v)
+    cutoffDis = headIntersec_headLine_threshold * line2.get_length()
+    # print('Line 1', tDis,'\t', cutoffDis)
+    if tDis < cutoffDis:
+        close2_l2 = True
+    
+    else:
+        return False
+
+    if close2_l1 and close2_l2:
+        return True
 
     
 
@@ -153,7 +185,7 @@ def removeDup_sortLen(lines,gradientThresh,interceptThresh):
         else:
             keep_line = True
             for filtered_line in filtered_lines:
-                if abs(line.get_gradient() - filtered_line.get_gradient()) < gradientThresh \
+                if abs(line.get_gradient() - filtered_line.get_gradient()) < gradientThresh  \
                 and abs(line.get_intercept() - filtered_line.get_intercept()) < interceptThresh:
                     # If gradient and intercept are similar, keep the longest line
                     if line.get_length() > filtered_line.get_length():
