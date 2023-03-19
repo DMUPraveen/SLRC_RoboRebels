@@ -6,7 +6,7 @@ from SuperArm import Armstatemachine
 from Motors import Motorcontrol
 from Boxdetector import BoxDetector
 from SuperStateMachineForCatchTheBox import SuperState
-from CameraClass import Camera
+from CameraClass import Camera_
 
 
 def main():
@@ -18,11 +18,11 @@ def main():
     superarm=Armstatemachine(robot,arm,pos,car)
     boxdetect=BoxDetector(robot,car)
     superduper=SuperState(robot,superarm,boxdetect)
-    cam=Camera(robot,car)
+    cam=Camera_(robot,car)
     
     while robot.step(timestep) != -1:
         #superduper.SuperStateMachine()
-        cam.alignwithbox()
+        cam.alignwithbox(verb=True,imageVerbose=False)
         pass
 
 # if __name__=="__main__":

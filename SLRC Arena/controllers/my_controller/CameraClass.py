@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from Motors import Motorcontrol
 
-class Camera:
+class Camera_:
     def __init__(self,robot:Robot,motorcontroller:Motorcontrol):
         self.robot=robot
         self.car=motorcontroller
@@ -11,6 +11,7 @@ class Camera:
         self.kBlurSize = 5
 
         self.cam= robot.getDevice('rebelEye')
+        self.enableCamera()
     
     def enableCamera(self):
         self.cam.enable(self.TIME_STEP)
@@ -61,7 +62,7 @@ class Camera:
         image_perimeter = np.where(edges>0)
         perimeter = len(image_perimeter[0])
         if perimeter<5:
-            return (-1,-1)
+            return False, (-1,-1)
 
         y = int(np.sum(image_perimeter[0])/perimeter)
         x = int(np.sum(image_perimeter[1])/perimeter)
@@ -72,11 +73,10 @@ class Camera:
             cv2.imshow("With Centeroid", edges)
             cv2.waitKey(self.TIME_STEP)
 
-        return (x,y)
+        return True,(x,y)
 
 
     def alignwithbox(self,verb=True, imageVerbose= True):
-        self.enableCamera()
 
         cameraData = self.cam.getImage()
 
@@ -86,7 +86,7 @@ class Camera:
         red_channel = self.extractChannel(image, 'R')
         blue_channel = self.extractChannel(image, 'B')
         green_channel =  self.extractChannel(image, 'G')
-
+ 
         if imageVerbose:
             cv2.imshow('Blue', blue_channel)
             cv2.imshow('Green', green_channel)
@@ -98,20 +98,30 @@ class Camera:
         blue_center = self.get_centeroid(blue_channel, imgV=imageVerbose)
         green_center = self.get_centeroid(green_channel,imgV=imageVerbose)
 
-        if blue_channel!=(-1,-1):
+        redDet = 0
+        greenDet = 0
+        blueDet = 0
+
+        if blue_center[0]:
             error = (image.shape[1]/2)-blue_center[0]
-            if verb:
-                print(blue_center, error)
-                print("BLUE detected")
+            blueDet = 1
 
-        if red_channel!=(-1,-1):
+        if red_center[0]:
             error = (image.shape[1]/2)-red_center[0]
-            if verb:
-                print(red_center, error)
-                print("RED detected")
-
-        if green_channel!=(-1,-1):
+            redDet = 1
+        if green_center[0]:
             error = (image.shape[1]/2)-green_center[0]
-            if verb:
-                print(green_center, error)
-                print("GREEN detected")
+            greenDet = 1
+        
+        if verb:
+            print("Red %i \t Green %i \t Blue %i"%(redDet, greenDet, blueDet),end='\t')
+            if redDet:
+                print('Red @', red_center,end='\t')
+            if blueDet:
+                print('Green @', green_center,end='\t')
+            if greenDet:
+                print('Blue @', blue_center,end='\t')
+            print()
+
+
+
