@@ -17,8 +17,13 @@ def main():
     superarm=Armstatemachine(robot,arm,pos,car)
     boxdetect=BoxDetector(robot,car)
     superduper=SuperState(robot,superarm,boxdetect)
+
+    # //----Camera Handling----// 
+    cam = robot.getDevice('rebelEye')
+    cam.enable(timestep)
+    
     while robot.step(timestep) != -1:
-        superduper.SuperStateMachine()
+        #superduper.SuperStateMachine()
         pass
 
 # if __name__=="__main__":

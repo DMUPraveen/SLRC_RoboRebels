@@ -6,7 +6,7 @@ from Boxdetector import BoxDetector
 
 class SuperState:
     def __init__(self,robot:Robot,superarmcontroller:Armstatemachine,boxdetector:BoxDetector):
-        self.robot=Robot()
+        self.robot= robot
         self.superarm=superarmcontroller
         self.boxdetector=boxdetector
 

@@ -3,7 +3,7 @@ from Motors import Motorcontrol
 
 class BoxDetector:
     def __init__(self,robot:Robot,motorcontroller:Motorcontrol):
-        self.robot=Robot()
+        self.robot=robot
         self.TIME_STEP=10
         self.car=motorcontroller
         self.state=0
