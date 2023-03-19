@@ -47,7 +47,7 @@ class Camera_:
         return mask
 
 
-    def get_centeroid(self,channel, imgV=True):
+    def get_centeroid(self,channel, imgV=False):
 
         # Apply Gaussian blur
         blurred = cv2.GaussianBlur(channel, (self.kBlurSize, self.kBlurSize), 0)
@@ -62,7 +62,7 @@ class Camera_:
         image_perimeter = np.where(edges>0)
         perimeter = len(image_perimeter[0])
         if perimeter<5:
-            return False, (-1,-1)
+            return False, (0,0)
 
         y = int(np.sum(image_perimeter[0])/perimeter)
         x = int(np.sum(image_perimeter[1])/perimeter)
@@ -76,7 +76,7 @@ class Camera_:
         return True,(x,y)
 
 
-    def ErrorCalibration(self,verb=True, imageVerbose= True):
+    def ErrorCalibration(self,verb=True, imageVerbose= False):
 
         cameraData = self.cam.getImage()
 
@@ -109,29 +109,27 @@ class Camera_:
         Error=0
 
         if blue_center[0]:
-            error_blue = (image.shape[1]/2)-blue_center[0]
+            error_blue = (image.shape[1]/2)-blue_center[1][0]
             blueDet = 1
 
         if red_center[0]:
-            error_red = (image.shape[1]/2)-red_center[0]
+            error_red = (image.shape[1]/2)-red_center[1][0]
             redDet = 1
         if green_center[0]:
-            error_green = (image.shape[1]/2)-green_center[0]
+            error_green = (image.shape[1]/2)-green_center[1][0]
             greenDet = 1
         
         if verb:
             print("Red %i \t Green %i \t Blue %i"%(redDet, greenDet, blueDet),end='\t')
-            if redDet:
-                print('Red @', red_center,end='\t')
-                Error=error_red
-            if greenDet:
-                print('Green @', green_center,end='\t')
-                Error=error_green
-            if blueDet:
-                print('Blue @', blue_center,end='\t')
-                Error=error_blue
-            print()
-        print(Error)
+        if redDet:
+            print('Red @', red_center,end='\t') if verb else 0
+            Error=error_red
+        if greenDet:
+            print('Green @', green_center,end='\t') if verb else 0
+            Error=error_green
+        if blueDet:
+            print('Blue @', blue_center,'Error :',Error) if verb else 0
+            Error=error_blue
         return Error
     
     def alignwithbox(self):
