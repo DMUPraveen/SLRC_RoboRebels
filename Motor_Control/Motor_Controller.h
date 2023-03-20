@@ -70,7 +70,7 @@ struct Motor_Controller
         long m1s = convert_to_raw(motor1_speed);
         long m2s = convert_to_raw(motor2_speed);
 
-        set_motor_speed_raw(m1s, m2s);
+        set_motor_speed_raw(m1s, -m2s);
     }
 
     void stop()

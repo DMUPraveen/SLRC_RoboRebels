@@ -1,7 +1,7 @@
 {
     "board": "esp32:esp32:esp32doit-devkit-v1",
     "output": "build",
-    "port": "COM5",
+    "port": "COM3",
     "sketch": "Motor_Control.ino",
     "programmer": "esp32:esptool"
 }

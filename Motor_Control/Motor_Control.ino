@@ -16,7 +16,7 @@ const uint8_t motor_in3 = 25;
 const uint8_t motor_in4 = 26;
 
 long speed = 0;
-float fspeed = 0.0f;
+float fspeed = 1.0f;
 
 SpeedCal sc = SpeedCal();
 
@@ -44,7 +44,7 @@ void loop()
     {
         SerialBT.println(fspeed);
     }
-    controller.set_motor_speed(fspeed, 0.0f);
+    controller.set_motor_speed(fspeed, fspeed);
     sc.update(countA, countB);
     SerialBT.println(sc.speed_A);
     delay(5);

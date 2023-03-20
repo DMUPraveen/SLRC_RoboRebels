@@ -1,0 +1,7 @@
+{
+    "sketch": "Hardware_Communication.ino",
+    "output": "build",
+    "board": "arduino:avr:uno",
+    "port": "COM4",
+    "programmer": "arduino:avrisp"
+}
