@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.42942432846238643 0.46185606371365817 0.7760694057463893 1.7505329607086448
-  position 0.5282663854562586 -2.6712195149902302 2.7757139617142674
+  orientation -0.5607509033266104 -0.5418210737950355 0.6260897287210397 4.229706350650326
+  position 0.24377944705279575 -0.5669586417918073 3.0130042977183384
 }
 TexturedBackground {
 }
@@ -151,8 +151,8 @@ DEF rebel Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation -1.1366249860344343e-06 -0.04999714944143057 -0.01699707868679509
-        rotation 0.6968454428504547 0.7109303887606162 0.09478613355988653 4.118437697260625
+        translation -1.1366249860395266e-06 -0.04999714944143055 -0.016997078686795095
+        rotation 0.6968454428504586 0.710930388760615 0.09478613355986956 4.118437697260647
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -187,8 +187,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.108567872921601e-08 0.06000007984769305 0.011998186410560274
-        rotation -2.0907449376265668e-09 -3.557773870274696e-08 -0.9999999999999996 3.14159252149691
+        translation 4.1085678729026274e-08 0.06000007984769301 0.011998186410560274
+        rotation -2.0907449376266396e-09 -3.557773870274838e-08 -0.9999999999999996 3.14159252149691
         scale 0.2 0.2 0.2
         children [
           DEF waist Group {
@@ -674,7 +674,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation -3.3306616595928046e-16 -3.326369939157285e-16 1 3.14
+                                            rotation -3.319828104762422e-16 -3.325739073119457e-16 1 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1227,7 +1227,7 @@ DEF rebel Robot {
                                       anchor -0.1800812025777988 0 0.08961334947628816
                                     }
                                     endPoint Solid {
-                                      translation -0.18007995675928146 0 0.08961308573815875
+                                      translation -0.18007995675928146 0 0.0896130857381588
                                       rotation 0 1 0 0.0032231754504468127
                                       children [
                                         Group {
@@ -1527,33 +1527,78 @@ DEF rebel Robot {
         }
       }
     }
-    DEF d4 DistanceSensor {
+    DEF LeftFront DistanceSensor {
       translation -0.05 0.07 0.005
       rotation 0 0 1 3.141592653589793
-      name "distance sensor(4)"
+      name "left_front"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF LeftBack DistanceSensor {
+      translation -0.05 -0.07 0.005
+      rotation 0 0 1 3.141592653589793
+      name "left_back"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
     DEF BoxDSensor1 DistanceSensor {
       translation 0 0.1 -0.01
       rotation 0 0 1 1.5708003061004252
       name "box_sensor_middle"
     }
-    DEF d3 DistanceSensor {
+    DEF FrontLeft DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 2.3561996938995744
-      name "distance sensor(3)"
+      name "front_left"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
-    DEF d2 DistanceSensor {
+    DEF RightFront DistanceSensor {
       translation 0.05 0.07 0.005
-      name "distance sensor(2)"
+      name "right_front"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
-    DEF d1 DistanceSensor {
+    DEF RightBack DistanceSensor {
+      translation 0.05 -0.07 0.005
+      name "right_back"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF FrontRight DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 0.7854003061004253
-      name "distance sensor(1)"
+      name "front_right"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
-    DEF d0 DistanceSensor {
+    DEF Front DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 1.5707996938995747
+      name "front"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
@@ -1566,8 +1611,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200261284027754 0.030001580189147403 7.365634853062509e-07
-        rotation -0.2025388346570713 0.9585965403204671 -0.20017665533569678 1.6265631087018724
+        translation -0.0720026128402691 0.030001580189147403 7.365634853059761e-07
+        rotation -0.20253883465707212 0.9585965403204669 -0.20017665533569692 1.6265631087018724
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1606,8 +1651,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552766 0.02998737526182948 1.3414411411760784e-05
-        rotation 0.6829715481170127 0.25902858023025177 0.6829744205214064 2.634678231165515
+        translation 0.0719999784555245 0.029987375261829485 1.3414411411769092e-05
+        rotation 0.6829715481170547 0.2590285802302437 0.6829744205213675 2.6346782311654655
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -1631,7 +1676,7 @@ DEF rebel Robot {
   boundingObject USE Body
   physics Physics {
   }
-  controller "<extern>"
+  controller "my_controller"
 }
 DEF supervisor Robot {
   translation -1.93 1.32 0.0015
