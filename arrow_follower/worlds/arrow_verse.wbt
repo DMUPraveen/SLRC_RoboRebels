@@ -7,8 +7,8 @@ WorldInfo {
   FPS 10
 }
 Viewpoint {
-  orientation -0.1193558510497934 0.12716023834199996 0.9846747963693319 1.5229198411454903
-  position 0.9259654805740225 0.3196488722590646 0.16362175350618885
+  orientation 0.4725537508845823 0.4618295159453799 -0.7506040572276226 1.8757876182970972
+  position -0.9283051892306713 2.8309859190241617 3.257697537721124
 }
 TexturedBackground {
 }
@@ -373,7 +373,7 @@ Solid {
   translation 0 1.51 -0.05
   children [
     Solid {
-      translation -0.8601 -0.55 0.006
+      translation -0.8601 -0.55 0.005
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -392,7 +392,7 @@ Solid {
       name "Line"
     }
     Solid {
-      translation -0.8501 -0.55 0.016
+      translation -0.8501 -0.55 0.01
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -411,7 +411,7 @@ Solid {
       name "Line(2)"
     }
     Solid {
-      translation -1.0001 -0.55 0.016
+      translation -1.0001 -0.55 0.01
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -430,7 +430,7 @@ Solid {
       name "Line(3)"
     }
     Solid {
-      translation -1.0001 -0.4 0.016
+      translation -1.0001 -0.4 0.01
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -449,7 +449,7 @@ Solid {
       name "Line(5)"
     }
     Solid {
-      translation -0.8501 -0.4 0.016
+      translation -0.8501 -0.4 0.01
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -468,7 +468,7 @@ Solid {
       name "Line(6)"
     }
     Solid {
-      translation -0.7001 -0.4 0.016
+      translation -0.7001 -0.4 0.01
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -487,7 +487,7 @@ Solid {
       name "Line(7)"
     }
     Solid {
-      translation -0.7001 -0.55 0.016
+      translation -0.7001 -0.55 0.01
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -506,7 +506,7 @@ Solid {
       name "Line(4)"
     }
     Solid {
-      translation -0.62 0.095 0.08
+      translation -0.62 -0.015 0.08
       rotation 0 0 1 -1.5707953071795862
       scale 1.55813 1.55813 1.55813
       children [
@@ -1198,7 +1198,7 @@ DEF my_solid Solid {
   model "rectangle arena"
 }
 Robot {
-  translation 0.97 1.17014 -0.0223095
+  translation -0.74 1.61014 -0.0251445
   rotation -0.9999990592514364 -0.0004766927164736228 -0.0012861805068113857 0.00643486419559361
   children [
     Solid {
@@ -1226,8 +1226,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.08000000013305797 -0.030001512493804457 1.2806245848901538e-06
-        rotation -0.4175883214631834 -0.8069936223314843 -0.41758985535315724 4.499570706951626
+        translation 0.08000000013305797 -0.030001512493804457 1.2806245848910366e-06
+        rotation -0.41758832146318364 -0.8069936223314842 -0.417589855353157 4.499570706951628
         children [
           DEF leftWheel Shape {
             appearance PBRAppearance {
@@ -1256,8 +1256,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07999999986545693 -0.030002030807482108 1.6530229528887198e-06
-        rotation -0.4175895582112656 -0.8069922856217182 -0.41759120179902615 4.499568765223494
+        translation -0.07999999986545688 -0.030002030807482108 1.6530229528892331e-06
+        rotation -0.4175895582112661 -0.8069922856217181 -0.41759120179902615 4.499568765223495
         children [
           DEF rWheel_ Shape {
             appearance PBRAppearance {
@@ -1318,7 +1318,7 @@ Robot {
         0 0 0
         1 1000 0
       ]
-      type "sonar"
+      type "infra-red"
       aperture 1.57
     }
     DistanceSensor {
@@ -1329,7 +1329,8 @@ Robot {
         0 0 0
         1 1000 0
       ]
-      type "sonar"
+      type "infra-red"
+      aperture 1.5709
     }
     DistanceSensor {
       translation -0.000127119 -0.08 0
@@ -1339,7 +1340,7 @@ Robot {
         0 0 0
         1 1000 0
       ]
-      type "sonar"
+      type "infra-red"
     }
     Camera {
       translation 0 0 0.07

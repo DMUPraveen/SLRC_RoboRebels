@@ -3,6 +3,7 @@ import feature_extractor
 import preprocessor
 import cv2
 import numpy as np
+import math
 
 class D_GA():
     """
@@ -20,6 +21,7 @@ class D_GA():
 
         #Store reference to robot
         self.robot = robot
+        self.state=0
 
         # Initialize all FSMS
         """
@@ -109,16 +111,49 @@ class D_GA():
         if error<=0.3 and arr[2]<=275 and arr[3]<=275:
             return True
         
+
+    # def straigten_robot(self,d1,d2):
+    #     delta=1
+    #     DISTANCE_BETWEEN_WALLS=45
+    #     d1=d1+75
+    #     d2=d2+75
+    #     theta=math.acos(DISTANCE_BETWEEN_WALLS/(d1+d2))
+    #     speed=delta*theta
+    #     self.robot.set_speed(speed,-speed)
+    #     print(d1,d2)
+    #     print(speed)
+        
+    
             
     def move_to_center(self):
-        arr=self.robot.get_ultrasonic_distances()
-        if arr[0]>arr[3]:
-            pass
+        pass
 
 
 
     def run(self):
-        # self.D_GA_FSM.execute_action()
-        if self.array_drive():
-            self.robot.move_forward()
-        pass
+        self.D_GA_FSM.execute_action()
+        # if self.array_drive():
+        #     self.robot.move_forward()
+        # self.move_to_center()
+        
+
+    # def stateMachine(self):
+    #     if self.state==0:
+    #         self.center_align_FSM
+    #         self.state=1
+
+    #     if self.state==1:
+    #         self.climb_ramp_FSM
+    #         self.state=2
+
+    #     if self.state==2:
+    #         self.entry_FSM
+    #         self.state=3
+
+    #     if self.state==3:
+    #         self.D_GA_FSM
+    #         self.state=4
+
+
+        
+

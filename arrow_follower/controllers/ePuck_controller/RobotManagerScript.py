@@ -55,9 +55,6 @@ class RobotManager(Robot):
         self.cam.enable(self.timeStep)
 
 
-    def getOrientation(self):
-        pass
-
     def get_ultrasonic_distances(self):
         US_distances = []
         for sensor in self.US_sensors:
