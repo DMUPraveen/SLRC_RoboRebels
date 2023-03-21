@@ -1,7 +1,9 @@
 from controller import Robot
 from DistanceSensors import DistanceSensors
-from Motors import Motorcontrol
+from Motors import Motorcontrol, LinearTraveller, Rotator
+from PID import PID
 from Navigation import Navigation
+import math
 
 
 def main():
@@ -10,15 +12,13 @@ def main():
     distancesensors = DistanceSensors(robot, timestep)
     motorcontrol = Motorcontrol(robot)
     navigation = Navigation(motorcontrol, distancesensors)
+    linear_traveller_pid = PID(50, 0, 0)
+    lineartravelleter = LinearTraveller(linear_traveller_pid, motorcontrol)
+    lineartravelleter.initialize(0.36)
+    rotator_pid = PID(10, 0, 0)
+    rotator = Rotator(rotator_pid, motorcontrol)
+    rotator.initialize(-math.pi)
     while robot.step(timestep) != -1:
-        left_wall_error = distancesensors.left_wall_align_error()
-        right_wall_error = distancesensors.right_wall_align_error()
-        print(f"{left_wall_error=:.2f} and {right_wall_error=:.2f}")
-        left_wall_distance = distancesensors.average_left_wall_distance()
-        right_wall_distance = distancesensors.average_right_wall_distance()
-        print(f"{left_wall_distance=:.2f} and {right_wall_distance=:.2f}")
-        left_wall_present = distancesensors.left_wall_present()
-        right_wall_present = distancesensors.right_wall_present()
-        print(f"{left_wall_present=:.2f} and {right_wall_present=:.2f}")
-        navigation.align_to_right_wall()
         motorcontrol.set_pose_speed()
+        rotator.run()
+        pass

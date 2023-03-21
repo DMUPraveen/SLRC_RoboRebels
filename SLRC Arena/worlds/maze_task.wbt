@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.5607509033266104 -0.5418210737950355 0.6260897287210397 4.229706350650326
-  position 0.24377944705279575 -0.5669586417918073 3.0130042977183384
+  orientation 0.5951303149975407 0.5966087157076175 -0.5384031468264603 2.151723047886493
+  position -1.4831973764133957 0.5143755551810711 5.082352396314144
 }
 TexturedBackground {
 }
@@ -106,8 +106,8 @@ DEF maze Solid {
   ]
 }
 DEF rebel Robot {
-  translation 0.50464 -0.62 0.034
-  rotation 0 0 -1 -2.3561953071795863
+  translation -1.74389 1.15725 0.034
+  rotation 0 0 1 3.14159
   scale 1.1 1.1 1.1
   children [
     Camera {
@@ -674,7 +674,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation -3.317117598471793e-16 -3.3249476264584237e-16 0.9999999999999999 3.14
+                                            rotation -3.317117598471802e-16 -3.3249476264584326e-16 1 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1606,12 +1606,14 @@ DEF rebel Robot {
         anchor 0.055 0.03 0
       }
       device [
+        PositionSensor {
+        }
         DEF Left_motor1 RotationalMotor {
           name "Left_motor1"
         }
       ]
       endPoint Solid {
-        translation -0.07200261284026394 0.030001580189147403 7.365634853058383e-07
+        translation -0.07200261284026394 0.030001580189147403 7.365634853055529e-07
         rotation -0.2025388346570728 0.9585965403204668 -0.200176655335697 1.6265631087018724
         children [
           DEF wheel Shape {
@@ -1646,13 +1648,15 @@ DEF rebel Robot {
         anchor -0.055 0.03 0
       }
       device [
+        PositionSensor {
+        }
         RotationalMotor {
           name "Right_motor1"
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552178 0.029987375261829496 1.3414411411780026e-05
-        rotation 0.6829715481170886 0.2590285802302349 0.6829744205213373 2.63467823116543
+        translation 0.07199997845552178 0.029987375261829496 1.341441141178036e-05
+        rotation 0.6829715481170885 0.2590285802302349 0.6829744205213373 2.63467823116543
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
