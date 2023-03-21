@@ -48,9 +48,28 @@ class DistanceSensors:
         for sensor in self.all_sensors:
             sensor.enable(self.sampling_period)  # type: ignore
 
+        self.max_value: float = self.front.getMaxValue()  # type: ignore
+        for sensor in self.all_sensors:
+            assert(sensor.getMaxValue() == self.max_value)  # type: ignore
+
     def debug_print(self):
         print(
             ",".join(f"{sensor.getValue():.2f}" for sensor in self.all_sensors))
 
     def left_wall_align_error(self):
-        pass
+        return (self.left_front.getValue()-self.left_back.getValue())/self.max_value
+
+    def right_wall_align_error(self):
+        return (self.right_back.getValue() - self.right_front.getValue())/self.max_value
+
+    def average_left_wall_distance(self):
+        return (self.left_front.getValue()+self.left_back.getValue())/2/self.max_value
+
+    def average_right_wall_distance(self):
+        return (self.right_front.getValue()+self.right_back.getValue())/2/self.max_value
+
+    def left_wall_present(self):
+        return self.average_left_wall_distance() < 1
+
+    def right_wall_present(self):
+        return self.average_right_wall_distance() < 1
