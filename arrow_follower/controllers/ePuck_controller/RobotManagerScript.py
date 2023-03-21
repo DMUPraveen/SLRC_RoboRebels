@@ -55,6 +55,9 @@ class RobotManager(Robot):
         self.cam.enable(self.timeStep)
 
 
+    def getOrientation(self):
+        pass
+
     def get_ultrasonic_distances(self):
         US_distances = []
         for sensor in self.US_sensors:
@@ -79,4 +82,20 @@ class RobotManager(Robot):
     def move_forward(self):
         self.left_motor.setVelocity(0.8*max_velocity)
         self.right_motor.setVelocity(0.8*max_velocity)
+
+    def set_speed(self,left,right):
+        self.left_motor.setVelocity(left)
+        self.right_motor.setVelocity(right)
+
+    def simple_stop(self):
+        self.left_motor.setVelocity(0)
+        self.right_motor.setVelocity(0)
+
+    def turn_right(self):
+        self.left_motor.setVelocity(-0.8*max_velocity)
+        self.right_motor.setVelocity(0.8*max_velocity)
+        
+    def turn_left(self):
+        self.left_motor.setVelocity(0.8*max_velocity)
+        self.right_motor.setVelocity(-0.8*max_velocity)
 

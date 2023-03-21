@@ -7,8 +7,8 @@ WorldInfo {
   FPS 10
 }
 Viewpoint {
-  orientation -0.5492870759043398 -0.525571084700396 0.6496604829996274 4.253909466171259
-  position -0.7662942146845803 1.7203654347523507 2.352074539264156
+  orientation -0.1193558510497934 0.12716023834199996 0.9846747963693319 1.5229198411454903
+  position 0.9259654805740225 0.3196488722590646 0.16362175350618885
 }
 TexturedBackground {
 }
@@ -367,65 +367,6 @@ Solid {
       }
     }
   ]
-  boundingObject USE floorBox
-}
-Solid {
-  translation 0 0.667435 -0.0247
-  rotation -1 0 0 0.174
-  children [
-    Solid {
-      translation -0.86 0.01 0.006
-      rotation 0 0 1 -1.5707953071795862
-      children [
-        DEF my_shape0 Shape {
-          appearance Appearance {
-            texture ImageTexture {
-              url [
-                "line.JPG"
-              ]
-            }
-          }
-          geometry Plane {
-            size 0.3 0.3
-          }
-        }
-      ]
-      name "Line"
-      boundingObject USE my_shape0
-      physics Physics {
-      }
-    }
-    Solid {
-      translation 0.97 0.0100009 0.006
-      rotation 0 0 1 -1.5707953071795862
-      children [
-        Shape {
-          appearance Appearance {
-            texture ImageTexture {
-              url [
-                "line.JPG"
-              ]
-            }
-          }
-          geometry Plane {
-            size 0.3 0.3
-          }
-        }
-      ]
-      name "Line(1)"
-    }
-    Shape {
-      appearance Appearance {
-        material Material {
-          diffuseColor 0 0 0
-        }
-      }
-      geometry DEF floorBox Box {
-        size 2.4 0.288 0.01
-      }
-    }
-  ]
-  name "solid(1)"
   boundingObject USE floorBox
 }
 Solid {
@@ -801,9 +742,46 @@ Solid {
     }
   ]
   name "solid(2)"
-  boundingObject USE floorBox
+  boundingObject USE floor
 }
 Solid {
+  translation 0 1.22045 -0.119747
+  rotation 1 0 0 -0.176
+  children [
+    Solid {
+      translation -0.8601 -0.55 0.006
+      rotation 0 0 1 -1.5707953071795862
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "line.JPG"
+              ]
+            }
+          }
+          geometry Plane {
+            size 0.3 0.3
+          }
+        }
+      ]
+      name "Line"
+    }
+    DEF floor Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 0 0
+        }
+      }
+      geometry DEF floorBox Box {
+        size 2.4 1.4 0.01
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE floor
+}
+DEF my_solid Solid {
   children [
     Solid {
       translation -0.8601 0.38 0.006
@@ -1220,8 +1198,8 @@ Solid {
   model "rectangle arena"
 }
 Robot {
-  translation -0.86 1.11392 -0.02
-  rotation 0 0 1 2.24093e-06
+  translation 0.97 1.17014 -0.0223095
+  rotation -0.9999990592514364 -0.0004766927164736228 -0.0012861805068113857 0.00643486419559361
   children [
     Solid {
       translation 0 0.04 -0.015
@@ -1239,6 +1217,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 7.238226738091714
         anchor 0.08 -0.03 0
       }
       device [
@@ -1247,14 +1226,14 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.08000000013305797 -0.029999828156422888 1.974362332738336e-06
-        rotation -2.604256503493142e-09 1 -2.6032816924457067e-09 1.57079999999715
+        translation 0.08000000013305797 -0.030001512493804457 1.2806245848901538e-06
+        rotation -0.4175883214631834 -0.8069936223314843 -0.41758985535315724 4.499570706951626
         children [
-          Shape {
+          DEF leftWheel Shape {
             appearance PBRAppearance {
               metalness 0
             }
-            geometry DEF leftWheel Cylinder {
+            geometry DEF oyawaEpa Cylinder {
               height 0.01
               radius 0.025
             }
@@ -1268,6 +1247,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
+        position 7.238230499506511
         anchor 0.08 -0.03 0
       }
       device [
@@ -1276,8 +1256,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07999999986546043 -0.029999823508769247 2.6125686130018463e-06
-        rotation 1.3638593525580037e-07 0.9999999999999847 1.0885364237474898e-07 1.570800315887074
+        translation -0.07999999986545693 -0.030002030807482108 1.6530229528887198e-06
+        rotation -0.4175895582112656 -0.8069922856217182 -0.41759120179902615 4.499568765223494
         children [
           DEF rWheel_ Shape {
             appearance PBRAppearance {
@@ -1290,7 +1270,7 @@ Robot {
           }
         ]
         name "solid(2)"
-        boundingObject USE rightWheel
+        boundingObject USE rWheel_
         physics Physics {
         }
       }
@@ -1386,12 +1366,6 @@ Robot {
       }
     }
   ]
-  boundingObject Group {
-    children [
-      USE rWheel_
-      USE robotBase
-    ]
-  }
   physics Physics {
   }
   controller "ePuck_controller"

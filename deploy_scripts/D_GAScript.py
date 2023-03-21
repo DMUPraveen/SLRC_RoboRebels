@@ -95,19 +95,30 @@ class D_GA():
         print("Trying to capture image")
         pass
 
-    def move_forward():
-        pass
-
-    def array_drive():
-        pass
+    def move_forward(self):
+        self.robot.move_forward()
 
 
 
-    def move_to_center():
-        pass
+    def array_drive(self):
+        arr=self.robot.get_line_sensor_val()
+        error=100*arr[0]+10*arr[1]+arr[2]-arr[3]-10*arr[4]-100*arr[5]
+        gamma=0.05
+        speed=error*gamma
+        self.robot.set_speed(speed,-speed)
+        if error<=0.3 and arr[2]<=275 and arr[3]<=275:
+            return True
+        
+            
+    def move_to_center(self):
+        arr=self.robot.get_ultrasonic_distances()
+        if arr[0]>arr[3]:
+            pass
 
 
 
     def run(self):
-        self.D_GA_FSM.execute_action()
+        # self.D_GA_FSM.execute_action()
+        if self.array_drive():
+            self.robot.move_forward()
         pass
