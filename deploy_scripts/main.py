@@ -300,6 +300,6 @@ def get_bearing(img,verbose=False, imgVerbose=False):
         
 
 if __name__ == '__main__':
-    filename = 'samples/s10.jpg'
+    filename = 'samples/s11.jpg'
     src = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     get_bearing(src,verbose=True, imgVerbose=True)
