@@ -14,6 +14,9 @@ RIGHT_FRONT = "right_front"
 LEFT_BACK = "left_back"
 RIGHT_BACK = "right_back"
 
+BACK_LEFT = "back_left"
+BACK_RIGHT = "back_right"
+
 
 class DistanceSensors:
     def __init__(self, robot: Robot, sampling_period):
@@ -36,6 +39,11 @@ class DistanceSensors:
         self.right_back: DistanceSensor = robot.getDevice(
             RIGHT_BACK)  # type: ignore
 
+        self.back_left: DistanceSensor = robot.getDevice(
+            BACK_LEFT)  # type: ignore
+        self.back_right: DistanceSensor = robot.getDevice(
+            BACK_RIGHT)  # type: ignore
+
         self.all_sensors: List[DistanceSensor] = [  # type: ignore
             self.left_back,
             self.left_front,
@@ -43,7 +51,9 @@ class DistanceSensors:
             self.front,
             self.front_right,
             self.right_front,
-            self.right_back
+            self.right_back,
+            self.back_left,
+            self.back_right
         ]
         for sensor in self.all_sensors:
             sensor.enable(self.sampling_period)  # type: ignore
@@ -62,14 +72,23 @@ class DistanceSensors:
     def right_wall_align_error(self):
         return (self.right_back.getValue() - self.right_front.getValue())/self.max_value
 
+    def back_wall_align_error(self):
+        return (self.back_left.getValue() - self.back_right.getValue())/self.max_value
+
     def average_left_wall_distance(self):
         return (self.left_front.getValue()+self.left_back.getValue())/2/self.max_value
 
     def average_right_wall_distance(self):
         return (self.right_front.getValue()+self.right_back.getValue())/2/self.max_value
 
+    def average_back_wall_distance(self):
+        return (self.back_left.getValue()+self.back_right.getValue())/2/self.max_value
+
     def left_wall_present(self):
         return self.average_left_wall_distance() < 1
 
     def right_wall_present(self):
         return self.average_right_wall_distance() < 1
+
+    def back_wall_present(self):
+        return self.average_back_wall_distance() < 1
