@@ -50,8 +50,6 @@ DEF box_3 Solid {
   physics Physics {
     density 100
   }
-  linearVelocity 1.6691087348889123e-06 7.861183513764534e-07 -4.6521926558590684e-07
-  angularVelocity 5.157655350105761e-05 -9.537996358731147e-07 3.157549733087682e-06
 }
 DEF box_2 Solid {
   translation -0.4297833904544947 -1.1 0.019997488640000012
@@ -72,8 +70,6 @@ DEF box_2 Solid {
   physics Physics {
     density 100
   }
-  linearVelocity 2.3786831606930416e-17 2.9608851297125995e-17 9.714451465470149e-17
-  angularVelocity -1.3499587596865423e-15 7.264149259111547e-17 4.2812890989104265e-16
 }
 DEF box_1 Solid {
   translation 0.029126699999999922 -0.745511 0.014998940520000002
@@ -94,8 +90,6 @@ DEF box_1 Solid {
   physics Physics {
     density 100
   }
-  linearVelocity -3.5855444352237054e-17 -8.426866812554269e-17 -3.455007774933381e-23
-  angularVelocity 3.2124508814385145e-15 -3.2124508814385425e-15 4.59465590047087e-16
 }
 DEF maze Solid {
   translation -1.93 1.32 -0.00589861
@@ -161,8 +155,8 @@ DEF rebel Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation 2.865053047332563e-06 -0.049995645297964936 -0.016992573728368036
-        rotation -0.987528099374774 -0.15710856047795085 0.010254421962864642 2.7734250110091776
+        translation -4.5271859039039136e-07 -0.05000250376996297 -0.01700576119227301
+        rotation -0.5051092387249371 0.3670485775805829 0.7811145874010964 4.1253899113728085
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -178,8 +172,6 @@ DEF rebel Robot {
         boundingObject USE Claster
         physics Physics {
         }
-        linearVelocity 3.319428852571037e-09 1.9422868049055985e-09 -2.0029642493117226e-10
-        angularVelocity -6.54413455630933e-07 6.17660039701019e-07 -1.2553531597595088e-10
       }
     }
     DEF waist HingeJoint {
@@ -199,8 +191,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 3.992282794997894e-08 0.060000079847695384 0.011998186410560274
-        rotation -2.090743903340669e-09 -3.557773876352747e-08 -0.9999999999999994 3.141592463354603
+        translation 3.992282794995183e-08 0.060000079847695384 0.011998186410560274
+        rotation -2.0907439033406758e-09 -3.557773876352756e-08 -0.9999999999999994 3.141592463354603
         scale 0.2 0.2 0.2
         children [
           DEF waist Group {
@@ -689,7 +681,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.0061154934231963535 4.869932305596822e-06 0.9999813001833957 3.1400000297823176
+                                            rotation 0.006115493423196348 4.869932305597999e-06 0.9999813001833957 3.1400000297823176
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -811,8 +803,6 @@ DEF rebel Robot {
                                             boundingObject USE rf_finger
                                             physics Physics {
                                             }
-                                            linearVelocity 1.604804863146848e-06 -1.0229230440111415e-07 -1.1550157842293473e-08
-                                            angularVelocity 4.140750550605343e-08 5.807103846887399e-07 5.54697776735733e-07
                                           }
                                         }
                                       ]
@@ -873,8 +863,6 @@ DEF rebel Robot {
                                       }
                                       physics Physics {
                                       }
-                                      linearVelocity 4.2878577622611443e-07 -1.318125421470792e-08 -3.0267783870184054e-09
-                                      angularVelocity -5.81149366785805e-06 -7.59501584326706e-05 1.959341517278532e-06
                                     }
                                   }
                                   DEF pitch Group {
@@ -1179,8 +1167,6 @@ DEF rebel Robot {
                                             boundingObject USE lf_finger
                                             physics Physics {
                                             }
-                                            linearVelocity 1.5710266900472864e-06 -1.216083968121757e-07 5.767126160858467e-07
-                                            angularVelocity 1.9465516511244334e-07 2.584424525754183e-06 5.179390400777529e-07
                                           }
                                         }
                                       ]
@@ -1242,8 +1228,6 @@ DEF rebel Robot {
                                       }
                                       physics Physics {
                                       }
-                                      linearVelocity 4.2727988171334313e-07 -4.321945318699876e-08 1.6509064260343972e-07
-                                      angularVelocity -6.145772084280433e-06 -8.032115559934404e-05 2.0395626802366907e-06
                                     }
                                   }
                                   DEF left_p HingeJoint {
@@ -1379,8 +1363,6 @@ DEF rebel Robot {
                                       }
                                       physics Physics {
                                       }
-                                      linearVelocity 4.268172039965874e-07 -4.8018830044211176e-08 1.720967879845744e-07
-                                      angularVelocity -6.172836652094059e-06 -8.06750389807449e-05 2.0460414594166167e-06
                                     }
                                   }
                                   DEF right_p HingeJoint {
@@ -1516,8 +1498,6 @@ DEF rebel Robot {
                                       }
                                       physics Physics {
                                       }
-                                      linearVelocity 4.2916707336059357e-07 -8.26163571036861e-09 -4.586541028954629e-09
-                                      angularVelocity -5.810738606643301e-06 -7.594028149015815e-05 1.959111449093918e-06
                                     }
                                   }
                                   Camera {
@@ -1532,40 +1512,30 @@ DEF rebel Robot {
                                 boundingObject USE pitch
                                 physics Physics {
                                 }
-                                linearVelocity -5.817471455361806e-08 6.961807988230798e-09 -2.394896649407733e-10
-                                angularVelocity -3.130720776949108e-09 -1.7030109787316791e-09 5.653785404800782e-07
                               }
                             }
                           ]
                           boundingObject USE wrist
                           physics Physics {
                           }
-                          linearVelocity -5.488344757520701e-08 6.746065654192444e-09 -2.2239940022503024e-10
-                          angularVelocity -3.1852870826029274e-09 -1.6994716403722313e-09 5.653785141751006e-07
                         }
                       }
                     ]
                     boundingObject USE forearm
                     physics Physics {
                     }
-                    linearVelocity -2.621760130407052e-08 4.5752449581309e-09 -6.775475687149288e-11
-                    angularVelocity -3.2379993749031173e-09 -2.391574729835565e-09 5.654615070596393e-07
                   }
                 }
               ]
               boundingObject USE amr
               physics Physics {
               }
-              linearVelocity 1.0160021973989858e-08 1.6661578369084094e-09 1.2939109415732107e-10
-              angularVelocity -3.1936183466515153e-09 -2.395631439571138e-09 5.654616379939589e-07
             }
           }
         ]
         boundingObject USE waist
         physics Physics {
         }
-        linearVelocity 1.393306519747265e-08 1.2513595361494258e-09 1.4946882533739406e-10
-        angularVelocity -3.1934444578230568e-09 -2.3964050851585936e-09 5.654617505784243e-07
       }
     }
     DEF d4 DistanceSensor {
@@ -1607,8 +1577,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200261284028012 0.029998258184684632 -7.485263258815091e-08
-        rotation -0.6717176344306689 -0.29017598456031996 -0.6816108256030822 3.706158080337116
+        translation -0.07200261284028056 0.029998258184684632 -7.485263258607748e-08
+        rotation -0.6717176344306689 -0.29017598456032007 -0.6816108256030821 3.706158080337116
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1625,8 +1595,6 @@ DEF rebel Robot {
         boundingObject USE wheel
         physics Physics {
         }
-        linearVelocity 1.542351929997245e-09 5.770692633042743e-10 -2.0516664315845948e-10
-        angularVelocity -2.4702211848099743e-09 3.4786435119586074e-09 -1.9532743313597492e-08
       }
     }
     DEF Body Shape {
@@ -1649,8 +1617,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552394 0.029999850224935537 1.84203152749422e-05
-        rotation 0.5954501440058325 0.5393283947609361 0.5954527761359627 2.1523693861666215
+        translation 0.07199997845552394 0.029999850224935537 1.8420315274942078e-05
+        rotation 0.5954501440058333 0.5393283947609359 0.5954527761359625 2.152369386166618
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -1667,8 +1635,6 @@ DEF rebel Robot {
         boundingObject USE Wheel
         physics Physics {
         }
-        linearVelocity 1.7804946321201368e-09 3.660435072800535e-09 3.041316298376941e-10
-        angularVelocity -2.9069194886914686e-09 3.5127200364222623e-09 -1.953280081583472e-08
       }
     }
   ]
@@ -1677,8 +1643,6 @@ DEF rebel Robot {
   physics Physics {
   }
   controller "my_controller"
-  linearVelocity 2.3056804488435394e-09 2.07044088435353e-09 -4.6031606296317393e-11
-  angularVelocity -2.6669529838581625e-09 3.4938746956294733e-09 -1.9532869856853015e-08
 }
 DEF supervisor Robot {
   translation -1.93 1.32 0.0015
