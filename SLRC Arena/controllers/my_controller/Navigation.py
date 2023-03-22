@@ -70,7 +70,7 @@ class LinearTraveller:
         error = self.target_distance - distance
         signal = self.pid_controller(error)
         self.motorcontroller.linear_speed = signal
-        return error
+        return abs(error)
 
 
 class Rotator:
@@ -100,7 +100,7 @@ class Rotator:
         error = self.target_angle - angle
         signal = self.pid_controller(error)
         self.motorcontroller.rotational_speed = signal
-        return error
+        return abs(error)
 
 
 def delta_to_rotational_matrix(delta_radian):
@@ -175,7 +175,7 @@ class Alingment:
         measurement = self.distanceSensors.left_wall_align_error()
         control_signal = self.left_aling_pid(measurement)
         self.motorController.rotational_speed = -control_signal
-        return measurement
+        return abs(measurement)
 
     def align_to_right_wall(self):
         '''
@@ -187,7 +187,7 @@ class Alingment:
         measurement = self.distanceSensors.right_wall_align_error()
         control_signal = self.right_aling_pid(measurement)
         self.motorController.rotational_speed = -control_signal
-        return measurement
+        return abs(measurement)
 
     def align_to_back_wall(self):
         '''
@@ -199,4 +199,4 @@ class Alingment:
         measurement = self.distanceSensors.back_wall_align_error()
         control_signal = self.right_aling_pid(measurement)
         self.motorController.rotational_speed = -control_signal
-        return measurement
+        return abs(measurement)

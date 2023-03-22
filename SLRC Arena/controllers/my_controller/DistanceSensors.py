@@ -92,3 +92,9 @@ class DistanceSensors:
 
     def back_wall_present(self):
         return self.average_back_wall_distance() < 1
+
+    def average_front_wall_distance(self):
+        return self.front.getValue()/self.max_value
+
+    def front_wall_present(self):
+        return self.average_front_wall_distance() < 1
