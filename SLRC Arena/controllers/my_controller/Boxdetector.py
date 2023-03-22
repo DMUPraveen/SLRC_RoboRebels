@@ -99,6 +99,7 @@ class BoxDetector:
         
         if self.state==0 and self.isPrimaryPositioned():
             self.state=1
+            return True
 
 
         if self.state==1 and self.isPositioned():  ########### for now Should Tune

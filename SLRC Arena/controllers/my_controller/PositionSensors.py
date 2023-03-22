@@ -60,7 +60,7 @@ class Positions:
 
     def isPositioned(self):
         arr=self.positionvalues()
-        real_values=[-11,0.58,1.9,0,0.665]
+        real_values=[-11,0.58,2,0,0.55]
 
         # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
