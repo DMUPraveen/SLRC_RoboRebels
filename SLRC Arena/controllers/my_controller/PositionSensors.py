@@ -97,7 +97,7 @@ class Positions:
     
     def isPlaced(self):
         arr=self.positionvalues()
-        real_values=[-11,-0.6,-1.2,0,-1.3]
+        real_values=[-11,-0.7,-1,0,-1.47]
 
         print("This is printing",arr,real_values)
         for realv,arrv in zip(real_values,arr):

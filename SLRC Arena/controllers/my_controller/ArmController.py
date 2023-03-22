@@ -94,7 +94,7 @@ class armcontroll:
         self.pitchcontrol(pitch_val)
     
     def takeelbow_pitch(self):
-        self.elbowcontrol(1.5)
+        self.elbowcontrol(1.55)
         self.pitchcontrol(-1.5)
 
 

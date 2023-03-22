@@ -45,7 +45,7 @@ class Armstatemachine:
         if self.state ==4:
             self.arm.bringup()
         if self.state ==5:
-            self.arm.putinback(-11,-0.6,-1.2,0,-1.3)  #"""Put in back"""
+            self.arm.putinback(-11,-0.7,-1,0,-1.47)  #"""Put in back"""
         if self.state==6:
             self.state=-1
             return True
