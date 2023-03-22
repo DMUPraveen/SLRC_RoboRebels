@@ -6,6 +6,7 @@ from Navigation import Alingment, LinearTraveller, Rotator
 from Grid import Grid, GridNode, str_abs_dirs, NORTH, SOUTH, EAST, WEST
 from GraphicEngine import GraphicEngine, BLUE
 from MazeRunner import MazeRunner
+from MazeSolver import MazeSolver
 import math
 
 
@@ -27,21 +28,12 @@ def main():
     mazeRunner = MazeRunner(
         motorcontrol, distancesensors, lineartraveller, rotator, 7)
     task_runner = mazeRunner.run_execution_stack()
-    dirs = [NORTH, NORTH, WEST, SOUTH, WEST, WEST, WEST, SOUTH, NORTH]
     mazeRunner.add_task_aling()
     mazeRunner.add_task_build_wall()
+    mazesolver = MazeSolver(mazeRunner)
+    mazesolver.initialize()
     while robot.step(timestep) != -1:
         ############################# Draw Code ######################################
-        ##############################################################################
-
-        finished = task_runner.__next__()
-        if(finished):
-            if dirs:
-                mazeRunner.add_task_go_direction(dirs.pop(0))
-            else:
-                print("Finished")
-
-        motorcontrol.set_pose_speed()
         gfx.clear()
         y, x = mazeRunner.grid_position
         gfx.draw_cell(BLUE, x, y)
@@ -49,3 +41,11 @@ def main():
             for node in row:
                 gfx.draw_node(node)
         gfx.run()
+        ##############################################################################
+
+        finished = task_runner.__next__()
+        if(finished):
+            status = mazesolver.run_bfs()
+            if(status):
+                print("Search Complete")
+        motorcontrol.set_pose_speed()

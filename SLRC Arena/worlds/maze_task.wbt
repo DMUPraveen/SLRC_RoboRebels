@@ -12,8 +12,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.5733344546574881 0.5962088347643307 0.5619809858452149 2.0838541464205824
-  position -0.76128486565031 0.7698949771446497 5.213016703744682
+  orientation -0.4657701182388605 0.494150503467357 0.7340800207598046 1.8182278287583258
+  position 0.6280051148599322 -5.491113713025983 12.532177722200654
 }
 TexturedBackground {
 }
@@ -28,63 +28,6 @@ RectangleArena {
     colorOverride 0 0 0
     textureTransform TextureTransform {
     }
-  }
-}
-DEF box_3 Solid {
-  translation -0.56 -1.12 0.04
-  children [
-    DEF box_3_shape Shape {
-      appearance PBRAppearance {
-        baseColor 1 0 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.05 0.05 0.05
-      }
-    }
-  ]
-  name "solid(4)"
-  boundingObject USE box_3_shape
-  physics Physics {
-    density 100
-  }
-}
-DEF box_2 Solid {
-  translation 0.43 -1.1 0.03
-  children [
-    DEF box_2_shape Shape {
-      appearance PBRAppearance {
-        baseColor 0 1 0
-        metalness 0
-      }
-      geometry Box {
-        size 0.04 0.04 0.04
-      }
-    }
-  ]
-  name "solid(3)"
-  boundingObject USE box_2_shape
-  physics Physics {
-    density 100
-  }
-}
-DEF box_1 Solid {
-  translation -0.54 -1.11 0.02
-  children [
-    DEF box_1_shape Shape {
-      appearance PBRAppearance {
-        baseColor 0 0 1
-        metalness 0
-      }
-      geometry Box {
-        size 0.03 0.03 0.03
-      }
-    }
-  ]
-  name "solid(2)"
-  boundingObject USE box_1_shape
-  physics Physics {
-    density 100
   }
 }
 DEF maze Solid {
@@ -151,8 +94,8 @@ DEF rebel Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation -1.1366249860247213e-06 -0.04999714944143054 -0.016997078686795095
-        rotation 0.6968454428504576 0.7109303887606176 0.09478613355985416 4.118437697260658
+        translation -1.1366249860244734e-06 -0.04999714944143054 -0.016997078686795092
+        rotation 0.6968454428504577 0.7109303887606176 0.09478613355985367 4.118437697260658
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -187,8 +130,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.108567872912114e-08 0.060000079847693025 0.011998186410560274
-        rotation -2.090744937626785e-09 -3.557773870274942e-08 -0.9999999999999996 3.1415925214969205
+        translation 4.1085678729094036e-08 0.060000079847693025 0.011998186410560274
+        rotation -2.0907449376267785e-09 -3.5577738702749446e-08 -0.9999999999999996 3.1415925214969205
         scale 0.2 0.2 0.2
         children [
           DEF waist Group {
@@ -674,7 +617,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation -3.3169820731572606e-16 -3.3249818717466396e-16 0.9999999999999999 3.14
+                                            rotation -3.3169820731572675e-16 -3.3249818717466327e-16 0.9999999999999999 3.14
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1633,8 +1576,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200261284026382 0.030001580189147403 7.365634853016356e-07
-        rotation -0.20253883465707334 0.9585965403204668 -0.2001766553356965 1.6265631087018724
+        translation -0.07200261284026382 0.030001580189147403 7.365634853014132e-07
+        rotation -0.2025388346570733 0.9585965403204668 -0.20017665533569648 1.6265631087018722
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1675,8 +1618,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552178 0.0299873752618295 1.34144114117825e-05
-        rotation 0.6829715481170912 0.2590285802302343 0.6829744205213348 2.634678231165428
+        translation 0.07199997845552178 0.0299873752618295 1.3414411411784276e-05
+        rotation 0.6829715481170915 0.2590285802302341 0.6829744205213345 2.634678231165428
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
@@ -1700,7 +1643,7 @@ DEF rebel Robot {
   boundingObject USE Body
   physics Physics {
   }
-  controller "my_controller"
+  controller "<extern>"
 }
 DEF supervisor Robot {
   translation -1.93 1.32 0.0015

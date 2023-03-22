@@ -1,3 +1,4 @@
+from typing import Tuple, List
 NORTH = 0
 EAST = 1
 SOUTH = 2
@@ -29,13 +30,20 @@ DIRECTIONS = [NORTH, EAST, SOUTH, WEST]
 
 
 class GridNode:
-    def __init__(self, row, column):
+    def __init__(self, row: int, column: int):
         self.wall_states = [False]*4
-        self.row = row
-        self.column = column
+        self.row: int = row
+        self.column: int = column
+        self.visited = 0
 
     def set_wall(self, direction):
         self.wall_states[direction] = True
+
+    def set_visited(self):
+        self.visited = 1
+
+    def has_visited(self):
+        return self.visited
 
     def has_wall(self, direction):
         return self.wall_states[direction]
@@ -44,7 +52,8 @@ class GridNode:
         connected_directions = []
         for direction in DIRECTIONS:
             if self.has_wall(direction):
-                connected_directions.append(direction)
+                continue
+            connected_directions.append(direction)
         return connected_directions
 
     def get_pos(self):
@@ -63,7 +72,7 @@ class Grid:
     def get_connected_nodes(self, row, column):
         node = self.get_node(row, column)
         connected_directions = node.get_connected_directions()
-        connected_nodes = []
+        connected_nodes: List[Tuple[GridNode, int]] = []
         for direction in connected_directions:
             dr, dc = POS_DIRECTION_MAP[direction]
             new_row, new_column = (row+dr, column+dc)
@@ -71,6 +80,8 @@ class Grid:
             connected_nodes.append(
                 (new_node, direction)
             )
+
+        return connected_nodes
 
     def put_walls(self):
         for node in self.grid[0]:
