@@ -36,6 +36,7 @@ class Armstatemachine:
             self.arm.collectbox(WAIST_VAL,shoulder_val,elbow_val,wrist_val,pitch_val)
             print("running State0")
         if self.state==1:
+            self.arm.takeelbow_pitch()
             self.TIME+=1
         if self.state==2:
             self.arm.catchbox()

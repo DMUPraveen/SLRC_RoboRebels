@@ -26,6 +26,7 @@ class SuperState:
             self.state=2
 
         if self.state==2 and self.superarm.pickupbox():
+            self.state=-1
             return True
 
         if self.state==0:

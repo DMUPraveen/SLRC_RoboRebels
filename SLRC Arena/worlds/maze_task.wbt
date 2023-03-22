@@ -8,15 +8,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 WorldInfo {
   contactProperties [
     ContactProperties {
-      coulombFriction [
-        6
-      ]
+      material1 "friction"
     }
   ]
 }
 Viewpoint {
-  orientation -0.35635799485961744 -0.07343607149341978 0.931459136464529 3.5208860702827076
-  position 0.7570603372612159 -0.8128947209947134 0.2797299984235778
+  orientation 0.2357630258181575 -0.6869252721481409 -0.6874223346249884 5.357033382926335
+  position -0.466916264151631 -1.4116732572882524 1.052793782516195
 }
 TexturedBackground {
 }
@@ -34,8 +32,8 @@ RectangleArena {
   }
 }
 DEF box_3 Solid {
-  translation 0.493144 -0.877167 0.0693926
-  rotation -0.07462649044972487 0.007651983898774118 0.9971821970259848 -0.11903583212363511
+  translation 0.46713188283803414 -1.0953889911437873 0.024995094999999995
+  rotation 2.4457689567558357e-16 4.480669711895284e-16 -1 0.11869485221689229
   children [
     DEF box_3_shape Shape {
       appearance PBRAppearance {
@@ -54,8 +52,8 @@ DEF box_3 Solid {
   }
 }
 DEF box_2 Solid {
-  translation -0.26 -1.1 0.019997488640000012
-  rotation -0.15065559529128233 0.903933571748353 -0.4002586532152612 2.158968282035909e-16
+  translation -0.26 -1.1 0.019997488640000016
+  rotation -0.4165298084197644 0.6942163473658921 -0.5869979401563121 2.3426461576383995e-16
   children [
     DEF box_2_shape Shape {
       appearance PBRAppearance {
@@ -74,8 +72,8 @@ DEF box_2 Solid {
   }
 }
 DEF box_1 Solid {
-  translation 0.05011024770580707 -0.7999184691393854 0.014998940520000004
-  rotation 1.723680359182847e-16 1.7714499757742215e-16 -1 0.17230049931558386
+  translation 0.05011024770580706 -0.7999184691393854 0.014998940520000002
+  rotation 5.078146660848514e-16 -1.3927784048565348e-15 -1 0.1723004993155837
   children [
     DEF box_1_shape Shape {
       appearance PBRAppearance {
@@ -112,8 +110,8 @@ DEF maze Solid {
   ]
 }
 DEF rebel Robot {
-  translation 0.48851985063096715 -0.9414706477767287 0.033080564457317434
-  rotation -0.0003666309418277081 -0.0051324781438273495 0.9999867615372993 3.0258491985979514
+  translation 0.523787 -0.645266 0.0359599
+  rotation -0.0003670447658760425 -0.005697476030774834 0.9999837018896951 3.0195375036634067
   scale 1.1 1.1 1.1
   children [
     Camera {
@@ -146,19 +144,19 @@ DEF rebel Robot {
     }
     DEF ClasterWheel BallJoint {
       jointParameters BallJointParameters {
-        position 168.09799423598525
+        position 179.22606017404883
         anchor 0 -0.05 -0.017
       }
       jointParameters2 JointParameters {
-        position 23.291382564309107
+        position 20.45032282389429
       }
       jointParameters3 JointParameters {
-        position 48.85977047345857
+        position 57.180656485113
         axis 0 1 0
       }
       endPoint Solid {
-        translation -1.0413952531363333e-06 -0.05000405729236809 -0.01699529691280937
-        rotation -0.40367280382619836 0.8457434403522819 -0.34895028378292203 2.9293956972209867
+        translation 4.278707487896315e-06 -0.05000203170183502 -0.01700415090405125
+        rotation 0.9683753566345715 -0.19314896697151004 -0.1579324071262921 0.9237110658450071
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -178,7 +176,7 @@ DEF rebel Robot {
     }
     DEF waist HingeJoint {
       jointParameters HingeJointParameters {
-        position -11.000000160672444
+        position -10.99999999944945
         axis 0 0 1
         anchor 0 0.04 0.012
       }
@@ -193,8 +191,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.430626615199436e-08 0.06000007984768617 0.011998186410560274
-        rotation -2.0907478021455623e-09 -3.5577738534411845e-08 -0.9999999999999994 3.141592682525638
+        translation 4.1081793396866104e-08 0.06000007984769305 0.011998186410560274
+        rotation -2.0907449341707948e-09 -3.5577738702950114e-08 -0.9999999999999996 3.141592521302644
         scale 0.2 0.2 0.2
         children [
           DEF waist Group {
@@ -286,7 +284,7 @@ DEF rebel Robot {
           }
           DEF shourlder HingeJoint {
             jointParameters HingeJointParameters {
-              position -0.5761274428871355
+              position -0.1153294504195595
               anchor 0 0 0.21
             }
             device [
@@ -301,7 +299,7 @@ DEF rebel Robot {
             ]
             endPoint Solid {
               translation 0 0 0.21
-              rotation -1 0 0 0.5761274428871357
+              rotation -1 0 0 0.11532945041955922
               children [
                 DEF amr Group {
                   children [
@@ -407,7 +405,7 @@ DEF rebel Robot {
                 }
                 DEF elbow HingeJoint {
                   jointParameters HingeJointParameters {
-                    position -1.1999999081100623
+                    position 0.3359282082107058
                     anchor 0 0 0.33
                   }
                   device [
@@ -422,7 +420,7 @@ DEF rebel Robot {
                   ]
                   endPoint Solid {
                     translation 0 0 0.33
-                    rotation -1 0 0 1.1999999081100623
+                    rotation 1 0 0 0.33592820821070585
                     children [
                       DEF forearm Group {
                         children [
@@ -479,7 +477,7 @@ DEF rebel Robot {
                       }
                       DEF wrist HingeJoint {
                         jointParameters HingeJointParameters {
-                          position 6.028291434848745e-08
+                          position 4.557314008665016e-08
                           axis 0 0 1
                           anchor 0 0 0.34
                         }
@@ -495,7 +493,7 @@ DEF rebel Robot {
                         ]
                         endPoint Solid {
                           translation 0 0 0.34
-                          rotation 0 0 1 5.960464477539063e-08
+                          rotation 0 0 1 4.2146848510894035e-08
                           children [
                             DEF wrist Group {
                               children [
@@ -585,7 +583,7 @@ DEF rebel Robot {
                             }
                             DEF pitch HingeJoint {
                               jointParameters HingeJointParameters {
-                                position -1.2992367740144475
+                                position -1.749999570074
                                 anchor 0 0 0.035
                               }
                               device [
@@ -601,11 +599,11 @@ DEF rebel Robot {
                               ]
                               endPoint Solid {
                                 translation 0 0 0.035
-                                rotation -1 0 0 1.2992367740144475
+                                rotation -1 0 0 1.7499995700739999
                                 children [
                                   DEF right_a HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position -0.3012956596931229
+                                      position 1.6392293078482112e-10
                                       axis 0 1 0
                                       anchor 0.14 0 0.09
                                     }
@@ -619,7 +617,7 @@ DEF rebel Robot {
                                     ]
                                     endPoint Solid {
                                       translation 0.14 0 0.09
-                                      rotation 0 -1 0 0.3012956596931224
+                                      rotation 0 1 0 0
                                       children [
                                         Group {
                                           children [
@@ -678,13 +676,13 @@ DEF rebel Robot {
                                         }
                                         DEF r__finger HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position 0.30997292332578325
+                                            position 0.006251515709506726
                                             axis 0 1 0
                                             anchor 0 0 0.1
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.15436672207751526 0.00012292638301424584 0.9880136132686368 3.14001909015393
+                                            rotation 0.003125752764781452 2.4891212062420855e-06 0.9999951148197963 3.1400000077803965
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -760,7 +758,7 @@ DEF rebel Robot {
                                                           }
                                                         }
                                                         geometry Box {
-                                                          size 0.02 0.06 0.15
+                                                          size 0.02 0.06 0.2
                                                         }
                                                       }
                                                     ]
@@ -968,7 +966,7 @@ DEF rebel Robot {
                                   }
                                   DEF left_a HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position 0.03648696133331117
+                                      position -1.640114988266106e-10
                                       axis 0 1 0
                                       anchor -0.14 0 0.09
                                     }
@@ -983,7 +981,7 @@ DEF rebel Robot {
                                     ]
                                     endPoint Solid {
                                       translation -0.14 0 0.09
-                                      rotation 0 1 0 0.036486961333309996
+                                      rotation 0 1 0 0
                                       children [
                                         Group {
                                           children [
@@ -1042,13 +1040,13 @@ DEF rebel Robot {
                                         }
                                         DEF l_finger HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position -0.04464701964874404
+                                            position -0.007236970208210588
                                             axis 0 1 0
                                             anchor 0 0 0.1
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0 -1 0 0.04464701964874535
+                                            rotation 0 -1 0 0.007236970208198253
                                             children [
                                               DEF lf_finger Group {
                                                 children [
@@ -1124,7 +1122,7 @@ DEF rebel Robot {
                                                           }
                                                         }
                                                         geometry Box {
-                                                          size 0.02 0.06 0.15
+                                                          size 0.02 0.06 0.2
                                                         }
                                                       }
                                                     ]
@@ -1174,6 +1172,7 @@ DEF rebel Robot {
                                         }
                                       ]
                                       name "solid_1"
+                                      contactMaterial "friction"
                                       boundingObject DEF phalanx Group {
                                         children [
                                           Transform {
@@ -1234,13 +1233,13 @@ DEF rebel Robot {
                                   }
                                   DEF left_p HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position 0.04628925812123004
+                                      position 0.009782510890458075
                                       axis 0 1 0
                                       anchor -0.1800812025777988 0 0.08961334947628816
                                     }
                                     endPoint Solid {
-                                      translation -0.18007996926906233 0 0.08961303234675684
-                                      rotation 0 1 0 0.04628925812123098
+                                      translation -0.1800799585160164 0 0.08961307757214945
+                                      rotation 0 1 0 0.009782510890452305
                                       children [
                                         Group {
                                           children [
@@ -1299,7 +1298,7 @@ DEF rebel Robot {
                                         }
                                         HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position -9.651280898215601
+                                            position -9.61385863133519
                                             axis 0 1 0
                                             anchor 0 0 0.1
                                           }
@@ -1369,13 +1368,13 @@ DEF rebel Robot {
                                   }
                                   DEF right_p HingeJoint {
                                     jointParameters HingeJointParameters {
-                                      position -0.30447766182705477
+                                      position -0.003034137248118918
                                       axis 0 1 0
                                       anchor 0.18000187121908343 0 0.09077370288145375
                                     }
                                     endPoint Solid {
-                                      translation 0.1799983024527714 0 0.0907725814021697
-                                      rotation 0 -1 0 0.3044776618270553
+                                      translation 0.1799981304063366 0 0.09077369153387141
+                                      rotation 0 -1 0 0.003034137248132997
                                       children [
                                         Group {
                                           children [
@@ -1434,7 +1433,7 @@ DEF rebel Robot {
                                         }
                                         HingeJoint {
                                           jointParameters HingeJointParameters {
-                                            position -9.292757123238875
+                                            position -9.596607674969444
                                             axis 0 1 0
                                             anchor 0 0 0.1
                                           }
@@ -1570,7 +1569,7 @@ DEF rebel Robot {
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
-        position 241.32174238999824
+        position 236.41191848599715
         anchor 0.055 0.03 0
       }
       device [
@@ -1579,8 +1578,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200261284027834 0.0299982762997251 2.614973647410397e-07
-        rotation -0.6540704623671905 -0.3621452165587984 -0.6641104368870816 3.834506277346606
+        translation -0.07200261284028037 0.02999940547078682 -1.6389199260880776e-06
+        rotation 0.6967287532348092 -0.13367575253124012 0.704769350639679 3.3971252341147817
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1610,7 +1609,7 @@ DEF rebel Robot {
     }
     DEF right1 HingeJoint {
       jointParameters HingeJointParameters {
-        position -48.57508513443752
+        position -53.45726122908676
         anchor -0.055 0.03 0
       }
       device [
@@ -1619,8 +1618,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552633 0.02999946778136082 1.841323411892402e-05
-        rotation 0.5990257633202152 0.5313502638239761 0.5990284066827087 2.1647713441062075
+        translation 0.0719999784555263 0.02998176160384461 2.5867649829886e-06
+        rotation -0.7069940170095474 -0.017744288367897976 -0.7069968883545534 3.1770779389983885
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
