@@ -8,6 +8,7 @@ class Hanoi:
         self.robot=robot
         self.arm=armcontroller
         self.pos=positioncontroller
+        self.arm.catchbox()
 
 
     def StateMachineForHanoiPlace(self,position): ##Position--> place where to place the box
@@ -15,7 +16,6 @@ class Hanoi:
             self.arm.bringup()
 
         if self.state==1 and position==1:
-            self.arm.catchbox()
             self.arm.hanoiPlaceBottom(-11,0.5,2.2,0,0.15)
 
         if self.state==1 and position==2:
