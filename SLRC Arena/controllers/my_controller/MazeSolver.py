@@ -15,6 +15,8 @@ class MazeSolver:
     def __init__(self, mazeRunner: MazeRunner):
         self.mazeRunner = mazeRunner
         self.dfs_stack: List[Tuple[GridNode, Optional[int]]] = []
+        self.principal_directions_found = 0
+        self.principal_directions: List[int] = []
 
     def initialize(self):
         self.dfs_stack.append((self.mazeRunner.grid.get_node(
@@ -31,6 +33,12 @@ class MazeSolver:
         connected_node = self.mazeRunner.grid.get_connected_nodes(
             *current_grid_position)
 
+        for _, direction in connected_node:
+            if(len(self.principal_directions) < 2 and direction not in self.principal_directions):
+                self.principal_directions.append(direction)
+                print(self.principal_directions)
+                if(len(self.principal_directions) == 2):
+                    print("Found Principal directions")
         for node, direction in connected_node:
             if(node.has_visited()):
                 continue

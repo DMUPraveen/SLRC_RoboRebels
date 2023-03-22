@@ -11,7 +11,7 @@ import math
 
 
 def main():
-    print("Hello")
+    # print("Hello")
     robot = Robot()
     timestep = int(robot.getBasicTimeStep())
     distancesensors = DistanceSensors(robot, timestep)
@@ -23,7 +23,7 @@ def main():
     rotator_pid = PID(10, 0, 0)
     rotator = Rotator(rotator_pid, motorcontrol)
     rotator.initialize(-math.pi)
-    grid = Grid(7, 7)
+    # grid = Grid(7, 7)
     gfx = GraphicEngine(400, 400)
     mazeRunner = MazeRunner(
         motorcontrol, distancesensors, lineartraveller, rotator, 7)
