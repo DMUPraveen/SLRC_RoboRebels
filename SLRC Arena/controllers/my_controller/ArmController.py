@@ -86,6 +86,18 @@ class armcontroll:
         self.elbowcontrol(0)
         self.wristcontrol(0)
         
-        
+    
+    def hanoiPlaceBottom(self,waist_val,shoulder_val,elbow_val,wrist_val,pitch_val):
+        self.waistcontrol(waist_val)
+        self.elbowcontrol(elbow_val)
+        self.shouldercontrol(shoulder_val)
+        self.pitchcontrol(pitch_val)
+
+    def hanoiPlace_1_top(self,waist_val,shoulder_val,elbow_val,wrist_val,pitch_val):
+        self.waistcontrol(waist_val)
+        self.elbowcontrol(elbow_val)
+        self.shouldercontrol(shoulder_val)
+        self.pitchcontrol(pitch_val)
+
         
 

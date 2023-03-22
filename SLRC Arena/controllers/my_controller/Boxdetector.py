@@ -99,16 +99,17 @@ class BoxDetector:
         
         if self.state==0 and self.isPrimaryPositioned():
             self.state=1
+            return True ### EXCLUDING P - CONTROLLER
 
 
-        if self.state==1 and self.isPositioned():  ########### for now Should Tune
-            return True
+        # if self.state==1 and self.isPositioned():  ########### for now Should Tune
+        #     return True
         
         if self.state==0:
             self.movingtowardsBox()
 
-        if self.state==1:
-            self.gettingReadytocollect()
+        # if self.state==1:
+        #     self.gettingReadytocollect()
 
 
         print("set Position State",self.state)
