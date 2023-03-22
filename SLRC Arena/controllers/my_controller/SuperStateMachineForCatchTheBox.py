@@ -19,6 +19,7 @@ class SuperState:
 
         if self.state==0 and self.cam.isAligned():
             self.state=1
+           
 
         if self.state==1 and self.boxdetector.setposition():
             self.state=2

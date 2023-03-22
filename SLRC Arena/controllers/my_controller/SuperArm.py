@@ -38,7 +38,7 @@ class Armstatemachine:
         if self.state ==3:
             self.arm.bringup()
         if self.state ==4:
-            self.arm.putinback(-11,-0.8,-1,0,-1.3)
+            self.arm.putinback(-11,-0.8,-1.2,0,-1.3)
         if self.state==5:
             self.state=-1
             return True
