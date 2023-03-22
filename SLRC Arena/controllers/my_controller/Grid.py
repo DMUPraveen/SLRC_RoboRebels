@@ -14,7 +14,7 @@ def target_dir_from_relaitve(current_dir, relative_dir):
     return (current_dir+relative_dir) % 4
 
 
-def relative_dit(current_dir, final_dir):
+def relative_dir(current_dir, final_dir):
     return (final_dir-current_dir) % 4
 
 

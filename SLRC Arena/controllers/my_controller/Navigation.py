@@ -66,7 +66,7 @@ class LinearTraveller:
         rotational_distance = get_rotational_distance_delta(
             self.initial_position, current_position)
         distance = rotational_distance_to_linear(rotational_distance)
-        print(distance)
+        # print(distance)
         error = self.target_distance - distance
         signal = self.pid_controller(error)
         self.motorcontroller.linear_speed = signal
@@ -96,7 +96,7 @@ class Rotator:
         rotational_distance = get_rotational_rotation_delta(
             self.initial_position, current_position)
         angle = rotational_to_robot_rotational(rotational_distance)
-        print(angle)
+        # print(angle)
         error = self.target_angle - angle
         signal = self.pid_controller(error)
         self.motorcontroller.rotational_speed = signal

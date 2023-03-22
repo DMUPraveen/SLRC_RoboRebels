@@ -1,4 +1,4 @@
-from Grid import NORTH, SOUTH, EAST, WEST, GridNode, DIRECTIONS
+from Grid import NORTH, SOUTH, EAST, WEST, GridNode, DIRECTIONS, Grid
 import pygame
 from pygame.locals import *
 
@@ -46,6 +46,11 @@ class GraphicEngine:
                 end = transform((x, y), end)
                 # print(start, end)
                 pygame.draw.line(self.screen, BLACK, start, end)
+
+    def draw_grid(self, grid: Grid):
+        for row in grid.grid:
+            for node in row:
+                self.draw_node(node)
 
     def clear(self):
         if(not self.running):

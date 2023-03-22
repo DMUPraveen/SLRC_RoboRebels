@@ -3,9 +3,9 @@ from DistanceSensors import DistanceSensors
 from Motors import Motorcontrol
 from PID import PID
 from Navigation import Alingment, LinearTraveller, Rotator
-from Grid import Grid, GridNode, str_abs_dirs
+from Grid import Grid, GridNode, str_abs_dirs, NORTH, SOUTH, EAST, WEST
 from GraphicEngine import GraphicEngine, BLUE
-from MazeSolver import MazeRunner
+from MazeRunner import MazeRunner
 import math
 
 
@@ -24,19 +24,28 @@ def main():
     rotator.initialize(-math.pi)
     grid = Grid(7, 7)
     gfx = GraphicEngine(400, 400)
-    mazesolver = MazeRunner(
+    mazeRunner = MazeRunner(
         motorcontrol, distancesensors, lineartraveller, rotator, 7)
-
-    run_code = mazesolver.test_run()
+    task_runner = mazeRunner.run_execution_stack()
+    dirs = [NORTH, NORTH, WEST, SOUTH, WEST, WEST, WEST, SOUTH, NORTH]
+    mazeRunner.add_task_aling()
+    mazeRunner.add_task_build_wall()
     while robot.step(timestep) != -1:
-        # lineartraveller.run()
+        ############################# Draw Code ######################################
+        ##############################################################################
+
+        finished = task_runner.__next__()
+        if(finished):
+            if dirs:
+                mazeRunner.add_task_go_direction(dirs.pop(0))
+            else:
+                print("Finished")
+
+        motorcontrol.set_pose_speed()
         gfx.clear()
-        y, x = mazesolver.grid_position
+        y, x = mazeRunner.grid_position
         gfx.draw_cell(BLUE, x, y)
-        print(str_abs_dirs(mazesolver.orientation))
-        for row in mazesolver.grid.grid:
+        for row in mazeRunner.grid.grid:
             for node in row:
                 gfx.draw_node(node)
         gfx.run()
-        run_code.__next__()
-        motorcontrol.set_pose_speed()

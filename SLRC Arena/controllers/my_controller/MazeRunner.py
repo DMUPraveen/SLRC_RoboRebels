@@ -4,10 +4,11 @@ from DistanceSensors import DistanceSensors
 from controller import Robot
 from PID import PID
 from Navigation import Alingment, LinearTraveller, Rotator
-from Grid import Grid, GridNode, NORTH, EAST, SOUTH, WEST, LEFT, RIGHT, BACK, FRONT, target_dir_from_relaitve, POS_DIRECTION_MAP
+from Grid import Grid, GridNode, NORTH, EAST, SOUTH, WEST, LEFT, RIGHT, BACK, FRONT, target_dir_from_relaitve, POS_DIRECTION_MAP, relative_dir
 from GraphicEngine import GraphicEngine, BLUE
 from enum import Enum, auto
 import math
+from types import GeneratorType
 
 ALIGNMENT_THRESHOLD = 0.01
 LINEAR_TRAVEL_THRESHOLD = 0.01
@@ -61,6 +62,7 @@ class MazeRunner:
         while (self.linearTraveller.run() > LINEAR_TRAVEL_THRESHOLD):
             yield False
         self.pose_advance()
+        self.motorController.pose_stop()
         return True
 
     def turn_right(self):
@@ -68,6 +70,7 @@ class MazeRunner:
         while (self.rotator.run() > ROTATION_THRESHOLD):
             yield False
         self.pose_turn(RIGHT)
+        self.motorController.pose_stop()
         return True
 
     def turn_left(self):
@@ -75,6 +78,7 @@ class MazeRunner:
         while (self.rotator.run() > ROTATION_THRESHOLD):
             yield False
         self.pose_turn(LEFT)
+        self.motorController.pose_stop()
         return True
 
     def turn_back(self):
@@ -82,7 +86,18 @@ class MazeRunner:
         while (self.rotator.run() > ROTATION_THRESHOLD):
             yield False
         self.pose_turn(BACK)
+        self.motorController.pose_stop()
         return True
+
+    def turn_rel_dir(self, rel_dir):
+        if(rel_dir == LEFT):
+            return self.turn_left()
+        if(rel_dir == RIGHT):
+            return self.turn_right()
+        if(rel_dir == BACK):
+            return self.turn_back()
+
+        return None
 
     def simple_align(self):
         while True:
@@ -131,6 +146,7 @@ class MazeRunner:
         '''
         checks if there are any walls in the current position and builds them
         '''
+        print("Building walls")
         current_node = self.grid.get_node(*self.grid_position)
         if(self.distanceSensors.front_wall_present()):
             td = target_dir_from_relaitve(self.orientation, FRONT)
@@ -145,47 +161,35 @@ class MazeRunner:
             td = target_dir_from_relaitve(self.orientation, BACK)
             current_node.set_wall(td)
 
-    def test_run(self):
-        simple_align = self.simple_align()
-        for _ in simple_align:
-            yield False
-        self.check_for_walls_and_build()
-        for _ in range(2):
-            go_forward = self.go_forward()
-            for _ in go_forward:
-                yield False
-            alinger = self.align_with_any_wall()
-            for _ in alinger:
-                print("running alingment")
-                yield False
-            self.check_for_walls_and_build()
-        turn_once = self.turn_left()
-        for _ in turn_once:
-            print("turning")
-            yield False
-
-        alinger = self.align_with_any_wall()
-        for _ in alinger:
-            print("running alingment")
-            yield False
-        for _ in range(1):
-            go_forward = self.go_forward()
-            for _ in go_forward:
-                yield False
-        alinger = self.align_with_any_wall()
-        for _ in alinger:
-            print("running alingment")
-            yield False
-        self.check_for_walls_and_build()
-        while True:
-            yield True
-
-    def add_task()
+    def add_task_go_direction(self, direction):
+        rel_dir = relative_dir(self.orientation, direction)
+        turn_task = self.turn_rel_dir(rel_dir)
+        if(turn_task is not None):
+            self.execution_stack.append(turn_task)
+        align_task = self.align_with_any_wall()
+        self.execution_stack.append(align_task)
+        forward_task = self.go_forward()
+        self.execution_stack.append(forward_task)
+        align_task = self.align_with_any_wall()
+        self.execution_stack.append(align_task)
+        self.execution_stack.append(self.check_for_walls_and_build)
 
     def run_execution_stack(self):
         while True:
             if(not self.execution_stack):
                 yield True
-            task = self.execution_stack.pop()
-            for _ in task:
-                yield False
+                continue
+
+            task = self.execution_stack.pop(0)
+            if type(task) == GeneratorType:
+                for _ in task:
+                    yield False
+            else:
+                task()
+            yield False
+
+    def add_task_build_wall(self):
+        self.execution_stack.append(self.check_for_walls_and_build)
+
+    def add_task_aling(self):
+        self.execution_stack.append(self.align_with_any_wall())
