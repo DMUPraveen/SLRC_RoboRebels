@@ -51,14 +51,14 @@ class BoxDetector:
         superalpha=10
         error=self.errorfunction()
         print(error*superalpha)
-        if abs(error*superalpha)<0.015:
+        if abs(error*superalpha)<0.01:
             self.car.simplestop()
             return True
 
 
     def gettingReadytocollect(self):
         self.enablesensor()
-        superalpha=10
+        superalpha=20
         error=self.errorfunction()
         speed=superalpha*error
         print(speed)
