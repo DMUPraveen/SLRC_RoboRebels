@@ -16,7 +16,7 @@ class Hanoi:
             self.arm.bringup()
 
         if self.state==1 and position==1:
-            self.arm.hanoiPlaceBottom(-11,0.5,2.2,0,0.15)
+            self.arm.hanoiPlaceBottom(-11,1.5,1.8,0,-1.75)
 
         if self.state==1 and position==2:
             self.arm.catchbox()
