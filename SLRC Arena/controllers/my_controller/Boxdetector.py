@@ -68,7 +68,7 @@ class BoxDetector:
 
 
     def isPrimaryPositioned(self):
-        if self.Middle_value<250:
+        if self.Middle_value<300:
             self.car.simplestop()
             return True
 

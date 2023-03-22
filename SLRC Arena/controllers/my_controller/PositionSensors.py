@@ -60,9 +60,9 @@ class Positions:
 
     def isPositioned(self):
         arr=self.positionvalues()
-        real_values=[-11,0.58,2,0,0.55]
+        real_values=[-11,0.5,1.85,0,0.8]
 
-        # print(arr,real_values)
+        print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False

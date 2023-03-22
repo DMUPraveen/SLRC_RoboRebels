@@ -1,10 +1,10 @@
 # Positions of the Arm Components
 
 wrist_val = 0
-shoulder_val=0.58
-elbow_val=1.9
+shoulder_val=0.5
+elbow_val=1.85
 WAIST_VAL=-11.0
-pitch_val=0.665
+pitch_val=0.8
 
 # pikup = {
 #     "shoulder" : 0.5,
