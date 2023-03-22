@@ -75,7 +75,7 @@ class Positions:
         left_val=self.left_finger.getValue()
         arr=[right_val,left_val]
         real_values=[-1,1]
-        print(arr,real_values)
+        # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
@@ -97,13 +97,13 @@ class Positions:
     
     def isPlaced(self):
         arr=self.positionvalues()
-        real_values=[-11,-0.8,-1,0,-1.3]
+        real_values=[-11,-0.6,-1.2,0,-1.3]
 
-        # print(arr,real_values)
+        print("This is printing",arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
-            if abs(arrv-realv)>0.05:
+            if abs(arrv-realv)>0.2:
                 return False
         return True
     

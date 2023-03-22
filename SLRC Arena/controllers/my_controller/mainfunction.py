@@ -25,9 +25,10 @@ def main():
     while robot.step(timestep) != -1:
         # cam.alignwithbox()
         # arm.releasefingers()
-        # superduper.SuperStateMachine()
+        if superduper.SuperStateMachine():
+
         # print(cam.isAligned())
-        Hano.StateMachineForHanoiPlace(1)
+            Hano.StateMachineForHanoiPlace(1)
         pass
 
 # if __name__=="__main__":

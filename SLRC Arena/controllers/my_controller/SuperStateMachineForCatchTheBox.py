@@ -14,6 +14,7 @@ class SuperState:
         self.superarm=superarmcontroller
         self.boxdetector=boxdetector
         self.cam=cameracontroller
+    
 
     def SuperStateMachine(self):
 
@@ -28,6 +29,7 @@ class SuperState:
             return True
 
         if self.state==0:
+            
             self.cam.alignwithbox()
 
 
