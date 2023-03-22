@@ -7,7 +7,7 @@ from Motors import Motorcontrol
 from Boxdetector import BoxDetector
 from SuperStateMachineForCatchTheBox import SuperState
 from CameraClass import Camera
-from HanoiPlace import Hanoi
+from  PlacingOnTop import Hanoi
 
 
 def main():
@@ -20,15 +20,14 @@ def main():
     boxdetect=BoxDetector(robot,car)
     cam=Camera(robot,car)
     superduper=SuperState(robot,superarm,boxdetect,cam)
-    Hano=Hanoi(robot,arm,pos)
+    Hano=Hanoi(robot,arm,pos,boxdetect,car)
     
     while robot.step(timestep) != -1:
-        # cam.alignwithbox()
-        # arm.releasefingers()
-        superduper.SuperStateMachine()
+        # superduper.SuperStateMachine()
 
         # print(cam.isAligned())
-            # Hano.StateMachineForHanoiPlace(1)
+        Hano.BuildHanoi(2)
+        
         pass
 
 # if __name__=="__main__":

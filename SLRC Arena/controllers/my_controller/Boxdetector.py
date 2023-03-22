@@ -14,13 +14,14 @@ class BoxDetector:
         self.Right_box_sensor=robot.getDevice("box_sensor_side2")
         self.Right_corner_box_sensor=robot.getDevice("box_sensor_side2.2")
 
-        self.Left_corner_value=0
-        self.Left_value=0
-        self.Middle_value=0
-        self.Right_value=0
-        self.Right_corner_value=0
+        self.Left_corner_value=self.Left_corner_box_sensor.getValue()
+        self.Left_value=self.Left_box_sensor.getValue()
+        self.Middle_value=self.Middle_box_sensor.getValue()
+        self.Right_value=self.Right_box_sensor.getValue()
+        self.Right_corner_value=self.Right_corner_box_sensor.getValue()
 
-    def enablesensors(self):
+    def enablesensor(self):
+
         self.Left_box_sensor.enable(self.TIME_STEP)
         self.Middle_box_sensor.enable(self.TIME_STEP)
         self.Right_box_sensor.enable(self.TIME_STEP)
@@ -47,7 +48,7 @@ class BoxDetector:
     
 
     def isPositioned(self):
-        superalpha=1000
+        superalpha=10
         error=self.errorfunction()
         print(error*superalpha)
         if abs(error*superalpha)<0.015:
@@ -56,11 +57,13 @@ class BoxDetector:
 
 
     def gettingReadytocollect(self):
+        self.enablesensor()
         superalpha=10
         error=self.errorfunction()
         speed=superalpha*error
         print(speed)
         self.car.setspeed(speed,-speed)
+
 
     def movingtowardsBox(self):
         print(self.Middle_value)
@@ -76,7 +79,7 @@ class BoxDetector:
     # def supererrorfunction(self):
     #     chrome=10
     #     edge=50
-    #     supererror=(self.frac(self.Middle_value) -self.frac(self.Left_value))*(self.frac(self.Middle_value)-self.frac(self.Right_value))
+    #     supererror=((self.Middle_value) -(self.Left_value))*((self.Middle_value)-(self.Right_value))
     #     return supererror
 
     # def isSuperReady(self):
@@ -95,7 +98,7 @@ class BoxDetector:
     #     self.car.setspeed(superspeed,-superspeed)
 
     def setposition(self):
-        self.enablesensors()
+        self.enablesensor()
         
         if self.state==0 and self.isPrimaryPositioned():
             self.state=1

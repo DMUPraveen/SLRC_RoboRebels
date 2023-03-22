@@ -107,10 +107,34 @@ class Positions:
                 return False
         return True
     
-
+    """FOR HANOI"""
     def isHanoiBottomPlaced(self):   ############### For Hanoi Bottom box #################
         arr=self.positionvalues()
-        real_values=[-11,-0.8,-1,0,-1.3]
+        real_values=[-11,1.5,1.8,0,-1.75]
+
+        # print(arr,real_values)
+        for realv,arrv in zip(real_values,arr):
+            if arrv is None:
+                return False
+            if abs(arrv-realv)>0.05:
+                return False
+        return True
+    
+    def isHanoi_top_1_Placed(self):   ############### For Hanoi Bottom box #################
+        arr=self.positionvalues()
+        real_values=[-11,1.5,1.8,0,-1.75]
+
+        # print(arr,real_values)
+        for realv,arrv in zip(real_values,arr):
+            if arrv is None:
+                return False
+            if abs(arrv-realv)>0.05:
+                return False
+        return True
+    
+    def isHanoi_top_2_Placed(self):   ############### For Hanoi Bottom box #################
+        arr=self.positionvalues()
+        real_values=[-11,1.5,1.8,0,-1.75]
 
         # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
