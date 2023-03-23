@@ -16,10 +16,10 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.2128451201056925 -0.5945059848694415 -0.7754093040463267 5.418061080090326
-  position -2.0426648282419353 0.764326633882475 0.25421674525454807
+  orientation -0.025355526691644637 0.9981712953179246 0.054874060078747566 0.8671940939831748
+  position -2.320003745475205 1.132895134338488 0.7725259601289994
   follow "Rebel_Robot"
-  followType "None"
+  followType "Mounted Shot"
 }
 TexturedBackground {
 }
@@ -119,6 +119,40 @@ DEF rebel Robot {
   rotation -0.0016355894940860585 -0.0048931884864586855 0.9999866906881526 3.03779
   scale 1.1 1.1 1.1
   children [
+    DEF Blocking2 Solid {
+      translation 0 -0.015 0.015
+      children [
+        DEF Block2 Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.01 0.01
+          }
+        }
+      ]
+      name "solid(4)"
+      boundingObject USE Block2
+      physics Physics {
+      }
+    }
+    DEF Blocking Solid {
+      translation 0 -0.075 0.015
+      children [
+        DEF Block Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.1 0.01 0.01
+          }
+        }
+      ]
+      name "solid(3)"
+      boundingObject USE Block
+      physics Physics {
+      }
+    }
     Camera {
       translation 2.30255e-07 0.0613628 0.0403528
       rotation -0.1294279597735375 0.1294279597735375 0.9831056944488314 1.58784
@@ -160,7 +194,7 @@ DEF rebel Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation 1.820139823637307e-06 -0.0500048815466384 -0.01700353874949604
+        translation 1.820139823637949e-06 -0.0500048815466384 -0.01700353874949604
         rotation -0.5687458594643469 0.507290261749712 0.6474447757732471 4.99855034304501
         children [
           DEF Claster Shape {
@@ -686,7 +720,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.3257651306046018 0.00025941555717754464 0.9454506927311099 3.1400868781162643
+                                            rotation 0.3257651306046018 0.00025941555717754063 0.9454506927311099 3.1400868781162643
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1693,7 +1727,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845552059 0.029987173174501947 1.3221308370986545e-05
+        translation 0.07199997845551998 0.029987173174501947 1.3221308370986545e-05
         rotation -0.6840075306065911 -0.2535023944407253 -0.6840104049546998 3.6381358641311796
         children [
           DEF Wheel Shape {
