@@ -2,6 +2,8 @@
 from Mazegoto import Mazegoto
 from SuperStateMachineForCatchTheBox import SuperState
 from PlacingOnTop import Hanoi
+from Navigation import LinearTraveller
+from PID import PID
 
 RED = 0
 GREEN = 1
@@ -9,6 +11,8 @@ BLUE = 2
 
 ATFER_PICKUP_FORWARD_THRESHOLD = 0.5
 WAIT_TIME = 10000//32
+PLACE_DISTANCE = 0.36
+PLACE_DISTANCE_THRESHOLD = 0.001
 
 
 class HanoiRetrieve:
@@ -32,9 +36,25 @@ class HanoiRetrieve:
             yield
 
     def box_place_and_return_to_original_pos(self):
+        self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
+            PLACE_DISTANCE/2)
+        while self.mazegoto.mazesolver.mazeRunner.linearTraveller.run() > PLACE_DISTANCE_THRESHOLD:
+            print("Doing distance")
+            yield
+        self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
+        self.mazegoto.mazesolver.mazeRunner.always_run.remove(
+            self.hanoi.arm.catchbox)
         while not self.hanoi.BuildHanoi(1):
             print("Placing Box")
             yield
+        for _ in range(WAIT_TIME):
+            print("Waiting")
+            yield
+        self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
+            -PLACE_DISTANCE/2)
+        while self.mazegoto.mazesolver.mazeRunner.linearTraveller.run() > PLACE_DISTANCE_THRESHOLD:
+            yield
+        self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
         while not self.hanoi.pos.isHung():
             self.hanoi.arm.bringup()
             yield
@@ -50,10 +70,12 @@ class HanoiRetrieve:
         for _ in range(WAIT_TIME):
             print("Waiting")
             yield
+        self.mazegoto.mazesolver.mazeRunner.always_run.append(
+            self.hanoi.arm.catchbox)
         go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(
             ATFER_PICKUP_FORWARD_THRESHOLD)
         for _ in go_forward_until_task:
-            self.hanoi.arm.catchbox()
+            # self.hanoi.arm.catchbox()
             yield
         self.mazegoto.mazesolver.mazeRunner.pose_advance()  # will travel one block forward
         yield
@@ -61,15 +83,15 @@ class HanoiRetrieve:
         # yield
         centering_task = self.mazegoto.mazesolver.mazeRunner.vertical_centering_task()
         for _ in centering_task:
-            self.hanoi.arm.catchbox()
             yield
         target = self.initial_box_places[color]
         target_pos = self.mazegoto.stacks[target]
         partial_go = self.mazegoto.do_partial_go_from_current(
             target_pos, self.mazegoto.stacks)
         for _ in partial_go:
-            self.hanoi.arm.catchbox()
             yield
+        yield
+        self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
         box_placer = self.box_place_and_return_to_original_pos()
         for _ in box_placer:
             yield
