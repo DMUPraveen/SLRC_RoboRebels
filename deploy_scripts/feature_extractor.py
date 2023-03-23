@@ -37,11 +37,13 @@ class line():
     
     def get_midpoint(self):
         return (self.vertex1+self.vertex2)/2
+    
+    def get_angle(self):
+        return np.degrees(np.arctan(self.get_gradient()))
 
     def print_(self):
-        print("Line from (%i,%i) to (%i,%i) with gradenit %f , intercept %f and length %f"%(self.vertex1[0], self.vertex1[1],self.vertex2[0], self.vertex2[1], self.get_gradient(),\
-                                                                                           self.get_intercept(), self.get_length()))
-    
+        print("Line from (%i,%i) to (%i,%i) with gradient %f, intercept %f, length %f, and angle %f degrees"%(self.vertex1[0], self.vertex1[1],self.vertex2[0], self.vertex2[1], self.get_gradient(),\
+                                                                                           self.get_intercept(), self.get_length(), self.get_angle()))
 
 def intersects(imgShape,line1, line2):
     # Check if lines are parallel
@@ -100,7 +102,7 @@ def openCV_houghlines(mat,r_res=1,theta_res=np.pi / 180, int_thresh=50, l=None, 
         print ('Usage: hough_lines.py [image_name -- default ' + default_file + '] \n')
         return -1
 
-    linesP = cv2.HoughLinesP(src, r_res, theta_res, int_thresh, l, minPoint_line, maxLine_gap)
+    linesP = cv2.HoughLinesP(src, r_res, theta_res, int(int_thresh), l, int(minPoint_line), int(maxLine_gap))
     h,_ = src.shape
 
     if linesP is not None:
@@ -201,6 +203,59 @@ def removeDup_sortLen(lines,gradientThresh,interceptThresh):
 
     return sorted_lines
 
+
+def rampVerticalHelper(lines, gradientThresh=0.1, interceptThresh=10, angleThreshold=3):
+    filtered_lines = []
+    for line in lines:
+        if abs(line.get_angle()) < angleThreshold: # filter out horizontal lines
+            continue
+        if len(filtered_lines) == 0:
+            filtered_lines.append(line)
+        else:
+            keep_line = True
+            for filtered_line in filtered_lines:
+                if abs(line.get_gradient() - filtered_line.get_gradient()) < gradientThresh \
+                    and abs(line.get_intercept() - filtered_line.get_intercept()) < interceptThresh:
+                    if line.get_length() > filtered_line.get_length():
+                        filtered_lines.remove(filtered_line)
+                    else:
+                        keep_line = False
+                        break
+            if keep_line:
+                filtered_lines.append(line)
+
+    sorted_lines = sorted(filtered_lines, key=lambda line: line.get_length(), reverse=True)
+
+    return sorted_lines
+
+
+import itertools
+
+def find_closest_and_longest(lines):
+    closest_pair = None
+    closest_distance = float('inf')
+    longest_pair = None
+    longest_length = 0
+    
+    # Generate all possible pairs of lines
+    line_pairs = itertools.combinations(lines, 2)
+    
+    for pair in line_pairs:
+        # Calculate distance between midpoints
+        distance = np.linalg.norm(pair[0].get_midpoint() - pair[1].get_midpoint())
+        
+        # Check if this is the closest pair so far
+        if distance < closest_distance:
+            closest_pair = pair
+            closest_distance = distance
+        
+        # Check if this is the longest pair so far
+        length_sum = pair[0].get_length() + pair[1].get_length()
+        if length_sum > longest_length:
+            longest_pair = pair
+            longest_length = length_sum
+    
+    return closest_pair, longest_pair
 
 def bearing(start_x, start_y, end_x, end_y):
     delta_x = end_x - start_x

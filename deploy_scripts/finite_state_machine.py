@@ -33,11 +33,15 @@ class FiniteStateMachine:
         if (current_state_index+1)<len(self.states):
             self.current_state = self.states[current_state_index+1]
         else:
-            print('Failed Transition in FSM')
+            self.my_parent.transition_to_next()
+
+    def dump_kwargs(self):
+        self.temp_kwargs = dict()
 
 
     def execute_action(self):
         """Execute the action of the current state."""
+        #print('Executing ', self.current_state)
         action = self.actions[self.current_state]
         action(self)
 
@@ -76,10 +80,11 @@ class FiniteStateMachineManager():
         if (current_state_index+1)<len(self.states):
             self.current_state = self.states[current_state_index+1]
         else:
-            print('Failed Transition in FSM')
+            self.my_parent.transition_to_next()
 
 
     def execute_action(self):
         """Execute the action of the current state."""
         self.children[self.current_state].execute_action()
+        #print("Executing %s"%(self.current_state))
         

@@ -5,17 +5,25 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 
 WorldInfo {
   FPS 10
+  contactProperties [
+    ContactProperties {
+      material2 "tyre"
+      coulombFriction [
+        5
+      ]
+    }
+  ]
 }
 Viewpoint {
-  orientation 0.4725537508845823 0.4618295159453799 -0.7506040572276226 1.8757876182970972
-  position -0.9283051892306713 2.8309859190241617 3.257697537721124
+  orientation -0.32297491037110326 -0.603112821707481 0.729343630645266 5.016508977962007
+  position -1.0894013434255292 0.7881493620830703 0.754698923189124
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 Solid {
-  translation 0 -0.17 0
+  translation 0 -0.169 -0.002
   children [
     Solid {
       translation 0.97 0.57 0.006
@@ -373,7 +381,7 @@ Solid {
   translation 0 1.51 -0.05
   children [
     Solid {
-      translation -0.8601 -0.55 0.005
+      translation -0.8601 -0.55 0.0059
       rotation 0 0 1 -1.5707953071795862
       children [
         Shape {
@@ -745,7 +753,7 @@ Solid {
   boundingObject USE floor
 }
 Solid {
-  translation 0 1.22045 -0.119747
+  translation 0 1.2187 -0.124
   rotation 1 0 0 -0.176
   children [
     Solid {
@@ -1198,7 +1206,7 @@ DEF my_solid Solid {
   model "rectangle arena"
 }
 Robot {
-  translation -0.74 1.61014 -0.0251445
+  translation -0.860006 0.300473 0.0332821
   rotation -0.9999990592514364 -0.0004766927164736228 -0.0012861805068113857 0.00643486419559361
   children [
     Solid {
@@ -1207,10 +1215,12 @@ Robot {
         Shape {
           geometry DEF ballCaster Sphere {
             radius 0.01
+            subdivision 3
           }
         }
       ]
       name "solid(3)"
+      contactMaterial "caster"
       boundingObject USE ballCaster
       physics Physics {
       }
@@ -1221,13 +1231,17 @@ Robot {
         anchor 0.08 -0.03 0
       }
       device [
+        PositionSensor {
+          name "leftPos_sensor"
+        }
         RotationalMotor {
           name "left motor"
+          maxTorque 30
         }
       ]
       endPoint Solid {
-        translation 0.08000000013305797 -0.030001512493804457 1.2806245848910366e-06
-        rotation -0.41758832146318364 -0.8069936223314842 -0.417589855353157 4.499570706951628
+        translation 0.08000000013305797 -0.030001512493804398 1.2806245848493067e-06
+        rotation -0.4175883214631908 -0.8069936223314806 -0.41758985535315707 4.499570706951669
         children [
           DEF leftWheel Shape {
             appearance PBRAppearance {
@@ -1240,6 +1254,7 @@ Robot {
           }
         ]
         name "solid(1)"
+        contactMaterial "tyre"
         boundingObject USE leftWheel
         physics Physics {
         }
@@ -1251,13 +1266,17 @@ Robot {
         anchor 0.08 -0.03 0
       }
       device [
+        PositionSensor {
+          name "rightPos_sensor"
+        }
         RotationalMotor {
           name "right motor"
+          maxTorque 30
         }
       ]
       endPoint Solid {
-        translation -0.07999999986545688 -0.030002030807482108 1.6530229528892331e-06
-        rotation -0.4175895582112661 -0.8069922856217181 -0.41759120179902615 4.499568765223495
+        translation -0.07999999986545332 -0.030002030807482077 1.6530229528671412e-06
+        rotation -0.4175895582113087 -0.8069922856217001 -0.4175912017990182 4.499568765223619
         children [
           DEF rWheel_ Shape {
             appearance PBRAppearance {
@@ -1270,6 +1289,7 @@ Robot {
           }
         ]
         name "solid(2)"
+        contactMaterial "tyre"
         boundingObject USE rWheel_
         physics Physics {
         }
@@ -1333,7 +1353,7 @@ Robot {
       aperture 1.5709
     }
     DistanceSensor {
-      translation -0.000127119 -0.08 0
+      translation -0.000143009 -0.09 0
       rotation 0 0 -1 1.5723853071795864
       name "frontUS"
       lookupTable [
@@ -1341,10 +1361,12 @@ Robot {
         1 1000 0
       ]
       type "infra-red"
+      aperture 0.01
+      redColorSensitivity 3
     }
     Camera {
-      translation 0 0 0.07
-      rotation 0.1294279597735375 0.1294279597735375 -0.9831056944488314 1.58783
+      translation 0 0 0.1
+      rotation 0.12742723221334223 0.2165991887377881 -0.9679086175505304 1.58783
       name "rebelEye"
       width 480
       height 320

@@ -2,7 +2,7 @@ from controller import Robot
 import cv2
 import numpy as np
 
-max_velocity = np.pi*2
+max_velocity = np.pi*2*0.2
 
 class RobotManager(Robot):
 
@@ -10,6 +10,7 @@ class RobotManager(Robot):
         Robot.__init__(self)
         self.timeStep = int(self.getBasicTimeStep())
         self.initialize_all_sensors();
+        self.encoderOffset_90 = 5.8
     
     
     def initialize_all_sensors(self):
@@ -54,6 +55,13 @@ class RobotManager(Robot):
         self.cam = self.getDevice("rebelEye")
         self.cam.enable(self.timeStep)
 
+        # motor encoders
+        self.leftWheelPos = self.getDevice("leftPos_sensor")
+        self.rightWheelPos = self.getDevice("rightPos_sensor")
+
+        self.leftWheelPos.enable(self.timeStep)
+        self.rightWheelPos.enable(self.timeStep)
+
 
     def get_ultrasonic_distances(self):
         US_distances = []
@@ -74,13 +82,36 @@ class RobotManager(Robot):
         ds_distances = []
         for sensor in self.DS_sensors:
             ds_distances.append(sensor.getValue())
-        return np.array(ds_distances)
+        return 1000-np.array(ds_distances)
+    
 
+    def get_encoder_val(self):
+        left = self.leftWheelPos.getValue()
+        right = self.rightWheelPos.getValue()
+        return np.array([left, right])
+    
+    def get90_enc_targets(self, left=True):
+        if left:
+            encoderOffset = self.encoderOffset_90
+            cLeft, cRight = self.get_encoder_val()
+            leftTarget = cLeft-encoderOffset
+            rightTarget = cRight+encoderOffset
+        else:
+            encoderOffset = self.encoderOffset_90
+            cLeft, cRight = self.get_encoder_val()
+            leftTarget = cLeft+encoderOffset
+            rightTarget = cRight-encoderOffset
+        return np.array([leftTarget, rightTarget])
+
+
+    # -- Motor Commands --
     def move_forward(self):
+
         self.left_motor.setVelocity(0.8*max_velocity)
         self.right_motor.setVelocity(0.8*max_velocity)
 
     def set_speed(self,left,right):
+        #TODO: Add speed clipping
         self.left_motor.setVelocity(left)
         self.right_motor.setVelocity(right)
 
@@ -89,10 +120,14 @@ class RobotManager(Robot):
         self.right_motor.setVelocity(0)
 
     def turn_right(self):
-        self.left_motor.setVelocity(-0.8*max_velocity)
-        self.right_motor.setVelocity(0.8*max_velocity)
-        
-    def turn_left(self):
         self.left_motor.setVelocity(0.8*max_velocity)
         self.right_motor.setVelocity(-0.8*max_velocity)
+        
+    def turn_left(self):
+        self.left_motor.setVelocity(-0.8*max_velocity)
+        self.right_motor.setVelocity(0.8*max_velocity)
+
+    def stop(self):
+        self.left_motor.setVelocity(0)
+        self.right_motor.setVelocity(0)
 

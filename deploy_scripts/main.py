@@ -11,7 +11,7 @@ import cv2
 notArrow_areaThres = 3000
 notArrow_areaThres_lower = 250
 stemLongLineNum_thresh = 8
-waitkey_delay = 100
+waitkey_delay = 32
 
 def raiseFlag(code,v):
     flags = ['Spans Entire Height.Not Arrow',\
@@ -52,7 +52,7 @@ def get_bearing(img,verbose=False, imgVerbose=False):
         for b in blobs:
             cv2.rectangle(verbImage_blob, (b.lowerX, b.lowerY), (b.upperX, b.upperY), (0,0,255), thickness=2)
         cv2.imshow("Detected Blobs ",verbImage_blob)
-        cv2.waitKey()
+        cv2.waitKey(32)
 
     # Iterate through the blobs starting largest first until arrow feature are detected
     while (arrowFound==False):
@@ -76,7 +76,8 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             raiseFlag(0, verbose)
 
             if len(blobs)>0:
-                blobs.pop(0)
+                blobs.remove(largestBlob)
+                continue
             else:
                 raiseFlag(8,verbose)
                 arrowFound = False
@@ -87,7 +88,8 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             raiseFlag(1, verbose)
 
             if len(blobs)>0:
-                blobs.pop(0)
+                blobs.remove(largestBlob)
+                continue
             else:
                 raiseFlag(8,verbose)
                 arrowFound = False
@@ -116,7 +118,7 @@ def get_bearing(img,verbose=False, imgVerbose=False):
 
         # Display Outline of the Image
         # cv2.imshow('Edge Image', outline)
-        # cv2.waitKey()
+        # cv2.waitKey(32)
 
 
         # Get the longest line you can fit into this outline you've got
@@ -125,7 +127,8 @@ def get_bearing(img,verbose=False, imgVerbose=False):
 
         stemFound = False
         error_factor = 4               # Higher the error Factor, shorter the lines detected
-        print("Finding Stem")
+        if verbose:
+            print("Finding Stem")
         while not(stemFound) and error_factor<8:
             
             c_outline = np.copy(outline)
@@ -154,13 +157,14 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             raiseFlag(4,verbose)
 
             if len(blobs)>0:
-                blobs.pop(0)
+                blobs.remove(largestBlob)
+                
             else:
                 raiseFlag(8,verbose)
                 arrowFound = False
             continue
-
-        print("Found Stem")
+        if verbose:
+            print("Found Stem")
         # Heuristic #2 : If long lines to having more than 2 lines, its more likely that we are looking at something 
         #                other than an arrow. Reduce confidence here
         if len(bestFitStem)>stemLongLineNum_thresh:
@@ -175,7 +179,8 @@ def get_bearing(img,verbose=False, imgVerbose=False):
         headFound = False
         error_factor = 3
         previous_error_factor = error_factor
-        print("Finding Head")
+        if verbose:
+            print("Finding Head")
 
         while not(headFound) and error_factor<5:
             headImg = preprocessor.drawLines(outline,bestFitStem[:2])
@@ -190,6 +195,7 @@ def get_bearing(img,verbose=False, imgVerbose=False):
                                             l=None, minPoint_line=minPoints_in_line_short, maxLine_gap=max_gap_lines_short)
         
             if imgVerbose:
+                #print('Error Factor ', error_factor)
                 cv2.imshow('Short Lines Input', headImg)
                 cv2.imshow('Short Lines Output', c_headImg)
                 cv2.waitKey(waitkey_delay)
@@ -237,14 +243,16 @@ def get_bearing(img,verbose=False, imgVerbose=False):
                             vertex = x[1]
                             headFound = True
                             break
-            print('Error Factor %i \t Head Found Status %s'%(error_factor, str(headFound)))
+            if verbose:
+                print('Error Factor %i \t Head Found Status %s'%(error_factor, str(headFound)))
             if error_factor==4 and not(headFound):
                 break
-            """
+            
             elif previous_error_factor==error_factor:
+                previous_error_factor = error_factor
                 error_factor +=1
                 confidence-=0.1
-            """
+            
 
             #TODO : Implement a function to calculate the distance between the given vertices and validate
 
@@ -252,12 +260,13 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             raiseFlag(7,verbose)
 
             if len(blobs)>0:
-                blobs.pop(0)
+                blobs.remove(largestBlob)
+                continue
             else:
                 raiseFlag(8,verbose)
                 arrowFound = False
 
-            continue
+            break
         if verbose:
             print("Found Head")
 
@@ -265,23 +274,25 @@ def get_bearing(img,verbose=False, imgVerbose=False):
         if confidence>0.5:
             arrowFound = True
             
-    if len(bestFitStem)>=2:
-        midpoint = (bestFitStem[0].get_midpoint()+bestFitStem[1].get_midpoint())/2
+        if len(bestFitStem)>=2:
+            midpoint = (bestFitStem[0].get_midpoint()+bestFitStem[1].get_midpoint())/2
 
 
     if arrowFound:
-        print('Found Arrow with confidence %2.3f'%(confidence),'\t',end='', flush=True)
-        print(feature_extractor.bearing(midpoint[0],midpoint[1],vertex[0],vertex[1]), flush=True)
-        print((midpoint[0]//1,midpoint[1]//1),(vertex[0]//1,vertex[1]//1), flush=True)
-        cv2.circle(verbImage, (testx1+int(midpoint[0]),testy1+height-int(midpoint[1])), 3, (0, 0, 255), -1)
-        cv2.circle(verbImage, (testx1+int(vertex[0]),testy1+height-int(vertex[1])), 3, (255, 0, 0), -1)
+        heading_towards = feature_extractor.bearing(midpoint[0],midpoint[1],vertex[0],vertex[1])
+        stemCenter = (midpoint[0]//1,midpoint[1]//1)
+        if verbose:
+            print('Found Arrow with confidence %2.3f'%(confidence),'\t',end='', flush=True)
+            print((midpoint[0]//1,midpoint[1]//1),(vertex[0]//1,vertex[1]//1), flush=True)
 
-        cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,255,0), thickness=2) #TODO: put me inside verbose later 
         if imgVerbose:
+            cv2.circle(verbImage, (testx1+int(midpoint[0]),testy1+height-int(midpoint[1])), 3, (0, 0, 255), -1)
+            cv2.circle(verbImage, (testx1+int(vertex[0]),testy1+height-int(vertex[1])), 3, (255, 0, 0), -1)
+            cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,255,0), thickness=2) #TODO: put me inside verbose later 
             cv2.imshow("Verbose Image", verbImage)
             cv2.waitKey(waitkey_delay)
 
-        return verbImage, c_headImg
+        return confidence, heading_towards
     else:
         if imgVerbose:
             cv2.rectangle(verbImage, (testx1, testy1), (testx2, testy2), (0,0,255), thickness=2)
@@ -289,17 +300,52 @@ def get_bearing(img,verbose=False, imgVerbose=False):
             cv2.waitKey(waitkey_delay)
 
         if len(blobs)>0:
-            blobs.pop(0)
+            blobs.remove(largestBlob)
         else:
             raiseFlag(8,verbose)
             
         return -1,-1
             
         
-    
-        
+def get_closest_blob_coord(img, imgVerb = False):
+    #Extract Image data
+    src = img
+
+    #print('Imasge size ',src.shape)
+    # Apply Otsu Thresholding to the Entire Image
+    otsu_thresh = preprocessor.applyOtsu(src)
+    kSize = 25
+    src = otsu_thresh
+
+    # Extract the white blobs on the Image
+    blobs = preprocessor.extract_blob(src)
+    clipped = False
+
+    if len(blobs)>1:
+        tb = preprocessor.getLblob(blobs)
+        if tb.upperX>=img.shape[1]-1 or tb.upperY>=img.shape[0]-1:
+            clipped = True
+    elif len(blobs)==1:
+        tb = blobs[0]
+        if tb.upperX>=img.shape[1]-1 or tb.upperY>=img.shape[0]-1:
+            clipped = True
+    else:
+        return False, -1, -1
+    # testy1 = tb.lowerY
+    # testy2 = tb.upperY
+    # testx1 = tb.lowerX
+    # testx2 = tb.upperX
+    # print((testx1, testy1), (testx2, testy2), img.shape)
+    # cv2.rectangle(img, (testx1, testy1), (testx2, testy2), (255,255,255), thickness=2)
+    # cv2.imshow('Image', img)
+    # cv2.waitKey(0)
+
+    return True, tb, clipped
+
+
 
 if __name__ == '__main__':
-    filename = 'samples/s11.jpg'
+    filename = 'E:\\DEEE\\4th SEM\\SLRC 23\\root\\error_images\\errorImg3_1.jpg'
     src = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    get_bearing(src,verbose=True, imgVerbose=True)
+    #get_bearing(src,verbose=True, imgVerbose=True)
+    print(get_closest_blob_coord(src))

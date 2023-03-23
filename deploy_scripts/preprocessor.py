@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-neighbourRadius = 25
+neighbourRadius = 4
 class blob():
     def __init__(self, x, y,imgShape=(320,480)):
         self.elements = set()
@@ -84,6 +84,11 @@ class blob():
     
     def area(self):
       return len(self.elements)
+    
+    def get_center(self):
+        mx = self.upperX+self.lowerX
+        my = self.upperY+self.lowerY
+        return np.array([mx/2, my/2])
 
 
 def drawLines(img, lines):
@@ -91,6 +96,7 @@ def drawLines(img, lines):
     for i in lines:
         cv2.line(src, (i.vertex1[0],img.shape[0]-i.vertex1[1]), (i.vertex2[0],img.shape[0]-i.vertex2[1]), (0,0,0), 3, cv2.LINE_AA)
     return src
+
 
     
 # get white pixel
@@ -113,7 +119,36 @@ def extract_blob(gray):
                         break
                 if not(added):
                     blobs.append(blob(x,y))
-    return blobs
+    
+    return clean_blobs(gray, blobs)
+
+
+def clean_blobs(g, b, clean_rate= 0.3):
+    c_b = []
+    for blob in b:
+        testy1 = blob.lowerY
+        testy2 = blob.upperY
+        testx1 = blob.lowerX
+        testx2 = blob.upperX
+        slice = make_copy(g,testy1, testy2, testx1, testx2)
+
+        top_row = slice[0,:]
+        bottom_row = slice[-1,:]
+
+        left_col = slice[:,0]
+        right_col = slice[:,-1]
+
+        edge_values = np.concatenate((left_col, right_col, top_row, bottom_row))
+
+        total = np.sum(edge_values)
+
+        thresh = edge_values.shape[0]*255*clean_rate
+
+        if total<thresh:
+            c_b.append(blob)
+    return c_b
+    
+
 
 def blur(img,kSize):
     return cv2.GaussianBlur(img,(kSize,kSize),0)
@@ -160,13 +195,13 @@ def simpleEdge(inImg):
 def getLblob(blobs):
     largestIndex = 0
     largestSize = 0
-    print("Length of List is %i"%(len(blobs)))
+    #print("Length of List is %i"%(len(blobs)))
     for b in range(len(blobs)):
         x = blobs[b].area()
         if x>largestSize:
             largestSize = x
             largestIndex = b
-    print("Trying to access %i"%(largestIndex))
+    #print("Trying to access %i"%(largestIndex))
     try:
         return blobs[largestIndex]
     except IndexError:
@@ -180,7 +215,7 @@ def applyOtsu(img):
 
 if __name__== "__main__":
 
-    filename = 'samples/s8.jpg'
+    filename = 'E:\\DEEE\\4th SEM\\SLRC 23\\root\\error_images\\errorImg3.jpg'
     src = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
     verbImage = np.copy(src)
@@ -188,6 +223,7 @@ if __name__== "__main__":
     height, width = src.shape
 
     # Apply Otsu Thresholding to the Entire Image
+    src = blur(src, 25)
     otsu_thresh = applyOtsu(src)
     kSize = 25
     src = otsu_thresh
