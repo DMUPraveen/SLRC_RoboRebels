@@ -22,7 +22,7 @@ class Hanoi:
 
 
     def PlacingSecondBox(self):
-        self.arm.hanoiPlace_1_top(-11,0.7,2.4,0,-1.5) #### Change
+        self.arm.hanoiPlace_1_top(-11,0.93,1.7,0,-1.1) #### Change
 
     def PlacingThirdBox(self):
         self.arm.hanoiPlace_2_top_top(-11,0,2.4,0,-0.9)  #### Change

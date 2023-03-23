@@ -122,7 +122,7 @@ class Positions:
     
     def isHanoi_top_1_Placed(self):   ############### For Hanoi Bottom box #################
         arr=self.positionvalues()
-        real_values=[-11,0.7,2.4,0,-1.5]
+        real_values=[-11,0.93,1.7,0,-1.1]
 
         # print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
