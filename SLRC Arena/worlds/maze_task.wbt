@@ -1538,33 +1538,98 @@ DEF rebel Robot {
         }
       }
     }
-    DEF d4 DistanceSensor {
+    DEF LeftFront DistanceSensor {
       translation -0.05 0.07 0.005
       rotation 0 0 1 3.141592653589793
-      name "distance sensor(4)"
+      name "left_front"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF LeftBack DistanceSensor {
+      translation -0.05 -0.07 0.005
+      rotation 0 0 1 3.141592653589793
+      name "left_back"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
     DEF BoxDSensor1 DistanceSensor {
       translation 0 0.1 -0.01
       rotation 0 0 1 1.5708003061004252
       name "box_sensor_middle"
     }
-    DEF d3 DistanceSensor {
+    DEF FrontLeft DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 2.3561996938995744
-      name "distance sensor(3)"
+      name "front_left"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
-    DEF d2 DistanceSensor {
+    DEF RightFront DistanceSensor {
       translation 0.05 0.07 0.005
-      name "distance sensor(2)"
+      name "right_front"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
-    DEF d1 DistanceSensor {
+    DEF RightBack DistanceSensor {
+      translation 0.05 -0.07 0.005
+      name "right_back"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF FrontRight DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 0.7854003061004253
-      name "distance sensor(1)"
+      name "front_right"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
-    DEF d0 DistanceSensor {
+    DEF BackLeft DistanceSensor {
+      translation -0.03 -0.07 0.005
+      rotation 0 0 1 -1.5707963267948966
+      name "back_left"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF BackLeft DistanceSensor {
+      translation 0.03 -0.07 0.005
+      rotation 0 0 1 -1.5707963267948966
+      name "back_right"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF Front DistanceSensor {
       translation 0 0.07 0.005
       rotation 0 0 1 1.5707996938995747
+      name "front"
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
     }
     DEF left1 HingeJoint {
       jointParameters HingeJointParameters {
@@ -1572,6 +1637,8 @@ DEF rebel Robot {
         anchor 0.055 0.03 0
       }
       device [
+        PositionSensor {
+        }
         DEF Left_motor1 RotationalMotor {
           name "Left_motor1"
         }
@@ -1612,6 +1679,8 @@ DEF rebel Robot {
         anchor -0.055 0.03 0
       }
       device [
+        PositionSensor {
+        }
         RotationalMotor {
           name "Right_motor1"
         }
@@ -1642,7 +1711,7 @@ DEF rebel Robot {
   boundingObject USE Body
   physics Physics {
   }
-  controller "my_controller"
+  controller "<extern>"
 }
 DEF supervisor Robot {
   translation -1.93 1.32 0.0015
