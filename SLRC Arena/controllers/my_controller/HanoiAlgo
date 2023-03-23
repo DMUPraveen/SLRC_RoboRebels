@@ -1,0 +1,11 @@
+
+from Mazegoto import Mazegoto
+
+
+class HanoiCreate:
+    def __init__(self, mazegoto: Mazegoto):
+        self.mazegoto = mazegoto
+
+    def retrieve_box(self):
+        for corner in self.mazegoto.mazesolver.corners:
+            pass

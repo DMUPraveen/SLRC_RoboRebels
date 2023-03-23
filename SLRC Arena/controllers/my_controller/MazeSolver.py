@@ -60,8 +60,13 @@ class MazeSolver:
             np.array(POS_DIRECTION_MAP[x], dtype=int) for x in self.principal_directions]
         corner1 = np.array(self.mazeRunner.start_position,
                            dtype=int)+STRIDE*principal_1
+        self.mazeRunner.grid.get_node(
+            *corner1).set_wall(OPPOSITE_DIRECTION[self.principal_directions[1]])
+
         corner2 = np.array(self.mazeRunner.start_position,
                            dtype=int)+STRIDE*principal_2
+        self.mazeRunner.grid.get_node(
+            *corner2).set_wall(OPPOSITE_DIRECTION[self.principal_directions[0]])
 
         corner3 = np.array(self.mazeRunner.start_position,
                            dtype=int)+STRIDE*principal_2+STRIDE*principal_1
