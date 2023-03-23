@@ -1,4 +1,4 @@
-from mainfunction import main
+from mazesolvertest import main
 
 if __name__ == "__main__":
     main()

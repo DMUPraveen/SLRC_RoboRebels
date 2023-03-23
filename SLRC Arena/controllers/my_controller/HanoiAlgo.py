@@ -4,6 +4,7 @@ from SuperStateMachineForCatchTheBox import SuperState
 from PlacingOnTop import Hanoi
 from Navigation import LinearTraveller
 from PID import PID
+from Grabber import GrabBox
 
 RED = 0
 GREEN = 1
@@ -16,7 +17,7 @@ PLACE_DISTANCE_THRESHOLD = 0.001
 
 
 class HanoiRetrieve:
-    def __init__(self, mazegoto: Mazegoto, superstate: SuperState, hanoi: Hanoi):
+    def __init__(self, mazegoto: Mazegoto, superstate: SuperState, hanoi: Hanoi, grabbox: GrabBox):
         self.mazegoto = mazegoto
         self.colors = [RED, GREEN, BLUE]
         self.initial_box_places = {
@@ -26,6 +27,7 @@ class HanoiRetrieve:
         }
         self.superstate = superstate
         self.hanoi = hanoi
+        self.grabbox = grabbox
 
     def detect_color(self):
         return self.colors.pop()
@@ -47,11 +49,17 @@ class HanoiRetrieve:
         self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
 
         for _ in range(WAIT_TIME//2):
-            self.hanoi.arm.releasefingers()
+            self.grabbox.release()
+            print("Waiting and Releasing")
+            yield
+
+        for _ in range(WAIT_TIME//2):
+            self.hanoi.arm.putinback(-11, -0.7, -1,
+                                     0, -1.47)  # """Put in back"""
             print("Waiting and Releasing")
             yield
         for _ in range(WAIT_TIME//2):
-
+            self.hanoi.arm.catchbox()
             print("Waiting and Releasing")
             yield
 
@@ -87,6 +95,18 @@ class HanoiRetrieve:
         for _ in range(WAIT_TIME):
             print("Waiting")
             yield
+        self.hanoi.arm.releasefingers()
+        yield
+        for _ in range(WAIT_TIME):
+            print("Waiting")
+            yield
+        self.grabbox.grab()
+        yield
+        for _ in range(WAIT_TIME):
+            print("Waiting")
+            yield
+        self.grabbox.stop()
+        yield
 
         go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(
             ATFER_PICKUP_FORWARD_THRESHOLD)

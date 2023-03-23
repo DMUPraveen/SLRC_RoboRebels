@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.09530741086978524 -0.9570061652478484 0.27396294842716573 5.5858906576293625
-  position -2.0720412681173253 1.1869106742977118 0.3013276451563561
+  orientation 0.055257421462797544 -0.9903336675139559 -0.12722359986118942 5.456513579142813
+  position -2.0234376940470877 1.1475225024354114 0.3065531900924361
   follow "Rebel_Robot"
 }
 TexturedBackground {
@@ -125,7 +125,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0 -0.09 0.016
+        translation 0 -0.09 0.021
         children [
           DEF slider1 Shape {
             appearance PBRAppearance {
@@ -133,7 +133,7 @@ DEF rebel Robot {
               metalness 0
             }
             geometry Box {
-              size 0.1 0.01 0.011
+              size 0.1 0.01 0.022
             }
           }
         ]
@@ -153,7 +153,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0 0.016
+        translation 0 0 0.021
         children [
           DEF slider1 Shape {
             appearance PBRAppearance {
@@ -161,7 +161,7 @@ DEF rebel Robot {
               metalness 0
             }
             geometry Box {
-              size 0.1 0.01 0.011
+              size 0.1 0.01 0.022
             }
           }
         ]
@@ -248,7 +248,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.2091872584420695e-08 0.060000079847691 0.011998186410560274
+        translation 4.209187258461043e-08 0.06000007984769104 0.011998186410560274
         rotation -2.090745832575539e-09 -3.5577738650154974e-08 -0.9999999999999994 3.1415925718064015
         scale 0.2 0.2 0.2
         children [
@@ -738,7 +738,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.16481351922281315 0.00013124544926007486 0.9863247369178284 3.1400217799478196
+                                            rotation 0.16481351922281298 0.00013124544926015782 0.9863247369178284 3.1400217799478196
                                             children [
                                               DEF rf_finger Group {
                                                 children [
