@@ -1,0 +1,59 @@
+#include <Arduino.h>
+#line 1 "e:\\Project_Archive\\SLRC\\Code\\SLRC_RoboRebels\\Motor_Control\\Motor_Control.ino"
+#include "Motor_Controller.h"
+
+#include "Encoder_helper.h"
+#include "SpeedCal.h"
+
+#include "BluetoothSerial.h"
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+const uint8_t motor_in1 = 32;
+const uint8_t motor_in2 = 33;
+const uint8_t motor_in3 = 25;
+const uint8_t motor_in4 = 26;
+
+long speed = 0;
+float fspeed = 1.0f;
+
+SpeedCal sc = SpeedCal();
+
+Motor_Controller controller(
+    motor_in1,
+    motor_in2,
+    motor_in3,
+    motor_in4);
+#line 28 "e:\\Project_Archive\\SLRC\\Code\\SLRC_RoboRebels\\Motor_Control\\Motor_Control.ino"
+void setup();
+#line 34 "e:\\Project_Archive\\SLRC\\Code\\SLRC_RoboRebels\\Motor_Control\\Motor_Control.ino"
+void loop();
+#line 28 "e:\\Project_Archive\\SLRC\\Code\\SLRC_RoboRebels\\Motor_Control\\Motor_Control.ino"
+void setup()
+{
+    SerialBT.begin("Watson");
+    setup_encoders_with_interrupts();
+}
+
+void loop()
+{
+    bool speed_recieved = false;
+    if (SerialBT.available())
+    {
+        speed_recieved = true;
+        // speed = Serial.parseInt();
+        fspeed = SerialBT.parseFloat();
+    }
+    if (speed_recieved)
+    {
+        SerialBT.println(fspeed);
+    }
+    controller.set_motor_speed(fspeed, fspeed);
+    sc.update(countA, countB);
+    SerialBT.println(sc.speed_A);
+    delay(5);
+}
+

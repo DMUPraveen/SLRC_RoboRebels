@@ -1,0 +1,17 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard"
+  },
+  {
+    "Sourcefile": "e:\\Project_Archive\\SLRC\\Code\\SLRC_RoboRebels\\Communication\\Hardware_Communication\\build\\sketch\\Hardware_Communication.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

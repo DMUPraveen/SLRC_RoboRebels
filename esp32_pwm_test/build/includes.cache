@@ -1,0 +1,17 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\dell\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.4\\cores\\esp32"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\dell\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.4\\variants\\doitESP32devkitV1"
+  },
+  {
+    "Sourcefile": "e:\\Project_Archive\\SLRC\\Code\\SLRC_RoboRebels\\esp32_pwm_test\\build\\sketch\\esp32_pwm.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]
