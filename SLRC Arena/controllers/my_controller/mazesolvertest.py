@@ -22,6 +22,7 @@ from Boxdetector import BoxDetector
 from SuperStateMachineForCatchTheBox import SuperState
 from CameraClass import Camera
 from PlacingOnTop import Hanoi
+from ClassForPuttingBackTheBox import PutTHEDAMNBOX
 ###########################################################
 
 YELLOW = (255, 255, 0)
@@ -64,7 +65,8 @@ def main():
     boxdetect = BoxDetector(robot, motorcontrol)
     cam = Camera(robot, motorcontrol)
     superduper = SuperState(robot, superarm, boxdetect, cam)
-    Hano = Hanoi(robot, arm, pos, boxdetect, motorcontrol, cam)
+    putboxdown=PutTHEDAMNBOX(robot,arm,pos)
+    Hano = Hanoi(robot, arm, pos, boxdetect, motorcontrol, cam,putboxdown)
 ###########################################################
     main_task = main_control_code(
         mazesolver, mazegoto, motorcontrol, superduper, Hano)

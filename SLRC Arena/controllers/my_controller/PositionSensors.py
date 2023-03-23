@@ -6,6 +6,7 @@ class Positions:
     def __init__(self,robot: Robot,armcontroller:armcontroll):
         self.robot=robot
         self.TIME_STEP=64
+        self.time=0
 
         self.pitch=armcontroller.pitch_motor.getPositionSensor()
         self.wrist=armcontroller.wrist_motor.getPositionSensor()

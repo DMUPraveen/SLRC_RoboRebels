@@ -108,3 +108,10 @@ class armcontroll:
         self.elbowcontrol(elbow_val)
         self.shouldercontrol(shoulder_val)
         self.pitchcontrol(pitch_val)
+
+    """ ADDED BECAUSE PUTTING DOWN"""
+    def Catch_BOX_For_PUTTING(self):
+        self.finger_motor_right.setPosition(-2)
+        self.finger_motor_right.setVelocity(3)
+        self.finger_motor_left.setPosition(1)
+        self.finger_motor_left.setVelocity(2)

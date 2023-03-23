@@ -4,10 +4,14 @@ from PositionSensors import Positions
 from Motors import Motorcontrol
 from Boxdetector import BoxDetector
 from CameraClass import Camera
+from ClassForPuttingBackTheBox import PutTHEDAMNBOX
 
 
 class Hanoi:
-    def __init__(self, robot: Robot, armcontroller: armcontroll, positioncontroller: Positions, boxdetector: BoxDetector, motorcontroller: Motorcontrol, cameracontroller: Camera):
+    def __init__(self, robot: Robot, armcontroller: armcontroll,
+                  positioncontroller: Positions, boxdetector: BoxDetector,
+                    motorcontroller: Motorcontrol, cameracontroller: Camera,
+                    PutBack:PutTHEDAMNBOX):
         self.state = 0
         self.robot = robot
         self.arm = armcontroller
@@ -17,6 +21,7 @@ class Hanoi:
         self.TIME_THRESHOLD = 100
         self.car = motorcontroller
         self.camera = cameracontroller
+        self.putbackdown=PutBack
 
     def PlacingFirstBox(self):
         self.arm.hanoiPlaceBottom(-11, 1.5, 1.8, 0, -1.75)
@@ -28,12 +33,10 @@ class Hanoi:
         self.arm.hanoiPlace_2_top_top(-11, 0.4, 1.85, 0, -0.7)  # Change
 
     def BuildHanoi(self, position):
-        if self.state >= 0:
-            self.arm.catchbox()
         if position == 1:
             print("BOTTOM")
             self.PlacingFirstBox()
-            if self.pos.isHanoiBottomPlaced():
+            if self.state==0 and self.putbackdown.StateMaching_PUTTHEDAMN_1st_BOX():
                 self.state = -1
 
         else:
@@ -50,6 +53,7 @@ class Hanoi:
 
                 """ Working In States"""
                 if self.state == 2:
+                    self.arm.catchbox()
                     self.PlacingSecondBox()
 
                 if self.state == 0:
@@ -68,6 +72,7 @@ class Hanoi:
 
                 """Working In States"""
                 if self.state == 2:
+                    self.arm.catchbox()
                     self.PlacingThirdBox()
 
                 if self.state == 0:

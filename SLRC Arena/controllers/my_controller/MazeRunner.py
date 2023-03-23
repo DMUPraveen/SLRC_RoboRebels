@@ -9,6 +9,7 @@ from GraphicEngine import GraphicEngine, BLUE
 from enum import Enum, auto
 import math
 from types import GeneratorType
+from ClassForPuttingBackTheBox import PutTHEDAMNBOX
 
 ALIGNMENT_THRESHOLD = 0.001
 LINEAR_TRAVEL_THRESHOLD = 0.01
