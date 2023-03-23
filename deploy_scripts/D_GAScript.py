@@ -49,6 +49,7 @@ class D_GA():
         states = ['track arrow', 'blind drive', 'array drive', 'is_exit']
         initial_state = 'track first arrow'
         actions = { 'track first arrow':self.cap_first_arrow,\
+                    'track next arrow':self.cap_next_arrow,\
                     'blind drive': self.blind_find_arrow,\
                     'array drive':self.array_align_arrow,\
                     'is_exit': self.check_exit_found }
@@ -301,13 +302,24 @@ class D_GA():
                         except KeyError:
                             fsm_instance.temp_kwargs['bearing buffer'] = [bearingAngle]
                     else:
+                        self.robot.stop()
                         fsm_instance.transition_to('blind drive')
 
 
 
     def blind_find_arrow(self, fsm_instance):
-        self.robot.stop()
-        print('Implement Blind Following quickly please')
+        
+        linear_speed = 2
+        arr=self.robot.get_line_sensor_val()
+
+
+        whiteCount = np.sum(arr>500)
+        self.robot.move_forward()
+
+        if whiteCount>1:
+            self.robot.stop()
+            fsm_instance.transition_to('array drive')
+
 
     def decode_arrow(self, fsm_instance):        
         # sure and shot figure which way the arrow is pointing
@@ -315,8 +327,28 @@ class D_GA():
         pass
 
 
-    def array_align_arrow(self, fsm_instance):
+    def cap_next_arrow(self, fsm_instance):
         pass
+
+
+    def array_align_arrow(self, fsm_instance):
+        
+        # Look for exit condition
+        linear_speed = 0.5
+        arr=self.robot.get_line_sensor_val()
+        error= 1*arr[0]+0.5*arr[1]+0.25*arr[2]-0.25*arr[3]-0.5**arr[4]-1*arr[5]
+        gamma= 0.0025
+        lspeed=linear_speed-error*gamma
+        rspeed=linear_speed+error*gamma
+        self.robot.set_speed(lspeed,rspeed)
+
+        blackCount = np.sum(arr<500)
+        print(blackCount)
+        if blackCount==6:
+            self.robot.stop()
+            
+            #fsm_instance.transition_to('turn_to_direction')
+            
 
 
     def to_next_arrow(self, fsm_instance):
