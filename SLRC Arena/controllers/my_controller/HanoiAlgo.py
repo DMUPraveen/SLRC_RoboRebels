@@ -8,6 +8,7 @@ GREEN = 1
 BLUE = 2
 
 ATFER_PICKUP_FORWARD_THRESHOLD = 0.5
+WAIT_TIME = 10000//32
 
 
 class HanoiRetrieve:
@@ -45,6 +46,9 @@ class HanoiRetrieve:
         color = self.detect_color()
         pick_up = self.pick_up_box()
         for _ in pick_up:
+            yield
+        for _ in range(WAIT_TIME):
+            print("Waiting")
             yield
         go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(
             ATFER_PICKUP_FORWARD_THRESHOLD)
