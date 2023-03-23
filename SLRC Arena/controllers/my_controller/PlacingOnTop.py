@@ -38,6 +38,7 @@ class Hanoi:
 
         else:
             if position==2:
+                """Switching States"""
                 if self.state==0 and self.camera.isAligned():
                     self.state=1
 
@@ -46,7 +47,8 @@ class Hanoi:
 
                 if self.state==2 and self.pos.isHanoi_top_1_Placed():
                     self.state=-1
-
+                
+                """ Working In States"""
                 if self.state==2:
                     self.PlacingSecondBox()
 
@@ -55,11 +57,22 @@ class Hanoi:
 
 
             if position==3:
-                if self.state==0:
+                """Switching States"""
+                if self.state==0 and self.camera.isAligned():
+                    self.state=1
+
+                if self.state==1 and self.boxDetector.setposition():
+                    self.state=2
+
+                if self.state==2 and self.pos.isHanoi_top_2_Placed():
+                    self.state=-1
+
+                """Working In States"""
+                if self.state==2:
                     self.PlacingThirdBox()
 
-                if self.state==0 and self.pos.isHanoi_top_2_Placed():
-                    self.state=1
+                if self.state==0:
+                    self.camera.alignwithbox()
                 
 
 
