@@ -163,6 +163,21 @@ class MazeRunner:
             td = target_dir_from_relaitve(self.orientation, BACK)
             current_node.set_wall(td)
 
+    def check_for_walls_and_build_smart(self):
+        current_node = self.grid.get_node(*self.grid_position)
+        if(self.distanceSensors.front_wall_present()):
+            td = target_dir_from_relaitve(self.orientation, FRONT)
+            self.grid.set_wall_smart(current_node, td)
+        if(self.distanceSensors.left_wall_present()):
+            td = target_dir_from_relaitve(self.orientation, LEFT)
+            self.grid.set_wall_smart(current_node, td)
+        if(self.distanceSensors.right_wall_present()):
+            td = target_dir_from_relaitve(self.orientation, RIGHT)
+            self.grid.set_wall_smart(current_node, td)
+        if(self.distanceSensors.back_wall_present()):
+            td = target_dir_from_relaitve(self.orientation, BACK)
+            self.grid.set_wall_smart(current_node, td)
+
     def add_task_go_direction(self, direction):
         rel_dir = relative_dir(self.orientation, direction)
         turn_task = self.turn_rel_dir(rel_dir)
@@ -192,6 +207,9 @@ class MazeRunner:
 
     def add_task_build_wall(self):
         self.execution_stack.append(self.check_for_walls_and_build)
+
+    def add_task_build_wall_smart(self):
+        self.execution_stack.append(self.check_for_walls_and_build_smart)
 
     def add_task_aling(self):
         self.execution_stack.append(self.align_with_any_wall())

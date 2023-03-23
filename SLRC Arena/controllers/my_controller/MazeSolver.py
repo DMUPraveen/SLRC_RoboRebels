@@ -12,6 +12,7 @@ class MazeSolver:
         self.principal_directions_found = 0
         self.principal_directions: List[int] = []
         self.corners: List[Tuple[int, int]] = []
+        self.blacklisted_nodes: List[GridNode] = []
 
     def initialize(self):
         self.dfs_stack.append((self.mazeRunner.grid.get_node(
@@ -27,6 +28,8 @@ class MazeSolver:
         current_node = self.mazeRunner.grid.get_node(*current_grid_position)
         connected_node = self.mazeRunner.grid.get_connected_nodes(
             *current_grid_position)
+        connected_node_not_black_listed = list(filter(
+            lambda x: x[0] not in self.blacklisted_nodes, connected_node))
 
         for _, direction in connected_node:
             if(len(self.principal_directions) < 2 and direction
@@ -37,7 +40,7 @@ class MazeSolver:
                 if(len(self.principal_directions) == 2):
                     print("Found Principal directions")
                     self.on_principal_direction_detect()
-        for node, direction in connected_node:
+        for node, direction in connected_node_not_black_listed:
             if(node.has_visited()):
                 continue
             self.dfs_stack.append((node, direction))
@@ -64,8 +67,10 @@ class MazeSolver:
                            dtype=int)+STRIDE*principal_2+STRIDE*principal_1
         self.corners = [tuple(corner)
                         for corner in (corner1, corner2, corner3)]
-        for corner in self.corners:
-            for direction in DIRECTIONS:
-                node = self.mazeRunner.grid.get_node(*corner)
-                self.mazeRunner.grid.set_wall_smart(node, direction)
-                # self.mazeRunner.grid.get_node(*corner).set_wall(direction)
+        self.blacklisted_nodes.extend(
+            self.mazeRunner.grid.get_node(*corner) for corner in self.corners)
+        # for corner in self.corners:
+        #     for direction in DIRECTIONS:
+        #         node = self.mazeRunner.grid.get_node(*corner)
+        #         self.mazeRunner.grid.set_wall_smart(node, direction)
+        # self.mazeRunner.grid.get_node(*corner).set_wall(direction)
