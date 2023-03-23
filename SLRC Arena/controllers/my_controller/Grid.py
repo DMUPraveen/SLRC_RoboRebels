@@ -28,6 +28,13 @@ POS_DIRECTION_MAP = {
 
 DIRECTIONS = [NORTH, EAST, SOUTH, WEST]
 
+OPPOSITE_DIRECTION = {
+    NORTH: SOUTH,
+    SOUTH: NORTH,
+    EAST: WEST,
+    WEST: EAST
+}
+
 
 class GridNode:
     def __init__(self, row: int, column: int):
@@ -65,6 +72,8 @@ class Grid:
         self.grid = [[GridNode(row, column) for column in range(columns)]
                      for row in range(rows)]
         self.put_walls()
+        self.rows = rows
+        self.columns = columns
 
     def get_node(self, row: int, column: int):
         return self.grid[row][column]
@@ -94,6 +103,40 @@ class Grid:
 
         for node in [self.grid[i][-1] for i in range(len(self.grid))]:
             node.set_wall(EAST)
+
+    def within_range(self, position: Tuple[int, int]):
+        row, column = position
+        return (0 <= row < self.rows and 0 <= column < self.columns)
+
+    def get_neighbouring_nodes(self, node: GridNode):
+        position = node.get_pos()
+        neighbouring_nodes: List[GridNode] = []
+        for direction in DIRECTIONS:
+            delta = POS_DIRECTION_MAP[direction]
+            npos = tuple(x+y for x, y in zip(position, delta))
+            if(self.within_range(npos)):
+                neighbouring_nodes.append(self.get_node(*npos))
+
+    def get_neighbouring_node_in_direction(self, node: GridNode, direction):
+        '''
+        returns None if there isn't any 
+        just neighbouring there may be a wall in between
+        '''
+
+        position = node.get_pos()
+        delta = POS_DIRECTION_MAP[direction]
+        npos = tuple(x+y for x, y in zip(position, delta))
+        if(self.within_range(npos)):
+            return (self.get_node(*npos))
+        return None
+
+    def set_wall_smart(self, node: GridNode, direction: int):
+        node.set_wall(direction)
+        neighbouring_nodes = self.get_neighbouring_node_in_direction(
+            node, direction)
+        if(neighbouring_nodes is None):
+            return
+        neighbouring_nodes.set_wall(OPPOSITE_DIRECTION[direction])
 
 
 ABS_DIRECTIONS = {

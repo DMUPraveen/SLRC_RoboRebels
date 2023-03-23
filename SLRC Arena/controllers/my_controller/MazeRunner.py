@@ -26,7 +26,7 @@ class MazeRunner:
         self.linearTraveller = linearTraveller
         self.alignment = Alingment(motorController, distanceSensors)
         self.rotator = rotator
-        grid_size = size*2-2
+        grid_size = size*2-1
         self.grid_position = (size-1, size-1)
         self.position = self.grid_position[0] * \
             cell_size_in_meters, self.grid_position[1]*cell_size_in_meters
@@ -37,6 +37,8 @@ class MazeRunner:
         self.bfs_stack = []
         self.orientation = NORTH
         self.execution_stack = []
+        self.size = size
+        self.start_position = self.grid_position  # starting position of the robot
 
     def estimate_position(self):
         if(self.distanceSensors.left_wall_present()):
