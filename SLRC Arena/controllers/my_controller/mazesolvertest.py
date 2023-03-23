@@ -4,7 +4,7 @@ from Motors import Motorcontrol
 from PID import PID
 from Navigation import Alingment, LinearTraveller, Rotator
 from Grid import Grid, GridNode, str_abs_dirs, NORTH, SOUTH, EAST, WEST
-from GraphicEngine import GraphicEngine, BLUE
+from GraphicEngine import GraphicEngine, BLUE, RED
 from MazeRunner import MazeRunner
 from MazeSolver import MazeSolver
 import math
@@ -29,7 +29,7 @@ def main():
         motorcontrol, distancesensors, lineartraveller, rotator, 7)
     task_runner = mazeRunner.run_execution_stack()
     mazeRunner.add_task_aling()
-    mazeRunner.add_task_build_wall()
+    mazeRunner.add_task_build_wall_smart()
     mazesolver = MazeSolver(mazeRunner)
     mazesolver.initialize()
     while robot.step(timestep) != -1:
@@ -37,6 +37,9 @@ def main():
         gfx.clear()
         y, x = mazeRunner.grid_position
         gfx.draw_cell(BLUE, x, y)
+        for corner in mazesolver.corners:
+            y, x = corner
+            gfx.draw_cell(RED, x, y)
         for row in mazeRunner.grid.grid:
             for node in row:
                 gfx.draw_node(node)

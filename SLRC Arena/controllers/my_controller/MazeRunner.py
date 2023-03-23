@@ -10,7 +10,7 @@ from enum import Enum, auto
 import math
 from types import GeneratorType
 
-ALIGNMENT_THRESHOLD = 0.01
+ALIGNMENT_THRESHOLD = 0.001
 LINEAR_TRAVEL_THRESHOLD = 0.01
 ROTATION_THRESHOLD = 0.001
 
@@ -189,7 +189,7 @@ class MazeRunner:
         self.execution_stack.append(forward_task)
         align_task = self.align_with_any_wall()
         self.execution_stack.append(align_task)
-        self.execution_stack.append(self.check_for_walls_and_build)
+        self.execution_stack.append(self.check_for_walls_and_build_smart)
 
     def run_execution_stack(self):
         while True:
