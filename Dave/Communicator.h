@@ -1,5 +1,9 @@
 #ifndef COMMUNICATION_HEADER
 #define COMMUNICATION_HEADER
+
+#include "LineSensor.h"
+#include "Motor_Controller.h"
+
 const size_t MAX_FUNCTIONS = 10;
 const size_t MAX_BUFFER = 20;
 
@@ -8,10 +12,10 @@ struct Communicator
     uint8_t m_buffer[MAX_BUFFER];
 
     void (*m_functions[MAX_FUNCTIONS])(void *buffer);
-
-    void send()
-    {
-    }
+    LineSensor *linesensor = nullptr;
+    volatile int64_t *countA = nullptr;
+    volatile int64_t *countB = nullptr;
+    Motor_Controller *motors = nullptr;
 
     void communicate()
     {
@@ -32,10 +36,5 @@ struct Communicator
         }
     }
 };
-
-void on_encoder_get(void *buffer)
-{
-    float value = 5.6
-}
 
 #endif
