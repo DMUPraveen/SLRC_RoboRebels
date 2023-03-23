@@ -25,7 +25,7 @@ class Hanoi:
         self.arm.hanoiPlace_1_top(-11,0.93,1.7,0,-1.1) #### Change
 
     def PlacingThirdBox(self):
-        self.arm.hanoiPlace_2_top_top(-11,0,2.4,0,-0.9)  #### Change
+        self.arm.hanoiPlace_2_top_top(-11,0.4,1.85,0,-0.7)  #### Change
 
     def BuildHanoi(self,position):
         if self.state>=0:
@@ -86,5 +86,8 @@ class Hanoi:
 
         if self.state==-2:
             self.arm.releasefingers()
-            self.car.setspeed(1,1)
+            # self.car.setspeed(1,1)
+            return True
         print(self.state)
+        return False
+        

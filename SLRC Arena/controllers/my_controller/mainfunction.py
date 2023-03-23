@@ -26,7 +26,7 @@ def main():
         # superduper.SuperStateMachine()
 
         # print(cam.isAligned())
-        Hano.BuildHanoi(2)
+        Hano.BuildHanoi(3)
         
         pass
 
