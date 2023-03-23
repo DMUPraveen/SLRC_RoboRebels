@@ -89,6 +89,14 @@ class armcontroll:
         self.elbowcontrol(1.55)
         self.pitchcontrol(-1.5)
 
+
+    """ Created Such That Box Wont Collide"""
+    def CreateABreakPoint(self):
+        self.waistcontrol(-11)
+        self.elbowcontrol(-2.3)
+        self.shouldercontrol(0)
+        self.pitchcontrol(1.6)
+
     """ HANOI PLACEMENT"""
 
     def hanoiPlaceBottom(self, waist_val, shoulder_val, elbow_val, wrist_val, pitch_val):

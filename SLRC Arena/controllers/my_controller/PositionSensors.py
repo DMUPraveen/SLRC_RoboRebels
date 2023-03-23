@@ -97,7 +97,21 @@ class Positions:
     
     def isPlaced(self):
         arr=self.positionvalues()
-        real_values=[-11,-0.7,-1,0,-1.47]
+        real_values=[-11, -0.8, -1.9, 0, 1.15]
+
+        print("This is printing",arr,real_values)
+        for realv,arrv in zip(real_values,arr):
+            if arrv is None:
+                return False
+            if abs(arrv-realv)>0.2:
+                return False
+        return True
+    
+
+    """Has Come To The Break Point"""
+    def isComeToBreakPoint(self):
+        arr=self.positionvalues()
+        real_values=[-11, 0, -2.3, 0, 1.6]
 
         print("This is printing",arr,real_values)
         for realv,arrv in zip(real_values,arr):

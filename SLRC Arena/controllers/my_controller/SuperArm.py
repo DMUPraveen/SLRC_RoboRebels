@@ -28,8 +28,14 @@ class Armstatemachine:
             self.TIME = 0
         if self.state == 4 and self.pos.isHung():
             self.state = 5
-        if self.state == 5 and self.pos.isPlaced():
-            self.state = 6
+
+        """Going To break Point"""
+
+        if self.state==5 and self.pos.isComeToBreakPoint():
+            self.state=6
+
+        if self.state == 6 and self.pos.isPlaced():
+            self.state = 7
 
         if self.state == 0:
             self.arm.releasefingers()
@@ -45,9 +51,13 @@ class Armstatemachine:
             self.TIME += 1
         if self.state == 4:
             self.arm.bringup()
-        if self.state == 5:
-            self.arm.putinback(-11, -0.7, -1, 0, -1.47)  # """Put in back"""
+
+        """Going To Break Point"""
+        if self.state==5:
+            self.arm.CreateABreakPoint()
         if self.state == 6:
-            self.state = -1
+            self.arm.putinback(-11, -0.8, -1.9, 0, 1.15)  # """Put in back"""
+        if self.state == 7:
+            self.state = 0
             return True
         print(self.state)

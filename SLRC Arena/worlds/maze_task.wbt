@@ -13,9 +13,10 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.025355526691644637 0.9981712953179246 0.054874060078747566 0.8671940939831748
-  position -2.320003745475205 1.132895134338488 0.7725259601289994
+  orientation 0.14669929841844953 -0.9662031344837504 -0.21196890988376185 5.0400184335800375
+  position -1.897794138220306 1.017308335076951 0.691940393482228
   follow "Rebel_Robot"
+  followType "None"
 }
 TexturedBackground {
 }
@@ -115,39 +116,21 @@ DEF rebel Robot {
   rotation -0.0016355894940860585 -0.0048931884864586855 0.9999866906881526 3.03779
   scale 1.1 1.1 1.1
   children [
-    DEF Blocking2 Solid {
-      translation 0 -0.015 0.015
-      children [
-        DEF Block2 Shape {
-          appearance PBRAppearance {
-            metalness 0
-          }
-          geometry Box {
-            size 0.1 0.01 0.01
-          }
-        }
-      ]
-      name "solid(4)"
-      boundingObject USE Block2
-      physics Physics {
-      }
-    }
     DEF Blocking Solid {
-      translation 0 -0.075 0.015
+      translation 0 -0.104 0.0212
       children [
         DEF Block Shape {
           appearance PBRAppearance {
             metalness 0
           }
           geometry Box {
-            size 0.1 0.01 0.01
+            size 0.1 0.01 0.023
           }
+          isPickable FALSE
         }
       ]
       name "solid(3)"
       boundingObject USE Block
-      physics Physics {
-      }
     }
     Camera {
       translation 2.30255e-07 0.0613628 0.0403528
@@ -190,7 +173,7 @@ DEF rebel Robot {
         axis 0 1 0
       }
       endPoint Solid {
-        translation 1.820139823639021e-06 -0.0500048815466384 -0.01700353874949604
+        translation 1.8201398236400705e-06 -0.0500048815466384 -0.01700353874949604
         rotation -0.5687458594643479 0.5072902617497116 0.6474447757732464 4.998550343045011
         children [
           DEF Claster Shape {
@@ -319,7 +302,6 @@ DEF rebel Robot {
           }
           DEF shourlder HingeJoint {
             jointParameters HingeJointParameters {
-              position -0.7000000560568023
               anchor 0 0 0.21
             }
             device [
@@ -334,7 +316,7 @@ DEF rebel Robot {
             ]
             endPoint Solid {
               translation 0 0 0.21
-              rotation -1 0 0 0.7000000560568024
+              rotation 1 0 0 0
               children [
                 DEF amr Group {
                   children [
@@ -716,7 +698,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.3257651306046019 0.0002594155571774905 0.9454506927311099 3.1400868781162643
+                                            rotation 0.3257651306046018 0.0002594155571775359 0.9454506927311098 3.1400868781162643
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1409,7 +1391,7 @@ DEF rebel Robot {
                                       anchor 0.18000187121908343 0 0.09077370288145375
                                     }
                                     endPoint Solid {
-                                      translation 0.17999890724641476 0 0.09077142062932181
+                                      translation 0.17999890724641476 0 0.0907714206293218
                                       rotation 0 -0.9999999999999999 0 0.6561779656870498
                                       children [
                                         Group {
@@ -1723,7 +1705,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845551886 0.029987173174501947 1.3221308370986538e-05
+        translation 0.07199997845551764 0.029987173174501947 1.3221308370986545e-05
         rotation -0.684007530606593 -0.25350239444072464 -0.684010404954698 3.638135864131181
         children [
           DEF Wheel Shape {
