@@ -54,9 +54,13 @@ class HanoiRetrieve:
             yield
 
         for _ in range(WAIT_TIME//2):
-            self.hanoi.arm.putinback(-11, -0.7, -1,
+            self.hanoi.arm.putinback(-11, -0.8, -0.85,
                                      0, -1.47)  # """Put in back"""
             print("Waiting and Releasing")
+            yield
+
+        for _ in range(WAIT_TIME//2):
+            self.grabbox.upmotor()
             yield
         for _ in range(WAIT_TIME//2):
             self.hanoi.arm.catchbox()

@@ -13,9 +13,10 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.055257421462797544 -0.9903336675139559 -0.12722359986118942 5.456513579142813
-  position -2.0234376940470877 1.1475225024354114 0.3065531900924361
+  orientation -0.0833422596565314 -0.98676479935714 0.1391017559378976 5.191851678403661
+  position -2.5200072003476226 1.2665338144125822 1.45646483876517
   follow "Rebel_Robot"
+  followType "None"
 }
 TexturedBackground {
 }
@@ -115,6 +116,31 @@ DEF rebel Robot {
   rotation -7.609338381779961e-05 -0.004861026955230546 0.9999881822435391 3.129637704588885
   scale 1.1 1.1 1.1
   children [
+    DEF down SliderJoint {
+      jointParameters JointParameters {
+      }
+      device [
+        LinearMotor {
+          name "down_motor"
+        }
+      ]
+      endPoint DEF down Solid {
+        translation 0 -0.05 0
+        children [
+          DEF down Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.02 0.09 0.02
+            }
+          }
+        ]
+        name "solid(5)"
+        boundingObject USE down
+      }
+    }
     DEF slid2 SliderJoint {
       jointParameters JointParameters {
         axis 0 1 0
@@ -122,6 +148,7 @@ DEF rebel Robot {
       device [
         LinearMotor {
           name "slider_motor2"
+          maxForce 5
         }
       ]
       endPoint Solid {
@@ -150,6 +177,7 @@ DEF rebel Robot {
       device [
         LinearMotor {
           name "slider_motor1"
+          maxForce 5
         }
       ]
       endPoint Solid {
@@ -213,7 +241,7 @@ DEF rebel Robot {
       }
       endPoint Solid {
         translation 4.936816010255548e-06 -0.05000013305908826 -0.01700390836251084
-        rotation -0.3309892730282865 0.4550513757449018 0.826664591338518 1.2742109568276823
+        rotation -0.3309892730282859 0.4550513757449022 0.8266645913385179 1.2742109568276796
         children [
           DEF Claster Shape {
             appearance PBRAppearance {
@@ -248,8 +276,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.209187258461043e-08 0.06000007984769104 0.011998186410560274
-        rotation -2.090745832575539e-09 -3.5577738650154974e-08 -0.9999999999999994 3.1415925718064015
+        translation 4.2091872585166084e-08 0.060000079847691165 0.011998186410560274
+        rotation -2.090745832575579e-09 -3.557773865015512e-08 -0.9999999999999994 3.1415925718064015
         scale 0.2 0.2 0.2
         children [
           DEF waist Group {
@@ -672,7 +700,7 @@ DEF rebel Robot {
                                       }
                                     ]
                                     endPoint Solid {
-                                      translation 0.13994547937753096 0 0.09032568197165898
+                                      translation 0.1399454793775272 0 0.09032568197166996
                                       rotation 0 -1 0 0.3317329358005462
                                       children [
                                         Group {
@@ -738,7 +766,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.16481351922281298 0.00013124544926015782 0.9863247369178284 3.1400217799478196
+                                            rotation 0.16481351922281265 0.00013124544926036529 0.9863247369178284 3.1400217799478196
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1296,7 +1324,7 @@ DEF rebel Robot {
                                       anchor -0.1800812025777988 0 0.08961334947628816
                                     }
                                     endPoint Solid {
-                                      translation -0.18008021992779152 0 0.0896125395253376
+                                      translation -0.18008021992779152 0 0.08961253952533763
                                       rotation 0 1 0 0.48395924795112477
                                       children [
                                         Group {
@@ -1431,7 +1459,7 @@ DEF rebel Robot {
                                       anchor 0.18000187121908343 0 0.09077370288145375
                                     }
                                     endPoint Solid {
-                                      translation 0.17999833555175063 0 0.09077248105278894
+                                      translation 0.17999833555175063 0 0.09077248105278893
                                       rotation 0 -1 0 0.33272557374161627
                                       children [
                                         Group {
@@ -1703,8 +1731,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation -0.07200261284028081 0.02999968235074943 1.7142410749558855e-06
-        rotation -0.39329172021216596 -0.8266581125900017 -0.4024400423686632 4.513392751816358
+        translation -0.07200261284027998 0.029999682350749426 1.7142410749567607e-06
+        rotation -0.3932917202121655 -0.8266581125900021 -0.402440042368663 4.513392751816359
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -1745,8 +1773,8 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0.07199997845551667 0.03000768791018383 1.6739966678687225e-05
-        rotation 0.5000032288305338 0.7071005787220679 0.5000055426992362 1.910645053807892
+        translation 0.07199997845551634 0.030007687910183833 1.6739966678685995e-05
+        rotation 0.5000032288305393 0.7071005787220649 0.5000055426992347 1.9106450538078825
         children [
           DEF Wheel Shape {
             appearance PBRAppearance {
