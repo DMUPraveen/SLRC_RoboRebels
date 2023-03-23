@@ -18,6 +18,7 @@ cell_size_in_meters = 0.36
 forward_step = 0.38
 
 CENTERING_THRESHOLD = 0.001
+GO_FORWARD_UNTIL_THRESHOLD = 0.001
 
 
 class MazeRunner:
@@ -286,3 +287,12 @@ class MazeRunner:
     def add_total_centering_taks(self):
         self.add_vertical_centering_taks()
         self.add_side_centering_task()
+
+    def go_forward_until_threshold_task(self, threshold: float):
+        '''
+        Use with caution Pose is not updated 
+        threshold is in distance sensor units [0,1]
+        '''
+        while self.alignment.go_forward_unit_threshold(threshold) > GO_FORWARD_UNTIL_THRESHOLD:
+            yield False
+        return True

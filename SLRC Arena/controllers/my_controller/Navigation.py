@@ -170,10 +170,12 @@ class Alingment:
         self.right_aling_pid = self.left_aling_pid.create_copy()
         self.back_align_pid = self.right_aling_pid.create_copy()
         self.centering_pid = self.left_aling_pid.create_copy()
+        self.go_forward_until_pid = self.left_aling_pid.create_copy()
         self.left_aling_pid.set_set_point(0)
         self.right_aling_pid.set_set_point(0)
         self.back_align_pid.set_set_point(0)
         self.centering_pid.set_set_point(0)
+        self.go_forward_until_pid.set_set_point(0)
 
     def align_to_left_wall(self):
         '''
@@ -215,10 +217,17 @@ class Alingment:
         return from_distance_sensor_to_meters(self.distanceSensors.average_back_wall_distance()) - CENTER_DISTANCE
 
     def center_using_back_sensor(self):
-        print("Running center using back sensor")
+        # print("Running center using back sensor")
         measurement = self.center_back_error()
-        print(measurement, self.distanceSensors.average_back_wall_distance(),
-              ROBOT_LENGTH, cell_size_in_meters, CENTER_DISTANCE, self.distanceSensors.average_left_wall_distance())
+        # print(measurement, self.distanceSensors.average_back_wall_distance(),
+        #       ROBOT_LENGTH, cell_size_in_meters, CENTER_DISTANCE, self.distanceSensors.average_left_wall_distance())
         control_signal = self.back_align_pid(measurement)
         self.motorController.linear_speed = -control_signal
+        return abs(measurement)
+
+    def go_forward_unit_threshold(self, threshold: float):
+        print("Running center using back sensor")
+        measurement = self.distanceSensors.average_front_wall_distance()-threshold
+        control_signal = self.go_forward_until_pid(measurement)
+        self.motorController.linear_speed = control_signal
         return abs(measurement)
