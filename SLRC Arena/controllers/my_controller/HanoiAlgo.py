@@ -31,6 +31,9 @@ class HanoiRetrieve:
         return self.colors.pop()
 
     def pick_up_box(self):
+        self.superstate.state = 0
+        self.superstate.boxdetector.state = 0
+        self.superstate.superarm.state = 0
         while not self.superstate.SuperStateMachine():
             print("Picking up box")
             yield
@@ -44,12 +47,30 @@ class HanoiRetrieve:
         self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
         self.mazegoto.mazesolver.mazeRunner.always_run.remove(
             self.hanoi.arm.catchbox)
+        for _ in range(WAIT_TIME//2):
+            self.hanoi.arm.releasefingers()
+            print("Waiting and Releasing")
+            yield
+        for _ in range(WAIT_TIME//2):
+            self.hanoi.arm.catchbox()
+            print("Waiting and Releasing")
+            yield
+        self.mazegoto.mazesolver.mazeRunner.always_run.append(
+            self.hanoi.arm.catchbox)
         while not self.hanoi.BuildHanoi(1):
             print("Placing Box")
             yield
         for _ in range(WAIT_TIME):
             print("Waiting")
             yield
+        self.mazegoto.mazesolver.mazeRunner.always_run.remove(
+            self.hanoi.arm.catchbox)
+        for _ in range(WAIT_TIME//2):
+            self.hanoi.arm.releasefingers()
+            print("Waiting and Releasing")
+            yield
+        self.mazegoto.mazesolver.mazeRunner.always_run.append(
+            self.hanoi.arm.catchbox)
         self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
             -PLACE_DISTANCE/2)
         while self.mazegoto.mazesolver.mazeRunner.linearTraveller.run() > PLACE_DISTANCE_THRESHOLD:
