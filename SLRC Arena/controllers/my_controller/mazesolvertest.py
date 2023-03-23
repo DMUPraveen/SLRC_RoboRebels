@@ -8,7 +8,14 @@ from GraphicEngine import GraphicEngine, BLUE, RED
 from MazeRunner import MazeRunner
 from MazeSolver import MazeSolver
 from Mazegoto import Mazegoto
+from mainControlCode import main_control_code
 import math
+
+YELLOW = (255, 255, 0)
+CYAN = (0, 255, 255)
+MAGENTA = (255, 0, 255)
+
+STACK_COLORS = [YELLOW, CYAN, MAGENTA]
 
 
 def main():
@@ -36,6 +43,7 @@ def main():
     mazesolver = MazeSolver(mazeRunner)
     mazesolver.initialize()
     mazegoto = Mazegoto(mazesolver)
+    main_task = main_control_code(mazesolver, mazegoto, motorcontrol)
     while robot.step(timestep) != -1:
         ############################# Draw Code ######################################
         gfx.clear()
@@ -44,18 +52,16 @@ def main():
         for corner in mazesolver.corners:
             y, x = corner
             gfx.draw_cell(RED, x, y)
+        for index, pos in enumerate(mazegoto.stacks):
+            y, x = pos
+            gfx.draw_cell(STACK_COLORS[index], x, y)
         for row in mazeRunner.grid.grid:
             for node in row:
                 gfx.draw_node(node)
         gfx.run()
         ##############################################################################
-
         finished = task_runner.__next__()
         if(finished):
-            status = mazesolver.run_bfs()
-            if(status):
-                # print("Search Complete")
-                print(mazegoto.find_path(
-                    mazesolver.mazeRunner.start_position, mazesolver.corners[0]))
-            pass
+            main_task.__next__()
+
         motorcontrol.set_pose_speed()
