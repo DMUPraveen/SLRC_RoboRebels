@@ -31,6 +31,8 @@ def main():
     task_runner = mazeRunner.run_execution_stack()
     mazeRunner.add_task_aling()
     mazeRunner.add_task_build_wall_smart()
+    # mazeRunner.add_back_centering_task()
+    mazeRunner.add_total_centering_taks()
     mazesolver = MazeSolver(mazeRunner)
     mazesolver.initialize()
     mazegoto = Mazegoto(mazesolver)
@@ -55,4 +57,5 @@ def main():
                 # print("Search Complete")
                 print(mazegoto.find_path(
                     mazesolver.mazeRunner.start_position, mazesolver.corners[0]))
+            pass
         motorcontrol.set_pose_speed()

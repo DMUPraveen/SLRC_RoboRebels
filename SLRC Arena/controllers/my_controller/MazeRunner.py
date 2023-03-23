@@ -17,6 +17,8 @@ ROTATION_THRESHOLD = 0.001
 cell_size_in_meters = 0.36
 forward_step = 0.38
 
+CENTERING_THRESHOLD = 0.001
+
 
 class MazeRunner:
     def __init__(self, motorController: Motorcontrol, distanceSensors: DistanceSensors, linearTraveller: LinearTraveller,
@@ -213,3 +215,66 @@ class MazeRunner:
 
     def add_task_aling(self):
         self.execution_stack.append(self.align_with_any_wall())
+
+    def center_using_back_sensors_if_possible(self):
+
+        while self.distanceSensors.back_wall_present():
+            measurement = self.alignment.center_using_back_sensor()
+            if(measurement < CENTERING_THRESHOLD):
+                self.motorController.pose_stop()
+                return True
+            yield False
+
+        print("Back wall is not present cannot center")
+        return True
+
+    def add_back_centering_task(self):
+        self.add_task_aling()
+        self.execution_stack.append(
+            self.center_using_back_sensors_if_possible())
+
+    def center_side(self):
+        if not(self.distanceSensors.left_wall_present() or self.distanceSensors.right_wall_present()):
+            print("Side wall not present centering not possible")
+            return True
+        if(self.distanceSensors.left_wall_present()):
+            turning = self.turn_right()
+        else:
+            turning = self.turn_left()
+        for val in turning:
+            yield val
+        align = self.align_with_any_wall()
+        for val in align:
+            yield val
+        centering = self.center_using_back_sensors_if_possible()
+        for val in centering:
+            yield val
+        return True
+
+    def vertical_centering_task(self):
+        if not(self.distanceSensors.back_wall_present() or self.distanceSensors.front_wall_present()):
+            print("Vertical Alingment not possible")
+            return True
+        if not(self.distanceSensors.back_wall_present()):
+            turning = self.turn_back()
+            for val in turning:
+                yield val
+        align = self.align_with_any_wall()
+        for val in align:
+            yield val
+        centering = self.center_using_back_sensors_if_possible()
+        for val in centering:
+            yield val
+        return True
+
+    def add_side_centering_task(self):
+        self.add_task_aling()
+        self.execution_stack.append(self.center_side())
+
+    def add_vertical_centering_taks(self):
+        self.add_task_aling()
+        self.execution_stack.append(self.vertical_centering_task())
+
+    def add_total_centering_taks(self):
+        self.add_vertical_centering_taks()
+        self.add_side_centering_task()

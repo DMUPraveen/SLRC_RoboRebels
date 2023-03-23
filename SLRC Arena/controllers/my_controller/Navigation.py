@@ -8,9 +8,13 @@ import numpy as np
 import numpy.typing as npt
 
 ROBOT_SCALE = 1.1
-
+ROBOT_LENGTH = 0.2*ROBOT_SCALE
 WHEEL_RADIUS = 0.03*ROBOT_SCALE
 INTERWHEEL_DISTANE = 0.0720026*ROBOT_SCALE
+BACK_SENSOR_OFFSET = ROBOT_SCALE*0.07
+cell_size_in_meters = 0.36
+WHEEL_TRANSLATION = 0.0299874*ROBOT_SCALE
+CENTER_DISTANCE = 0.34/2 - BACK_SENSOR_OFFSET - WHEEL_TRANSLATION
 
 
 def rotational_distance_to_linear(rot_distance_rad: float):
@@ -41,6 +45,10 @@ def get_rotational_rotation_delta(intial_values, final_values):
     # ]
     rotation_distance = final_values - intial_values
     return (rotation_distance[0]-rotation_distance[1])/2
+
+
+def from_distance_sensor_to_meters(distance: float):
+    return distance/10*2
 
 
 class LinearTraveller:
@@ -161,9 +169,11 @@ class Alingment:
         self.left_aling_pid = PID(30, 0, 0)
         self.right_aling_pid = self.left_aling_pid.create_copy()
         self.back_align_pid = self.right_aling_pid.create_copy()
+        self.centering_pid = self.left_aling_pid.create_copy()
         self.left_aling_pid.set_set_point(0)
         self.right_aling_pid.set_set_point(0)
         self.back_align_pid.set_set_point(0)
+        self.centering_pid.set_set_point(0)
 
     def align_to_left_wall(self):
         '''
@@ -199,4 +209,16 @@ class Alingment:
         measurement = self.distanceSensors.back_wall_align_error()
         control_signal = self.right_aling_pid(measurement)
         self.motorController.rotational_speed = -control_signal
+        return abs(measurement)
+
+    def center_back_error(self):
+        return from_distance_sensor_to_meters(self.distanceSensors.average_back_wall_distance()) - CENTER_DISTANCE
+
+    def center_using_back_sensor(self):
+        print("Running center using back sensor")
+        measurement = self.center_back_error()
+        print(measurement, self.distanceSensors.average_back_wall_distance(),
+              ROBOT_LENGTH, cell_size_in_meters, CENTER_DISTANCE, self.distanceSensors.average_left_wall_distance())
+        control_signal = self.back_align_pid(measurement)
+        self.motorController.linear_speed = -control_signal
         return abs(measurement)
