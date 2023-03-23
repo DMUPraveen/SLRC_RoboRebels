@@ -11,6 +11,19 @@ from Mazegoto import Mazegoto
 from mainControlCode import main_control_code
 import math
 
+
+######################## Arm Import #######################
+from ArmController import armcontroll
+from controller import Robot, Supervisor
+from PositionSensors import Positions
+from SuperArm import Armstatemachine
+from Motors import Motorcontrol
+from Boxdetector import BoxDetector
+from SuperStateMachineForCatchTheBox import SuperState
+from CameraClass import Camera
+from PlacingOnTop import Hanoi
+###########################################################
+
 YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
@@ -43,7 +56,18 @@ def main():
     mazesolver = MazeSolver(mazeRunner)
     mazesolver.initialize()
     mazegoto = Mazegoto(mazesolver)
-    main_task = main_control_code(mazesolver, mazegoto, motorcontrol)
+
+######################## Arm Import #######################
+    arm = armcontroll(robot)
+    pos = Positions(robot, arm)
+    superarm = Armstatemachine(robot, arm, pos, motorcontrol)
+    boxdetect = BoxDetector(robot, motorcontrol)
+    cam = Camera(robot, motorcontrol)
+    superduper = SuperState(robot, superarm, boxdetect, cam)
+    Hano = Hanoi(robot, arm, pos, boxdetect, motorcontrol, cam)
+###########################################################
+    main_task = main_control_code(
+        mazesolver, mazegoto, motorcontrol, superduper, Hano)
     while robot.step(timestep) != -1:
         ############################# Draw Code ######################################
         gfx.clear()
