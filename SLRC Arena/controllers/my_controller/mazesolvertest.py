@@ -7,6 +7,7 @@ from Grid import Grid, GridNode, str_abs_dirs, NORTH, SOUTH, EAST, WEST
 from GraphicEngine import GraphicEngine, BLUE, RED
 from MazeRunner import MazeRunner
 from MazeSolver import MazeSolver
+from Mazegoto import Mazegoto
 import math
 
 
@@ -32,6 +33,7 @@ def main():
     mazeRunner.add_task_build_wall_smart()
     mazesolver = MazeSolver(mazeRunner)
     mazesolver.initialize()
+    mazegoto = Mazegoto(mazesolver)
     while robot.step(timestep) != -1:
         ############################# Draw Code ######################################
         gfx.clear()
@@ -50,5 +52,7 @@ def main():
         if(finished):
             status = mazesolver.run_bfs()
             if(status):
-                print("Search Complete")
+                # print("Search Complete")
+                print(mazegoto.find_path(
+                    mazesolver.mazeRunner.start_position, mazesolver.corners[0]))
         motorcontrol.set_pose_speed()

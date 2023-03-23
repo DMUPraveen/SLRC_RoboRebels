@@ -1,4 +1,4 @@
-from typing import Tuple, List
+from typing import Tuple, List, Optional
 NORTH = 0
 EAST = 1
 SOUTH = 2
@@ -42,6 +42,8 @@ class GridNode:
         self.row: int = row
         self.column: int = column
         self.visited = 0
+        self.parent: Optional[GridNode] = None
+        self.pre_dir: Optional[int] = None
 
     def set_wall(self, direction):
         self.wall_states[direction] = True
@@ -65,6 +67,12 @@ class GridNode:
 
     def get_pos(self):
         return (self.row, self.column)
+
+    def __str__(self) -> str:
+        return str((self.row, self.column))
+
+    def __repr__(self) -> str:
+        return self.__str__()
 
 
 class Grid:
