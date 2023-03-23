@@ -67,11 +67,13 @@ class BoxDetector:
 
     def movingtowardsBox(self):
         print(self.Middle_value)
-        self.car.simpleforward()
+        error=self.Middle_value-650
+        speed=-0.01*error
+        self.car.setspeed(speed,speed)  ############# Created P controller for Moving Forward
 
 
     def isPrimaryPositioned(self):
-        if self.Middle_value<650:
+        if abs(self.Middle_value-650)<1:
             self.car.simplestop()
             return True
 

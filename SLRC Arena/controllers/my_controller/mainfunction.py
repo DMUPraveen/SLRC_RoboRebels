@@ -20,7 +20,7 @@ def main():
     boxdetect=BoxDetector(robot,car)
     cam=Camera(robot,car)
     superduper=SuperState(robot,superarm,boxdetect,cam)
-    Hano=Hanoi(robot,arm,pos,boxdetect,car)
+    Hano=Hanoi(robot,arm,pos,boxdetect,car,cam)
     
     while robot.step(timestep) != -1:
         # superduper.SuperStateMachine()
