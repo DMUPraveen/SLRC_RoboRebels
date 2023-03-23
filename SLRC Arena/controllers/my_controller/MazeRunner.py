@@ -43,6 +43,8 @@ class MazeRunner:
         self.size = size
         self.start_position = self.grid_position  # starting position of the robot
 
+        self.always_run = []
+
     def estimate_position(self):
         if(self.distanceSensors.left_wall_present()):
 
@@ -204,6 +206,8 @@ class MazeRunner:
 
     def run_execution_stack(self):
         while True:
+            for func in self.always_run:
+                func()
             if(not self.execution_stack):
                 yield True
                 continue
