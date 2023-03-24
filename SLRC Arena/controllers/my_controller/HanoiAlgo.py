@@ -15,6 +15,12 @@ WAIT_TIME = 10000//32
 PLACE_DISTANCE = 0.36
 PLACE_DISTANCE_THRESHOLD = 0.001
 
+color_str_map = {
+    RED: "red",
+    GREEN: "green",
+    BLUE: "blue"
+}
+
 
 class HanoiRetrieve:
     def __init__(self, mazegoto: Mazegoto, superstate: SuperState, hanoi: Hanoi, grabbox: GrabBox):
@@ -100,16 +106,68 @@ class HanoiRetrieve:
             self.hanoi.arm.bringup()
             yield
 
-    def retrieve_box(self, corner):
-        partial_go = self.mazegoto.do_partial_go_from_current(corner)
+    def get_box_and_go_and_wait(self, start, end):
+        partial_go = self.mazegoto.do_partial_go_from_current(start)
         for _ in partial_go:
             yield
+        yield
         color = self.detect_color()
         pick_up = self.pick_up_box()
         for _ in pick_up:
             yield
         for _ in range(WAIT_TIME//2):
             print("Waiting")
+            # self.grabbox.downmotor()
+            self.grabbox.release()
+            yield
+        self.hanoi.arm.releasefingers()
+        yield
+        for _ in range(WAIT_TIME//2):
+            print("Waiting")
+            yield
+        self.grabbox.grab()
+        yield
+        for _ in range(WAIT_TIME//2):
+            print("Waiting")
+            yield
+        self.grabbox.stop()
+        yield
+
+        go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(
+            ATFER_PICKUP_FORWARD_THRESHOLD)
+        for _ in go_forward_until_task:
+            # self.hanoi.arm.catchbox()
+            yield
+        self.mazegoto.mazesolver.mazeRunner.pose_advance()  # will travel one block forward
+        yield
+        # self.mazegoto.mazesolver.mazeRunner.add_vertical_centering_taks()
+        # yield
+        centering_task = self.mazegoto.mazesolver.mazeRunner.vertical_centering_task()
+        for _ in centering_task:
+            yield
+        partial_go = self.mazegoto.do_partial_go_from_current(
+            end, self.mazegoto.stacks)
+        for _ in partial_go:
+            yield
+        yield
+        self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
+        box_placer = self.box_place_and_return_to_original_pos(color)
+        for _ in box_placer:
+            yield
+        return
+
+    def retrieve_box(self, corner):
+        partial_go = self.mazegoto.do_partial_go_from_current(corner)
+        for _ in partial_go:
+            yield
+        yield
+        color = self.detect_color()
+        pick_up = self.pick_up_box()
+        for _ in pick_up:
+            yield
+        for _ in range(WAIT_TIME//2):
+            print("Waiting")
+            print(color_str_map[color])
             # self.grabbox.downmotor()
             self.grabbox.release()
             yield
@@ -156,3 +214,6 @@ class HanoiRetrieve:
             box_retriever = self.retrieve_box(corner)
             for _ in box_retriever:
                 yield
+
+    def make_tower(self):
+        pass
