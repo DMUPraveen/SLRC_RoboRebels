@@ -64,12 +64,12 @@ class HanoiRetrieve:
             yield
 
         for _ in range(WAIT_TIME//2):
+            self.grabbox.upmotor()
+            yield
+
+        for _ in range(WAIT_TIME//2):
             self.hanoi.arm.catchbox()
             print("Waiting and Releasing")
-            yield
-            
-        for _ in range(WAIT_TIME//2):
-            self.grabbox.upmotor()
             yield
 
         while not self.hanoi.BuildHanoi(1):
@@ -80,7 +80,7 @@ class HanoiRetrieve:
             yield
 
         for _ in range(WAIT_TIME//2):
-            self.hanoi.pos.FingerValues()  ## Releases the speed
+            self.hanoi.arm.releasefingers()  ## Releases the speed
             print("Waiting and Releasing")
             yield
 

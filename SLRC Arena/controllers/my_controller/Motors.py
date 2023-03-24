@@ -2,7 +2,11 @@ from typing import Tuple
 from controller import Robot
 import numpy as np
 
-
+def clamp(value,clam):
+    if(abs(value)<clam):
+        return value
+    return clam*value/abs(value)
+MAX_VELOCITY = 9
 class Motorcontrol:
     def __init__(self, robot: Robot):
         self.robot = robot
@@ -32,8 +36,9 @@ class Motorcontrol:
     def setspeed(self, left_motor_v, right_motor_v):
         # left_motor_v=left_motor_v*self.maxvelocity
         # right_motor_v=right_motor_v*self.maxvelocity
-        self.left_motor1.setVelocity(left_motor_v)
-        self.right_motor1.setVelocity(right_motor_v)
+        
+        self.left_motor1.setVelocity(clamp(left_motor_v,MAX_VELOCITY))
+        self.right_motor1.setVelocity(clamp(right_motor_v,MAX_VELOCITY))
 
     def simpleforward(self):
         self.left_motor1.setVelocity(self.maxvelocity)
