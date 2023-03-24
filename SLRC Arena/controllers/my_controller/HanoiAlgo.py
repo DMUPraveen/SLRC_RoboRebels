@@ -30,7 +30,13 @@ class HanoiRetrieve:
         self.grabbox = grabbox
 
     def detect_color(self):
-        return self.colors.pop()
+        col = self.superstate.cam.ColorDetect()
+        if(col == 'green'):
+            return GREEN
+        if(col == 'red'):
+            return RED
+
+        return BLUE
 
     def pick_up_box(self):
         for _ in range(WAIT_TIME//2):
@@ -80,7 +86,7 @@ class HanoiRetrieve:
             yield
 
         for _ in range(WAIT_TIME//2):
-            self.hanoi.arm.releasefingers()  ## Releases the speed
+            self.hanoi.arm.releasefingers()  # Releases the speed
             print("Waiting and Releasing")
             yield
 
@@ -118,7 +124,6 @@ class HanoiRetrieve:
             yield
         self.grabbox.stop()
         yield
-        
 
         go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(
             ATFER_PICKUP_FORWARD_THRESHOLD)
