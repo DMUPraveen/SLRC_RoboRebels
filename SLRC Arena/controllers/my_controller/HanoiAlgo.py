@@ -64,27 +64,55 @@ class HanoiRetrieve:
             yield
         self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
 
-        for _ in range(WAIT_TIME//2):
-            self.grabbox.release()
-            print("Waiting and Releasing")
-            yield
 
-        if(color != BLUE):
+        if (color ==BLUE):
+            # for _ in range(WAIT_TIME//2):
+            #     self.hanoi.arm.catchbox()
+            #     print("Waiting and Releasing")
+            #     yield
+
+            for _ in range(WAIT_TIME//2):
+                self.grabbox.release()
+                print("Waiting and Releasing")
+                yield
+
+            for _ in range(WAIT_TIME//2):
+                self.grabbox.upMotorBlue()
+                print("Waiting and Releasing")
+                yield
+
+            for _ in range(WAIT_TIME//2):
+                self.hanoi.arm.putinback(-11, -0.7, -1.1,
+                                         0, -1.34)  # """Put in back"""
+                print("Waiting and Releasing")
+                yield
+
+            for _ in range(WAIT_TIME//2):
+                self.hanoi.arm.catchbox()
+                print("Waiting and Releasing")
+                yield
+
+        if (color != BLUE):
+
+            for _ in range(WAIT_TIME//2):
+                self.grabbox.release()
+                print("Waiting and Releasing")
+                yield
+
             for _ in range(WAIT_TIME//2):
                 self.hanoi.arm.putinback(-11, -0.8, -0.85,
                                          0, -1.47)  # """Put in back"""
                 print("Waiting and Releasing")
                 yield
 
-        if(color != BLUE):
             for _ in range(WAIT_TIME//2):
                 self.grabbox.upmotor()
                 yield
 
-        for _ in range(WAIT_TIME//2):
-            self.hanoi.arm.catchbox()
-            print("Waiting and Releasing")
-            yield
+            for _ in range(WAIT_TIME//2):
+                self.hanoi.arm.catchbox()
+                print("Waiting and Releasing")
+                yield
 
         while not self.hanoi.BuildHanoi(place_height):
             print("Placing Box")
@@ -97,6 +125,8 @@ class HanoiRetrieve:
             self.hanoi.arm.releasefingers()  # Releases the speed
             print("Waiting and Releasing")
             yield
+
+        
 
         self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
             -PLACE_DISTANCE/2)

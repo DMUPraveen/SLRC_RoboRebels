@@ -112,7 +112,7 @@ class Positions:
     
     """FOR HANOI"""
     def isHanoiBottomPlaced(self):   ############### For Hanoi Bottom box #################
-        for _ in range(WAIT_TIME//2):
+        for _ in range(3*WAIT_TIME//2):
             yield
         return True
         

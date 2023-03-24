@@ -6,6 +6,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
 
 WorldInfo {
+  FPS 20
   contactProperties [
     ContactProperties {
       material1 "friction"
@@ -17,9 +18,8 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.3079363898325327 -0.4656697233182826 0.8296546803348852 4.937315171396591
-  position -2.117920388391902 1.9261444671820065 1.0634899429167222
-  follow "Rebel_Robot"
-  followType "None"
+  position -2.358437603929168 4.22923841062547 4.500054993557658
+  follow "rectangle arena"
 }
 TexturedBackground {
 }
@@ -37,8 +37,8 @@ RectangleArena {
   }
 }
 DEF box_3 Solid {
-  translation 0.4923310883520552 -1.0806315826481305 0.024995095000000012
-  rotation -2.4034108602174667e-14 -5.018676763226241e-13 -0.9999999999999999 0.09640721240458211
+  translation -1.79299 -1.13081 0.024995
+  rotation -2.40341e-14 -5.01868e-13 -1 0.0964072
   children [
     DEF box_3_shape Shape {
       appearance PBRAppearance {
@@ -77,7 +77,7 @@ DEF box_2 Solid {
   }
 }
 DEF box_1 Solid {
-  translation -1.83695 -1.09428 0.015003
+  translation 0.459666 -1.06652 0.015003
   rotation 0.9932296438186431 0.08214333650780213 0.08214223583064516 1.5775892314103832
   children [
     DEF box_1_shape Shape {
@@ -339,7 +339,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.209187258733449e-08 0.06000007984769166 0.011998186410560274
+        translation 4.2091872587741064e-08 0.06000007984769175 0.011998186410560274
         rotation -2.090745832575579e-09 -3.557773865015512e-08 -0.9999999999999994 3.1415925718064015
         scale 0.2 0.2 0.2
         children [
@@ -829,7 +829,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.16481351922281234 0.00013124544926058261 0.9863247369178284 3.1400217799478196
+                                            rotation 0.16481351922281234 0.0001312454492605934 0.9863247369178284 3.1400217799478196
                                             children [
                                               DEF rf_finger Group {
                                                 children [

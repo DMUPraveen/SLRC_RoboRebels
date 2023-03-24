@@ -50,3 +50,7 @@ class GrabBox:
     def downmotor(self):
         self.down_motor.setPosition(0)
         self.down_motor.setVelocity(0.01)
+
+    def upMotorBlue(self):
+        self.down_motor.setPosition(0.01)
+        self.down_motor.setVelocity(0.01)
