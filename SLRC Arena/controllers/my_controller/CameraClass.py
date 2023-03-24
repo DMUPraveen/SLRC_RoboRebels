@@ -148,6 +148,3 @@ class Camera:
             self.car.simplestop()
             print("TEST PASSED")
             return True
-
-        # leftMotor.setVelocity(+speed)
-        # rightMotor.setVelocity(-speed)

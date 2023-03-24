@@ -76,16 +76,16 @@ def main():
     new=0
     n=0
     while robot.step(timestep) != -1:
-        # if new==0 and superduper.SuperStateMachine():
+        superduper.SuperStateMachine()
         #     new=1
         # if new==1:
         #     n+=1
         # if n<100:
         # Hano.BuildHanoi(1)
-        # motorcontrol.set_pose_speed()
+        motorcontrol.set_pose_speed()
         # print(cam.isAligned())
         # Hano.BuildHanoi(1)
-        grab.grab()
+        # grab.grab()
         
         pass
 

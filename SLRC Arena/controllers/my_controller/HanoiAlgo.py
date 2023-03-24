@@ -113,16 +113,6 @@ class HanoiRetrieve:
             yield
         self.grabbox.stop()
         yield
-        for _ in range(WAIT_TIME//2):
-            print("Waiting")
-            yield
-        self.grabbox.grab_side()
-        yield
-        for _ in range(WAIT_TIME//2):
-            print("Waiting")
-            yield
-        self.grabbox.stop()
-        yield
         
 
         go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(

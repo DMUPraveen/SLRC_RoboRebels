@@ -114,6 +114,7 @@ class Positions:
         for _ in range(WAIT_TIME//2):
             yield
         return True
+        
     def isHanoi_top_1_Placed(self):   ############### For Hanoi Bottom box #################
         arr=self.positionvalues()
         real_values=[-11,0.93,1.7,0,-1.1]

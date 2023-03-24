@@ -18,6 +18,7 @@ class GrabBox:
         self.motor_2.setVelocity(0.02)
 
     def grab_side(self):
+        return
         self.motor_3.setPosition(-0.03)
         self.motor_3.setVelocity(0.02)
         self.motor_4.setPosition(0.03)
@@ -43,7 +44,7 @@ class GrabBox:
         self.motor_4.setVelocity(0.005)
 
     def upmotor(self):
-        self.down_motor.setPosition(0.01)
+        self.down_motor.setPosition(0.015)
         self.down_motor.setVelocity(0.01)
 
     def downmotor(self):
