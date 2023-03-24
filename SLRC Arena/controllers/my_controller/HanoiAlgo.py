@@ -96,21 +96,34 @@ class HanoiRetrieve:
         pick_up = self.pick_up_box()
         for _ in pick_up:
             yield
-        for _ in range(WAIT_TIME):
+        for _ in range(WAIT_TIME//2):
             print("Waiting")
+            self.grabbox.downmotor()
+            self.grabbox.release()
             yield
         self.hanoi.arm.releasefingers()
         yield
-        for _ in range(WAIT_TIME):
+        for _ in range(WAIT_TIME//2):
             print("Waiting")
             yield
         self.grabbox.grab()
         yield
-        for _ in range(WAIT_TIME):
+        for _ in range(WAIT_TIME//2):
             print("Waiting")
             yield
         self.grabbox.stop()
         yield
+        for _ in range(WAIT_TIME//2):
+            print("Waiting")
+            yield
+        self.grabbox.grab_side()
+        yield
+        for _ in range(WAIT_TIME//2):
+            print("Waiting")
+            yield
+        self.grabbox.stop()
+        yield
+        
 
         go_forward_until_task = self.mazegoto.mazesolver.mazeRunner.go_forward_until_threshold_task(
             ATFER_PICKUP_FORWARD_THRESHOLD)
