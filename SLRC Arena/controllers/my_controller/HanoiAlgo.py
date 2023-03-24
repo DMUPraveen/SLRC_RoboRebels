@@ -56,7 +56,7 @@ class HanoiRetrieve:
             print("Picking up box")
             yield
 
-    def box_place_and_return_to_original_pos(self, color):
+    def box_place_and_return_to_original_pos(self, color, place_height=1):
         self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
             PLACE_DISTANCE/2)
         while self.mazegoto.mazesolver.mazeRunner.linearTraveller.run() > PLACE_DISTANCE_THRESHOLD:
@@ -69,11 +69,12 @@ class HanoiRetrieve:
             print("Waiting and Releasing")
             yield
 
-        for _ in range(WAIT_TIME//2):
-            self.hanoi.arm.putinback(-11, -0.8, -0.85,
-                                     0, -1.47)  # """Put in back"""
-            print("Waiting and Releasing")
-            yield
+        if(color != BLUE):
+            for _ in range(WAIT_TIME//2):
+                self.hanoi.arm.putinback(-11, -0.8, -0.85,
+                                         0, -1.47)  # """Put in back"""
+                print("Waiting and Releasing")
+                yield
 
         if(color != BLUE):
             for _ in range(WAIT_TIME//2):
@@ -85,7 +86,7 @@ class HanoiRetrieve:
             print("Waiting and Releasing")
             yield
 
-        while not self.hanoi.BuildHanoi(1):
+        while not self.hanoi.BuildHanoi(place_height):
             print("Placing Box")
             yield
         for _ in range(WAIT_TIME):
@@ -106,7 +107,7 @@ class HanoiRetrieve:
             self.hanoi.arm.bringup()
             yield
 
-    def get_box_and_go_and_wait(self, start, end):
+    def get_box_and_put(self, start, end):
         partial_go = self.mazegoto.do_partial_go_from_current(start)
         for _ in partial_go:
             yield
