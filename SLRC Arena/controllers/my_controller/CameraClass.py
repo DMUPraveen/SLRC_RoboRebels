@@ -150,7 +150,6 @@ class Camera:
             return True
         
     def ColorDetect(self, verb=True, imageVerbose=False):
-
         cameraData = self.cam.getImage()
 
         image = np.frombuffer(cameraData, np.uint8).reshape(
@@ -172,19 +171,36 @@ class Camera:
         blue_center = self.get_centeroid(blue_channel, imgV=imageVerbose)
         green_center = self.get_centeroid(green_channel, imgV=imageVerbose)
 
+        redDet = 0
+        greenDet = 0
+        blueDet = 0
+
+        error_blue = 0
+        error_red = 0
+        error_green = 0
+
+        Error = None
 
         if blue_center[0]:
             error_blue = (image.shape[1]/2)-blue_center[1][0]
             blueDet = 1
-            return("blue")
 
         if red_center[0]:
             error_red = (image.shape[1]/2)-red_center[1][0]
             redDet = 1
-            return("red")
         if green_center[0]:
             error_green = (image.shape[1]/2)-green_center[1][0]
             greenDet = 1
-            return("green")
+
+        if verb:
+            print("Red %i \t Green %i \t Blue %i" %
+                  (redDet, greenDet, blueDet), end='\t')
+            if greenDet==1:
+                return("green")
+            if blueDet==1:
+                return("blue")
+            if redDet==1:
+                return("red")
+        
 
     
