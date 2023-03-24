@@ -13,8 +13,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.0833422596565314 -0.98676479935714 0.1391017559378976 5.191851678403661
-  position -2.5200072003476226 1.2665338144125822 1.45646483876517
+  orientation 0.3116582345057261 0.214650636573524 -0.9256318107559586 2.0064839977659643
+  position -1.7036030636855741 1.3188872947254027 0.1873667449856606
   follow "Rebel_Robot"
   followType "None"
 }
@@ -125,7 +125,7 @@ DEF rebel Robot {
         }
       ]
       endPoint DEF down Solid {
-        translation 0 -0.05 0
+        translation 0 -0.05 -0.001
         children [
           DEF down Shape {
             appearance PBRAppearance {
@@ -143,6 +143,7 @@ DEF rebel Robot {
     }
     DEF slid2 SliderJoint {
       jointParameters JointParameters {
+        position -0.004
         axis 0 1 0
       }
       device [
@@ -152,7 +153,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0 -0.09 0.021
+        translation 0 -0.10500000000000001 0.021
         children [
           DEF slider1 Shape {
             appearance PBRAppearance {
@@ -160,7 +161,7 @@ DEF rebel Robot {
               metalness 0
             }
             geometry Box {
-              size 0.1 0.01 0.022
+              size 0.1 0.01 0.026
             }
           }
         ]
@@ -172,6 +173,7 @@ DEF rebel Robot {
     }
     DEF slid1 SliderJoint {
       jointParameters JointParameters {
+        position 0.001
         axis 0 1 0
       }
       device [
@@ -181,7 +183,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 0 0 0.021
+        translation 0 0.001 0.021
         children [
           DEF slider1 Shape {
             appearance PBRAppearance {
@@ -276,7 +278,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.2091872585166084e-08 0.060000079847691165 0.011998186410560274
+        translation 4.209187258596568e-08 0.060000079847691346 0.011998186410560274
         rotation -2.090745832575579e-09 -3.557773865015512e-08 -0.9999999999999994 3.1415925718064015
         scale 0.2 0.2 0.2
         children [
@@ -696,7 +698,6 @@ DEF rebel Robot {
                                       }
                                       RotationalMotor {
                                         name "right_finger_motor"
-                                        maxTorque 25
                                       }
                                     ]
                                     endPoint Solid {
@@ -766,7 +767,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.16481351922281265 0.00013124544926036529 0.9863247369178284 3.1400217799478196
+                                            rotation 0.16481351922281234 0.00013124544926049469 0.9863247369178284 3.1400217799478196
                                             children [
                                               DEF rf_finger Group {
                                                 children [
@@ -1061,7 +1062,6 @@ DEF rebel Robot {
                                       }
                                       RotationalMotor {
                                         name "left_finger_motor"
-                                        maxTorque 25
                                       }
                                     ]
                                     endPoint Solid {

@@ -79,6 +79,11 @@ class HanoiRetrieve:
             print("Waiting and Releasing")
             yield
 
+        for _ in range(WAIT_TIME//8):
+            self.grabbox.downmotor()
+            print("Waiting and Releasing")
+            yield
+
         self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
             -PLACE_DISTANCE/2)
         while self.mazegoto.mazesolver.mazeRunner.linearTraveller.run() > PLACE_DISTANCE_THRESHOLD:
@@ -99,7 +104,7 @@ class HanoiRetrieve:
         for _ in range(WAIT_TIME):
             print("Waiting")
             yield
-        self.hanoi.arm.releasefingers()
+        # self.hanoi.arm.releasefingers()
         yield
         for _ in range(WAIT_TIME):
             print("Waiting")

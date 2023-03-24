@@ -1,12 +1,13 @@
 from controller import Robot,PositionSensor
 from ArmController  import armcontroll
 TIME_STEP=64
+TIME_THRESHOLD=3000
 
 class Positions:
     def __init__(self,robot: Robot,armcontroller:armcontroll):
         self.robot=robot
         self.TIME_STEP=64
-        self.time=0
+        self.time1=0
 
         self.pitch=armcontroller.pitch_motor.getPositionSensor()
         self.wrist=armcontroller.wrist_motor.getPositionSensor()
@@ -62,7 +63,10 @@ class Positions:
     def isPositioned(self):
         arr=self.positionvalues()
         real_values=[-11,1.5,1.8,0,-1.75]
-
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return True
         print(arr,real_values)
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
@@ -72,6 +76,10 @@ class Positions:
         return True
     
     def isCaught(self):
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return True
         right_val=self.right_finger.getValue()
         left_val=self.left_finger.getValue()
         arr=[right_val,left_val]
@@ -85,6 +93,10 @@ class Positions:
         return True
     
     def isHung(self):
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return True
         arr=self.positionvalues()
         real_values=[-11,0,0,0,0]
 
@@ -97,6 +109,10 @@ class Positions:
         return True
     
     def isPlaced(self):
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return Trues
         arr=self.positionvalues()
         real_values=[-11,-0.7,-1,0,-1.47]
 
@@ -109,7 +125,11 @@ class Positions:
         return True
     
     """FOR HANOI"""
-    def isHanoiBottomPlaced(self):   ############### For Hanoi Bottom box #################
+    def isHanoiBottomPlaced(self):
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return True   ############### For Hanoi Bottom box #################
         arr=self.positionvalues()
         real_values=[-11,1.5,1.8,0,-1.75]
 
@@ -122,6 +142,10 @@ class Positions:
         return True
     
     def isHanoi_top_1_Placed(self):   ############### For Hanoi Bottom box #################
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return True
         arr=self.positionvalues()
         real_values=[-11,0.93,1.7,0,-1.1]
 
@@ -134,6 +158,10 @@ class Positions:
         return True
     
     def isHanoi_top_2_Placed(self):   ############### For Hanoi Bottom box #################
+        self.time1+=1
+        if self.time1>=TIME_THRESHOLD:
+            self.time1=0
+            return True
         arr=self.positionvalues()
         real_values=[-11,0.4,1.85,0,-0.7]
 
