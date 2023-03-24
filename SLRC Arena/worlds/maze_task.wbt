@@ -9,12 +9,15 @@ WorldInfo {
   contactProperties [
     ContactProperties {
       material1 "friction"
+      coulombFriction [
+        2.5
+      ]
     }
   ]
 }
 Viewpoint {
-  orientation -0.0833422596565314 -0.98676479935714 0.1391017559378976 5.191851678403661
-  position -2.079472342448749 1.2381671989906202 0.6263201912493105
+  orientation -0.03421524247491096 -0.9983113038820888 0.04694526305844782 5.022026916812399
+  position -2.644819555287423 0.044332356526764316 5.152812858499441
   follow "Rebel_Robot"
   followType "None"
 }
@@ -276,7 +279,7 @@ DEF rebel Robot {
         }
       ]
       endPoint Solid {
-        translation 4.209187258536937e-08 0.060000079847691214 0.011998186410560274
+        translation 4.2091872585870815e-08 0.060000079847691325 0.011998186410560274
         rotation -2.090745832575579e-09 -3.557773865015512e-08 -0.9999999999999994 3.1415925718064015
         scale 0.2 0.2 0.2
         children [
@@ -766,7 +769,7 @@ DEF rebel Robot {
                                           }
                                           endPoint Solid {
                                             translation 0 0 0.1
-                                            rotation 0.16481351922281245 0.00013124544926040968 0.9863247369178284 3.1400217799478196
+                                            rotation 0.16481351922281234 0.00013124544926048403 0.9863247369178284 3.1400217799478196
                                             children [
                                               DEF rf_finger Group {
                                                 children [
