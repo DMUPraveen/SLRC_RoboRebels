@@ -12,7 +12,7 @@
 #define STUCK_TIME 120
 #define HIT_DIS 0.1
 //Change the corresponding DEF robot name of the competitors
-#define ROBOT_NAME "rebel" 
+#define ROBOT_NAME "Rebel_Robot" 
 
 int main(int argc, char **argv) {
   
