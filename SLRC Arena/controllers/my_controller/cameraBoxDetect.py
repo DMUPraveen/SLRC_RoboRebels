@@ -35,7 +35,7 @@ def extractChannel(hsv, color):
     return mask
 
 kBlurSize = 5
-def get_centeroid(channel, timestep=64, imgV=True):
+def get_centeroid(channel, timestep=32, imgV=True):
 
     # Apply Gaussian blur
     blurred = cv2.GaussianBlur(channel, (kBlurSize, kBlurSize), 0)

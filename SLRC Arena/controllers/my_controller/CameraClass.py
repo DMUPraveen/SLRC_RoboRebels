@@ -8,14 +8,17 @@ class Camera:
     def __init__(self, robot: Robot, motorcontroller: Motorcontrol):
         self.robot = robot
         self.car = motorcontroller
-        self.TIME_STEP = 64
+        self.TIME_STEP = 32
         self.kBlurSize = 5
 
         self.cam = robot.getDevice('rebelEye')
-        self.enableCamera()
+        # self.enableCamera()
 
     def enableCamera(self):
         self.cam.enable(self.TIME_STEP)
+
+    def disableCamera(self):
+        self.cam.disable()
 
     def extractChannel(self, hsv, color):
 
@@ -76,7 +79,7 @@ class Camera:
         return True, (x, y)
 
     def ErrorCalibration(self, verb=True, imageVerbose=False):
-
+        # self.enableCamera()
         cameraData = self.cam.getImage()
 
         image = np.frombuffer(cameraData, np.uint8).reshape(
@@ -135,6 +138,7 @@ class Camera:
         return Error
 
     def alignwithbox(self):
+        self.enableCamera()
         print("RUNNING CAMERA")
         error = self.ErrorCalibration()
         if error:
@@ -143,11 +147,14 @@ class Camera:
             return error
 
     def isAligned(self):
-        error = self.ErrorCalibration()
-        if error == 0:
-            self.car.simplestop()
-            print("TEST PASSED")
-            return True
+        error = self.alignwithbox()
+        print(error)
+        if error:
+            if abs(error) <= 1.0:
+                self.car.simplestop()
+                print("TEST PASSED")
+                self.disableCamera()
+                return True
 
         # leftMotor.setVelocity(+speed)
         # rightMotor.setVelocity(-speed)

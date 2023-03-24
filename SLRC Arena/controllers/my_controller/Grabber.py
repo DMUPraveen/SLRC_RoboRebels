@@ -18,7 +18,7 @@ class GrabBox:
     def release(self):
         self.motor_1.setPosition(0)
         self.motor_1.setVelocity(0.05)
-        self.motor_2.setPosition(-0.1)
+        self.motor_2.setPosition(-0.01)
         self.motor_2.setVelocity(0.05)
 
     def stop(self):

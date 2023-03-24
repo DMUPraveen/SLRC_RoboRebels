@@ -1,11 +1,11 @@
 from controller import Robot,PositionSensor
 from ArmController  import armcontroll
-TIME_STEP=64
+TIME_STEP=32
 
 class Positions:
     def __init__(self,robot: Robot,armcontroller:armcontroll):
         self.robot=robot
-        self.TIME_STEP=64
+        self.TIME_STEP=32
         self.time=0
 
         self.pitch=armcontroller.pitch_motor.getPositionSensor()
@@ -117,7 +117,7 @@ class Positions:
         for realv,arrv in zip(real_values,arr):
             if arrv is None:
                 return False
-            if abs(arrv-realv)>0.05:
+            if abs(arrv-realv)>0.5:
                 return False
         return True
     
