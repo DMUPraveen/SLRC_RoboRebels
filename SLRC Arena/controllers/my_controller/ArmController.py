@@ -42,7 +42,7 @@ class armcontroll:
 
     def elbowcontrol(self, elbow_val):
         self.elbow_motor.setPosition(elbow_val)
-        self.elbow_motor.setVelocity(0.3)
+        self.elbow_motor.setVelocity(0.4)
         # self.robot.step(50*self.TIME_STEP)
 
     def wristcontrol(self, wrist_val):
@@ -52,7 +52,7 @@ class armcontroll:
 
     def pitchcontrol(self, pitch_val):
         self.pitch_motor.setPosition(pitch_val)
-        self.pitch_motor.setVelocity(0.3)
+        self.pitch_motor.setVelocity(0.4)
         # self.robot.step(30*self.TIME_STEP)
 
     def stoparm(self):
