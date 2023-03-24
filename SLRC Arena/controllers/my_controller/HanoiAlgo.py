@@ -50,7 +50,7 @@ class HanoiRetrieve:
             print("Picking up box")
             yield
 
-    def box_place_and_return_to_original_pos(self):
+    def box_place_and_return_to_original_pos(self, color):
         self.mazegoto.mazesolver.mazeRunner.linearTraveller.initialize(
             PLACE_DISTANCE/2)
         while self.mazegoto.mazesolver.mazeRunner.linearTraveller.run() > PLACE_DISTANCE_THRESHOLD:
@@ -69,9 +69,10 @@ class HanoiRetrieve:
             print("Waiting and Releasing")
             yield
 
-        for _ in range(WAIT_TIME//2):
-            self.grabbox.upmotor()
-            yield
+        if(color != BLUE):
+            for _ in range(WAIT_TIME//2):
+                self.grabbox.upmotor()
+                yield
 
         for _ in range(WAIT_TIME//2):
             self.hanoi.arm.catchbox()
@@ -145,7 +146,7 @@ class HanoiRetrieve:
             yield
         yield
         self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
-        box_placer = self.box_place_and_return_to_original_pos()
+        box_placer = self.box_place_and_return_to_original_pos(color)
         for _ in box_placer:
             yield
         return
