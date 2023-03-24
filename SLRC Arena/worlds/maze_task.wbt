@@ -16,8 +16,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.08239789895865994 -0.9903489971754008 0.11144258629839922 5.000601452529797
-  position -3.2967888214582493 -0.6056602296393648 6.469228567651637
+  orientation -0.23503953172690928 -0.1596056669626396 0.9587921826960241 4.295867615301449
+  position -1.744618056880578 1.296041340247787 0.13854635205816201
   follow "Rebel_Robot"
   followType "None"
 }
@@ -759,7 +759,7 @@ DEF rebel Robot {
                                       }
                                       RotationalMotor {
                                         name "right_finger_motor"
-                                        maxTorque 25
+                                        maxTorque 100
                                       }
                                     ]
                                     endPoint Solid {
@@ -1124,7 +1124,7 @@ DEF rebel Robot {
                                       }
                                       RotationalMotor {
                                         name "left_finger_motor"
-                                        maxTorque 25
+                                        maxTorque 100
                                       }
                                     ]
                                     endPoint Solid {

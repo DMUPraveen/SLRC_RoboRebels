@@ -8,6 +8,7 @@ class Positions:
         self.robot=robot
         self.TIME_STEP=64
         self.time=0
+        self.arm=armcontroller
 
         self.pitch=armcontroller.pitch_motor.getPositionSensor()
         self.wrist=armcontroller.wrist_motor.getPositionSensor()
@@ -138,3 +139,12 @@ class Positions:
             if abs(arrv-realv)>0.05:
                 return False
         return True
+    
+
+    def FingerValues(self):
+        right_val=self.right_finger.getValue()
+        left_val=self.left_finger.getValue()
+        self.arm.finger_motor_left.setVelocity(0)
+        self.arm.finger_motor_right.setVelocity(0)
+        self.arm.finger_motor_left.setPosition(left_val)
+        self.arm.finger_motor_right.setPosition(right_val)

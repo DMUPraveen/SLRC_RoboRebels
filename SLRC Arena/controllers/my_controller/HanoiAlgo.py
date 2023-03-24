@@ -33,6 +33,10 @@ class HanoiRetrieve:
         return self.colors.pop()
 
     def pick_up_box(self):
+        for _ in range(WAIT_TIME//2):
+            self.grabbox.downmotor()
+            print("Waiting and Releasing")
+            yield
         self.superstate.state = 0
         self.superstate.boxdetector.state = 0
         self.superstate.superarm.state = 0
@@ -60,11 +64,12 @@ class HanoiRetrieve:
             yield
 
         for _ in range(WAIT_TIME//2):
-            self.grabbox.upmotor()
-            yield
-        for _ in range(WAIT_TIME//2):
             self.hanoi.arm.catchbox()
             print("Waiting and Releasing")
+            yield
+            
+        for _ in range(WAIT_TIME//2):
+            self.grabbox.upmotor()
             yield
 
         while not self.hanoi.BuildHanoi(1):
@@ -75,7 +80,7 @@ class HanoiRetrieve:
             yield
 
         for _ in range(WAIT_TIME//2):
-            self.hanoi.arm.releasefingers()
+            self.hanoi.pos.FingerValues()  ## Releases the speed
             print("Waiting and Releasing")
             yield
 
@@ -98,7 +103,7 @@ class HanoiRetrieve:
             yield
         for _ in range(WAIT_TIME//2):
             print("Waiting")
-            self.grabbox.downmotor()
+            # self.grabbox.downmotor()
             self.grabbox.release()
             yield
         self.hanoi.arm.releasefingers()
