@@ -148,3 +148,43 @@ class Camera:
             self.car.simplestop()
             print("TEST PASSED")
             return True
+        
+    def ColorDetect(self, verb=True, imageVerbose=False):
+
+        cameraData = self.cam.getImage()
+
+        image = np.frombuffer(cameraData, np.uint8).reshape(
+            (self.cam.getHeight(), self.cam.getWidth(), 4))
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+        red_channel = self.extractChannel(image, 'R')
+        blue_channel = self.extractChannel(image, 'B')
+        green_channel = self.extractChannel(image, 'G')
+
+        if imageVerbose:
+            cv2.imshow('Blue', blue_channel)
+            cv2.imshow('Green', green_channel)
+            cv2.imshow('Blue', blue_channel)
+            cv2.waitKey(self.TIME_STEP)
+
+        # Get the centeroids of the individual blobs
+        red_center = self.get_centeroid(red_channel, imgV=imageVerbose)
+        blue_center = self.get_centeroid(blue_channel, imgV=imageVerbose)
+        green_center = self.get_centeroid(green_channel, imgV=imageVerbose)
+
+
+        if blue_center[0]:
+            error_blue = (image.shape[1]/2)-blue_center[1][0]
+            blueDet = 1
+            return("blue")
+
+        if red_center[0]:
+            error_red = (image.shape[1]/2)-red_center[1][0]
+            redDet = 1
+            return("red")
+        if green_center[0]:
+            error_green = (image.shape[1]/2)-green_center[1][0]
+            greenDet = 1
+            return("green")
+
+    
