@@ -16,6 +16,10 @@ def main_control_code(mazesolver: MazeSolver, mazegoto: Mazegoto,
     retriever_task = retriever.retrieve_all_boxes()
     for _ in retriever_task:
         yield
+    hanoi_make = retriever.make_tower()
+    for _ in hanoi_make:
+        yield
+    yield
     while True:
         print("finished")
         yield

@@ -107,8 +107,9 @@ class HanoiRetrieve:
             self.hanoi.arm.bringup()
             yield
 
-    def get_box_and_put(self, start, end):
-        partial_go = self.mazegoto.do_partial_go_from_current(start)
+    def get_box_and_put(self, start, end, final_height):
+        partial_go = self.mazegoto.do_partial_go_from_current(
+            start, self.mazegoto.stacks)
         for _ in partial_go:
             yield
         yield
@@ -152,7 +153,8 @@ class HanoiRetrieve:
             yield
         yield
         self.mazegoto.mazesolver.mazeRunner.motorController.pose_stop()
-        box_placer = self.box_place_and_return_to_original_pos(color)
+        box_placer = self.box_place_and_return_to_original_pos(
+            color, final_height)
         for _ in box_placer:
             yield
         return
@@ -217,4 +219,16 @@ class HanoiRetrieve:
                 yield
 
     def make_tower(self):
-        pass
+        red_pos = self.mazegoto.stacks[self.initial_box_places[RED]]
+        green_pos = self.mazegoto.stacks[self.initial_box_places[GREEN]]
+        blue_pos = self.mazegoto.stacks[self.initial_box_places[BLUE]]
+
+        task1 = self.get_box_and_put(green_pos, red_pos, 2)
+        for _ in task1:
+            yield
+        yield
+        task2 = self.get_box_and_put(blue_pos, red_pos, 3)
+        for _ in task2:
+            yield
+        yield
+        return

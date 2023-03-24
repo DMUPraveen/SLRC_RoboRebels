@@ -107,7 +107,11 @@ class Mazegoto:
         yield
         path_found, directions = self.find_path(
             self.mazesolver.mazeRunner.grid_position, end_pos, black_listed_node)
+        print(directions)
         for direction in directions[:-1]:
             self.mazesolver.mazeRunner.add_task_go_direction(direction)
             yield
+        yield
         self.mazesolver.mazeRunner.add_turn_to_direction(directions[-1])
+        yield
+        return
