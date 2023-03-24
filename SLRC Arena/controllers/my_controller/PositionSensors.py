@@ -1,6 +1,7 @@
 from controller import Robot,PositionSensor
 from ArmController  import armcontroll
-TIME_STEP=64
+TIME_STEP=32
+WAIT_TIME=10000//32
 
 class Positions:
     def __init__(self,robot: Robot,armcontroller:armcontroll):
@@ -110,17 +111,9 @@ class Positions:
     
     """FOR HANOI"""
     def isHanoiBottomPlaced(self):   ############### For Hanoi Bottom box #################
-        arr=self.positionvalues()
-        real_values=[-11,1.5,1.8,0,-2.0]
-
-        # print(arr,real_values)
-        for realv,arrv in zip(real_values,arr):
-            if arrv is None:
-                return False
-            if abs(arrv-realv)>0.05:
-                return False
+        for _ in range(WAIT_TIME//2):
+            yield
         return True
-    
     def isHanoi_top_1_Placed(self):   ############### For Hanoi Bottom box #################
         arr=self.positionvalues()
         real_values=[-11,0.93,1.7,0,-1.1]
