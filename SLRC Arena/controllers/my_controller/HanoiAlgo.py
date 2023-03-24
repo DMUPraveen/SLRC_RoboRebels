@@ -71,24 +71,24 @@ class HanoiRetrieve:
             #     print("Waiting and Releasing")
             #     yield
 
-            for _ in range(WAIT_TIME//2):
-                self.grabbox.release()
-                print("Waiting and Releasing")
-                yield
+            # for _ in range(WAIT_TIME//2):
+            #     self.grabbox.upMotorBlue()
+            #     print("Waiting and Releasing")
+            #     yield
 
             for _ in range(WAIT_TIME//2):
-                self.grabbox.upMotorBlue()
-                print("Waiting and Releasing")
-                yield
-
-            for _ in range(WAIT_TIME//2):
-                self.hanoi.arm.putinback(-11, -0.7, -1.1,
-                                         0, -1.34)  # """Put in back"""
+                self.hanoi.arm.putinback(-11, -0.72, -0.9,
+                                         0, -1.5)  # """Put in back"""
                 print("Waiting and Releasing")
                 yield
 
             for _ in range(WAIT_TIME//2):
                 self.hanoi.arm.catchbox()
+                print("Waiting and Releasing")
+                yield
+
+            for _ in range(WAIT_TIME//2):
+                self.grabbox.release()
                 print("Waiting and Releasing")
                 yield
 
