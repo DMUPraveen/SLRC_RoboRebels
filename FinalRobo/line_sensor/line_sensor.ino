@@ -75,6 +75,7 @@ void setup()
     delay(1000);
     pinMode(LED_BUILTIN, HIGH);
     cal.calibrate(iterations, batch, delta);
+    pinMode(LED_BUILTIN, LOW);
 }
 
 void loop()
