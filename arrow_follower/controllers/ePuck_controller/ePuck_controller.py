@@ -2,7 +2,7 @@
 
 import sys
 
-sys.path.insert(0,'E:\\DEEE\\4th SEM\\SLRC 23\\root\\deploy_scripts')
+sys.path.insert(0,'C:\\Users\\msi\\Desktop\\SLRC_RoboRebels\\deploy_scripts')
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
