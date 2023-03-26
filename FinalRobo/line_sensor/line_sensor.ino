@@ -56,6 +56,12 @@ struct calibrator
                 analogRead(analog_pins[i]) < threshold_values[i]);
         }
         Serial.println("");
+        for (int i = 0; i < NUM_SENSORS; i++)
+        {
+            Serial.print(analogRead(analog_pins[i]) < threshold_values[i]);
+            Serial.print(" ");
+        }
+        Serial.println("");
     }
 };
 
