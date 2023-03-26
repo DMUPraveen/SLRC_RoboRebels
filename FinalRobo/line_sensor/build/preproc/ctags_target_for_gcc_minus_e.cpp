@@ -1,6 +1,6 @@
 # 1 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
 const uint8_t NUM_SENSORS = 7;
-uint8_t analog_pins[NUM_SENSORS] = {A0, A1, A2, A3, A4, A5, A6};
+uint8_t analog_pins[NUM_SENSORS] = {A1, A2, A3, A4, A5, A6, A7};
 uint8_t out_pins[NUM_SENSORS] = {4, 5, 6, 7, 8, 9, 10};
 
 const int batch = 20;
@@ -50,10 +50,13 @@ struct calibrator
     {
         for (int i = 0; i < NUM_SENSORS; i++)
         {
+            Serial.print(analogRead(analog_pins[i]));
+            Serial.print(" ");
             digitalWrite(
                 out_pins[i],
                 analogRead(analog_pins[i]) < threshold_values[i]);
         }
+        Serial.println("");
     }
 };
 
@@ -61,6 +64,8 @@ calibrator cal = calibrator();
 
 void setup()
 {
+    pinMode(13, 0x1);
+    Serial.begin(9600);
     for (auto pin : analog_pins)
     {
         pinMode(pin, 0x0);
@@ -74,8 +79,11 @@ void setup()
         digitalWrite(pin, 0x0);
     }
     delay(1000);
-    pinMode(13, 0x1);
+    Serial.println("Calibration Started");
+    digitalWrite(13, 0x1);
     cal.calibrate(iterations, batch, delta);
+    digitalWrite(13, 0x0);
+    Serial.println("Calibration End");
 }
 
 void loop()

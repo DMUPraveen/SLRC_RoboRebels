@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #line 1 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
 const uint8_t NUM_SENSORS = 7;
-uint8_t analog_pins[NUM_SENSORS] = {A0, A1, A2, A3, A4, A5, A6};
+uint8_t analog_pins[NUM_SENSORS] = {A1, A2, A3, A4, A5, A6, A7};
 uint8_t out_pins[NUM_SENSORS] = {4, 5, 6, 7, 8, 9, 10};
 
 const int batch = 20;
@@ -51,22 +51,27 @@ struct calibrator
     {
         for (int i = 0; i < NUM_SENSORS; i++)
         {
+            Serial.print(analogRead(analog_pins[i]));
+            Serial.print(" ");
             digitalWrite(
                 out_pins[i],
                 analogRead(analog_pins[i]) < threshold_values[i]);
         }
+        Serial.println("");
     }
 };
 
 calibrator cal = calibrator();
 
-#line 61 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
+#line 64 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
 void setup();
-#line 80 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
+#line 88 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
 void loop();
-#line 61 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
+#line 64 "e:\\Project_Archive\\SLRC\\Code\\worktrees\\FinalRobo\\FinalRobo\\line_sensor\\line_sensor.ino"
 void setup()
 {
+    pinMode(LED_BUILTIN, OUTPUT);
+    Serial.begin(9600);
     for (auto pin : analog_pins)
     {
         pinMode(pin, INPUT);
@@ -80,8 +85,11 @@ void setup()
         digitalWrite(pin, LOW);
     }
     delay(1000);
-    pinMode(LED_BUILTIN, HIGH);
+    Serial.println("Calibration Started");
+    digitalWrite(LED_BUILTIN, HIGH);
     cal.calibrate(iterations, batch, delta);
+    digitalWrite(LED_BUILTIN, LOW);
+    Serial.println("Calibration End");
 }
 
 void loop()
