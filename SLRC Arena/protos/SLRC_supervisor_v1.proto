@@ -1,0 +1,30 @@
+#VRML_SIM R2023a utf8
+# Describe the functionality of your PROTO here.
+
+
+PROTO SLRC_supervisor_v1 [
+
+]
+{
+  DEF supervisor Robot {
+
+    
+    translation -1.93 1.32 0.0015
+    rotation 1 0 0 1.5708
+    scale 0.001 0.001 0.001
+    children [
+      DEF wall_sensor TouchSensor {
+        translation -0.68 0 0
+        name "wall_sensor"
+        boundingObject Mesh {
+          url [
+            "../solid bodies/arena/onlywalls.STL"
+          ]
+        }
+        locked TRUE
+      }
+    ]
+    controller "supervisor"
+    supervisor TRUE
+    }
+}

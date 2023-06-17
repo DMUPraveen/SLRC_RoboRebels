@@ -1,0 +1,19 @@
+#VRML_SIM R2023a utf8
+# Describe the functionality of your PROTO here.
+
+
+PROTO imported_robot [
+  field SFVec3f translation 0 0 0   # Is `Transform.translation`.
+  field SFRotation rotation 0 0 0 1 # Is `Transform.rotation`.
+  field SFString controller ""      # put your controller name inside the ""
+]
+{
+   Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+	
+	# paste your content from .wbt file here
+	
+  }
+}
